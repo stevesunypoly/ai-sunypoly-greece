@@ -3,218 +3,291 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI in Action — SUNY Poly AIX Center</title>
+<title>Higher Education, AI & Career Prospects — SUNY Poly AIX</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/black.min.css">
 <style>
-  :root {
-    --navy: #0f1f3d;
-    --navy-light: #1a3460;
-    --crimson: #c0182a;
-    --crimson-light: #e63946;
-    --emerald-light: #2dc06f;
-    --purple-light: #7b52d4;
-    --gold: #e8c84a;
-    --off-white: #f2ede6;
-    --muted: #9e9890;
-  }
-  .reveal-viewport { background: var(--navy); }
-  .reveal {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 36px;
-    color: var(--off-white);
-  }
-  .reveal h1, .reveal h2, .reveal h3 {
-    font-family: 'DM Serif Display', serif;
-    font-weight: 400;
-    text-transform: none;
-    letter-spacing: -0.02em;
-    color: #fff;
-    margin-bottom: 0.2em;
-  }
-  .reveal h1 { font-size: 2.1em; line-height: 1.1; }
-  .reveal h2 { font-size: 1.4em; line-height: 1.2; color: var(--gold); }
-  .reveal h3 {
-    font-size: 0.48em;
-    color: var(--muted);
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 400;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    margin-bottom: 0.4em;
-  }
-  .reveal p { font-size: 0.72em; line-height: 1.6; color: var(--off-white); margin: 0.3em 0; }
-  .reveal .slides section { text-align: left; padding: 0 0.4em; box-sizing: border-box; }
+:root {
+  --navy: #0f1f3d;
+  --navy-light: #1a3460;
+  --crimson: #c0182a;
+  --crimson-light: #e63946;
+  --emerald: #2dc06f;
+  --purple: #7b52d4;
+  --gold: #e8c84a;
+  --white: #ffffff;
+  --off-white: #f2ede6;
+  --muted: #9e9890;
+  --card-bg: rgba(255,255,255,0.06);
+  --card-border: rgba(255,255,255,0.1);
+}
+.reveal-viewport { background: var(--navy); }
+.reveal {
+  font-family: "DM Sans", sans-serif;
+  font-size: 34px;
+  color: var(--off-white);
+}
+.reveal h1, .reveal h2, .reveal h3 {
+  font-family: "DM Serif Display", serif;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 0.15em;
+}
+.reveal h1 { font-size: 2em; line-height: 1.05; }
+.reveal h2 { font-size: 1.35em; line-height: 1.2; color: var(--gold); }
+.reveal h3 {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.44em;
+  color: var(--muted);
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 0.35em;
+}
+.reveal p { font-size: 0.68em; line-height: 1.6; color: var(--off-white); margin: 0.25em 0; }
+.reveal .slides section { text-align: left; padding: 0 0.4em; box-sizing: border-box; }
+.reveal .slide-number {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.25);
+  background: transparent;
+  bottom: 14px;
+  right: 14px;
+}
+.rule { width: 52px; height: 2px; background: var(--crimson); margin: 0.35em 0 0.55em; }
+.rule.go { background: var(--gold); }
+.rule.em { background: var(--emerald); }
+.rule.pu { background: var(--purple); }
 
-  /* QR corner — admissions, persistent */
-  .qr-corner {
-    position: fixed;
-    bottom: 14px;
-    left: 14px;
-    z-index: 999;
-    opacity: 0.9;
-  }
-  .qr-corner-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 8px;
-    color: var(--muted);
-    text-align: center;
-    margin-top: 2px;
-    letter-spacing: 0.06em;
-  }
+/* QR corner */
+.qr-corner {
+  position: fixed;
+  bottom: 14px;
+  left: 14px;
+  z-index: 999;
+  opacity: 0.88;
+}
+.qr-corner-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 7.5px;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 2px;
+  letter-spacing: 0.05em;
+}
 
-  /* Title slide */
-  .title-eyebrow {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.36em;
-    letter-spacing: 0.16em;
-    color: var(--crimson-light);
-    text-transform: uppercase;
-    margin-bottom: 0.8em;
-  }
-  .title-sub {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.48em;
-    color: var(--muted);
-    margin-top: 1em;
-    line-height: 1.6;
-  }
-  .title-rule { width: 72px; height: 3px; background: var(--crimson); margin: 0.6em 0; }
+/* Cards */
+.card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  padding: 0.6em 0.75em;
+  border: 1px solid var(--card-border);
+}
+.card h4 {
+  font-family: "DM Serif Display", serif;
+  font-size: 0.6em;
+  color: var(--white);
+  margin: 0 0 0.25em;
+  font-weight: 400;
+}
+.card p { font-size: 0.48em; color: var(--off-white); margin: 0; line-height: 1.55; }
 
-  /* Accent blocks */
-  .ab {
-    background: rgba(255,255,255,0.06);
-    border-left: 4px solid var(--crimson);
-    padding: 0.55em 0.85em;
-    margin: 0.45em 0;
-    border-radius: 0 6px 6px 0;
-  }
-  .ab.em { border-left-color: var(--emerald-light); }
-  .ab.go { border-left-color: var(--gold); }
-  .ab.pu { border-left-color: var(--purple-light); }
-  .ab p { margin: 0; font-size: 0.6em; }
-  .ab strong { color: #fff; }
+/* Accent blocks */
+.ab {
+  border-left: 3px solid var(--crimson);
+  padding: 0.5em 0.8em;
+  margin: 0.38em 0;
+  background: rgba(255,255,255,0.05);
+  border-radius: 0 6px 6px 0;
+}
+.ab.em { border-left-color: var(--emerald); }
+.ab.go { border-left-color: var(--gold); }
+.ab.pu { border-left-color: var(--purple); }
+.ab p { margin: 0; font-size: 0.56em; }
+.ab strong { color: var(--white); }
 
-  /* Rule */
-  .rule { width: 56px; height: 2px; background: var(--crimson); margin: 0.4em 0 0.6em; }
-  .rule.go { background: var(--gold); }
-  .rule.em { background: var(--emerald-light); }
+/* Grids */
+.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9em; margin-top: 0.65em; }
+.g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.85em; margin-top: 0.65em; }
+.g4 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85em; margin-top: 0.65em; }
 
-  /* Three col */
-  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1em; margin-top: 0.8em; }
-  .col-card {
-    background: rgba(255,255,255,0.06);
-    border-top: 3px solid var(--crimson);
-    padding: 0.65em 0.75em;
-    border-radius: 0 0 8px 8px;
-  }
-  .col-card.em { border-top-color: var(--emerald-light); }
-  .col-card.pu { border-top-color: var(--purple-light); }
-  .col-card h4 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 0.62em;
-    color: #fff;
-    margin: 0 0 0.3em;
-    font-weight: 400;
-  }
-  .col-card p { font-size: 0.5em; color: var(--off-white); margin: 0; }
+/* Stat callouts */
+.stat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1em; margin-top: 0.8em; }
+.stat-box {
+  background: var(--card-bg);
+  border-radius: 10px;
+  border: 1px solid var(--card-border);
+  padding: 0.7em 0.6em;
+  text-align: center;
+}
+.stat-num {
+  font-family: "DM Serif Display", serif;
+  font-size: 1.6em;
+  color: var(--gold);
+  line-height: 1;
+  display: block;
+}
+.stat-lbl { font-size: 0.38em; color: var(--off-white); margin-top: 0.3em; line-height: 1.4; display: block; }
+.stat-src { font-family: "JetBrains Mono", monospace; font-size: 0.28em; color: var(--muted); display: block; margin-top: 0.2em; }
 
-  /* Gap rows */
-  .gap-row { display: flex; align-items: center; gap: 0.5em; margin: 0.45em 0; }
-  .pill {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.4em;
-    padding: 0.38em 0.85em;
-    border-radius: 20px;
-    white-space: nowrap;
-  }
-  .pill-a { background: rgba(255,255,255,0.1); color: var(--off-white); }
-  .pill-b { background: rgba(232,200,74,0.18); color: var(--gold); border: 1px solid var(--gold); }
-  .pill-c { background: rgba(45,192,111,0.18); color: var(--emerald-light); border: 1px solid var(--emerald-light); }
-  .gap-arrow { color: var(--muted); font-size: 0.55em; }
-  .gap-lbl { font-size: 0.42em; color: var(--off-white); font-style: italic; }
+/* Column headers */
+.col-head {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.38em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.3em 0.6em;
+  border-radius: 4px 4px 0 0;
+  margin-bottom: 0;
+}
+.col-head.red { background: rgba(192,24,42,0.25); color: var(--crimson-light); }
+.col-head.gold { background: rgba(232,200,74,0.2); color: var(--gold); }
+.col-head.green { background: rgba(45,192,111,0.2); color: var(--emerald); }
+.col-body {
+  background: var(--card-bg);
+  border-radius: 0 0 8px 8px;
+  padding: 0.5em 0.65em;
+  border: 1px solid var(--card-border);
+  border-top: none;
+}
+.col-body li { font-size: 0.44em; color: var(--off-white); line-height: 1.65; list-style: none; padding: 0; }
+.col-body li::before { content: "→ "; color: var(--muted); }
 
-  /* Two col grid */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; margin-top: 0.7em; }
+/* Gap pills */
+.gap-row { display: flex; align-items: center; gap: 0.5em; margin: 0.4em 0; }
+.pill {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.38em;
+  padding: 0.35em 0.8em;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.pill-a { background: rgba(255,255,255,0.09); color: var(--off-white); }
+.pill-b { background: rgba(232,200,74,0.18); color: var(--gold); border: 1px solid rgba(232,200,74,0.5); }
+.pill-c { background: rgba(45,192,111,0.18); color: var(--emerald); border: 1px solid rgba(45,192,111,0.5); }
+.pill-arrow { color: var(--muted); font-size: 0.55em; }
+.pill-lbl { font-size: 0.41em; color: var(--off-white); font-style: italic; }
 
-  /* Program cards */
-  .prog-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.9em; margin-top: 0.8em; }
-  .prog-card {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 10px;
-    padding: 0.75em;
-    text-align: center;
-  }
-  .prog-card .ico { font-size: 0.85em; margin-bottom: 0.25em; }
-  .prog-card h4 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 0.55em;
-    color: #fff;
-    margin: 0 0 0.25em;
-    font-weight: 400;
-    line-height: 1.2;
-  }
-  .prog-card p { font-size: 0.44em; color: var(--off-white); margin: 0; }
+/* Agenda */
+.agenda-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7em; margin-top: 0.7em; }
+.agenda-item { display: flex; gap: 0.5em; align-items: flex-start; }
+.agenda-num {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.5em;
+  color: var(--crimson-light);
+  min-width: 1.4em;
+  font-weight: 500;
+  padding-top: 0.05em;
+}
+.agenda-text h5 {
+  font-family: "DM Serif Display", serif;
+  font-size: 0.55em;
+  color: var(--white);
+  margin: 0 0 0.1em;
+  font-weight: 400;
+}
+.agenda-text p { font-size: 0.42em; color: var(--muted); margin: 0; }
 
-  /* Takeaway */
-  .tk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1em; margin-top: 0.75em; }
-  .tk-card {
-    background: rgba(255,255,255,0.05);
-    border-radius: 10px;
-    padding: 0.8em 0.9em;
-    border: 1px solid rgba(255,255,255,0.1);
-  }
-  .tk-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.34em;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.35em;
-  }
-  .tk-card h4 {
-    font-family: 'DM Serif Display', serif;
-    font-size: 0.6em;
-    color: #fff;
-    margin: 0 0 0.35em;
-    font-weight: 400;
-  }
-  .tk-card p { font-size: 0.45em; color: var(--off-white); margin: 0; line-height: 1.6; }
-  .tk-qr { margin-top: 0.6em; display: flex; align-items: center; gap: 0.6em; }
-  .tk-qr-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.36em;
-    color: var(--emerald-light);
-    line-height: 1.4;
-  }
+/* Numbered recs */
+.rec-item { display: flex; gap: 0.6em; align-items: flex-start; margin: 0.38em 0; }
+.rec-num {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.5em;
+  color: var(--gold);
+  min-width: 1.2em;
+  font-weight: 500;
+  padding-top: 0.1em;
+}
+.rec-text { font-size: 0.52em; color: var(--off-white); line-height: 1.5; }
 
-  /* Slide number override */
-  .reveal .slide-number {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: rgba(255,255,255,0.28);
-    background: transparent;
-    bottom: 14px;
-    right: 14px;
-  }
+/* T-shape */
+.t-bar {
+  background: linear-gradient(90deg, rgba(45,192,111,0.15), rgba(45,192,111,0.25), rgba(45,192,111,0.15));
+  border: 1px solid rgba(45,192,111,0.3);
+  border-radius: 8px;
+  padding: 0.5em 0.8em;
+  margin-bottom: 0.5em;
+}
+.t-bar p { font-size: 0.42em; color: var(--off-white); margin: 0; }
+.t-bar .t-label { font-family: "JetBrains Mono", monospace; font-size: 0.32em; color: var(--emerald); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.2em; }
+.t-stem {
+  background: linear-gradient(180deg, rgba(123,82,212,0.15), rgba(123,82,212,0.1));
+  border: 1px solid rgba(123,82,212,0.3);
+  border-radius: 8px;
+  padding: 0.55em 0.8em;
+  width: 60%;
+  margin: 0 auto;
+}
+.t-stem p { font-size: 0.41em; color: var(--off-white); margin: 0; line-height: 1.65; }
+.t-stem .t-label { font-family: "JetBrains Mono", monospace; font-size: 0.32em; color: var(--purple); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.2em; }
 
-  /* Focus visible for WCAG */
-  .reveal a:focus-visible,
-  button:focus-visible {
-    outline: 3px solid var(--gold);
-    outline-offset: 2px;
-  }
+/* Takeaway */
+.tk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; margin-top: 0.7em; }
+.tk-card {
+  background: var(--card-bg);
+  border-radius: 10px;
+  padding: 0.75em 0.85em;
+  border: 1px solid var(--card-border);
+}
+.tk-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.32em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.3em;
+}
+.tk-card h4 {
+  font-family: "DM Serif Display", serif;
+  font-size: 0.58em;
+  color: var(--white);
+  margin: 0 0 0.3em;
+  font-weight: 400;
+}
+.tk-card p { font-size: 0.43em; color: var(--off-white); margin: 0; line-height: 1.6; }
+.tk-qr { margin-top: 0.55em; display: flex; align-items: center; gap: 0.55em; }
+.tk-qr-lbl { font-family: "JetBrains Mono", monospace; font-size: 0.32em; color: var(--emerald); line-height: 1.5; }
+
+/* Closing */
+.closing-quote {
+  font-family: "DM Serif Display", serif;
+  font-style: italic;
+  font-size: 1.55em;
+  line-height: 1.2;
+  color: var(--white);
+  margin-bottom: 0.1em;
+}
+.closing-sub {
+  font-family: "DM Sans", sans-serif;
+  font-size: 0.48em;
+  color: var(--gold);
+  margin-top: 0.4em;
+  font-style: normal;
+}
+.closing-names {
+  font-size: 0.42em;
+  color: var(--muted);
+  margin-top: 1.2em;
+  line-height: 1.7;
+}
+
+/* Focus */
+.reveal a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
 </style>
 </head>
 <body>
 
-<!-- Persistent admissions QR — bottom left -->
-<div class="qr-corner" role="complementary" aria-label="QR code for MS Data Science and Analytics program">
-  <svg style="background:#fff;border-radius:3px;display:block;" width="72px" height="72px" version="1.1" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><path d="M0.8,0.8H1.2V1.2H0.8zM1.2,0.8H1.6V1.2H1.2zM1.6,0.8H2V1.2H1.6zM2,0.8H2.4V1.2H2zM2.4,0.8H2.8V1.2H2.4zM2.8,0.8H3.2V1.2H2.8zM3.2,0.8H3.6V1.2H3.2zM4.8,0.8H5.2V1.2H4.8zM5.2,0.8H5.6V1.2H5.2zM5.6,0.8H6V1.2H5.6zM7.6,0.8H8V1.2H7.6zM8.4,0.8H8.8V1.2H8.4zM8.8,0.8H9.2V1.2H8.8zM9.2,0.8H9.6V1.2H9.2zM10,0.8H10.4V1.2H10zM10.8,0.8H11.2V1.2H10.8zM12.4,0.8H12.8V1.2H12.4zM12.8,0.8H13.2V1.2H12.8zM13.2,0.8H13.6V1.2H13.2zM13.6,0.8H14V1.2H13.6zM14.4,0.8H14.8V1.2H14.4zM14.8,0.8H15.2V1.2H14.8zM15.2,0.8H15.6V1.2H15.2zM15.6,0.8H16V1.2H15.6zM16,0.8H16.4V1.2H16zM16.4,0.8H16.8V1.2H16.4zM16.8,0.8H17.2V1.2H16.8zM0.8,1.2H1.2V1.6H0.8zM3.2,1.2H3.6V1.6H3.2zM4.4,1.2H4.8V1.6H4.4zM5.6,1.2H6V1.6H5.6zM6.8,1.2H7.2V1.6H6.8zM7.2,1.2H7.6V1.6H7.2zM7.6,1.2H8V1.6H7.6zM8.8,1.2H9.2V1.6H8.8zM9.2,1.2H9.6V1.6H9.2zM10.8,1.2H11.2V1.6H10.8zM11.2,1.2H11.6V1.6H11.2zM11.6,1.2H12V1.6H11.6zM12,1.2H12.4V1.6H12zM13.6,1.2H14V1.6H13.6zM14.4,1.2H14.8V1.6H14.4zM16.8,1.2H17.2V1.6H16.8zM0.8,1.6H1.2V2H0.8zM1.6,1.6H2V2H1.6zM2,1.6H2.4V2H2zM2.4,1.6H2.8V2H2.4zM3.2,1.6H3.6V2H3.2zM4,1.6H4.4V2H4zM4.4,1.6H4.8V2H4.4zM5.2,1.6H5.6V2H5.2zM5.6,1.6H6V2H5.6zM6,1.6H6.4V2H6zM6.4,1.6H6.8V2H6.4zM6.8,1.6H7.2V2H6.8zM7.2,1.6H7.6V2H7.2zM7.6,1.6H8V2H7.6zM8,1.6H8.4V2H8zM9.2,1.6H9.6V2H9.2zM9.6,1.6H10V2H9.6zM10.8,1.6H11.2V2H10.8zM11.6,1.6H12V2H11.6zM12,1.6H12.4V2H12zM12.8,1.6H13.2V2H12.8zM13.2,1.6H13.6V2H13.2zM14.4,1.6H14.8V2H14.4zM15.2,1.6H15.6V2H15.2zM15.6,1.6H16V2H15.6zM16,1.6H16.4V2H16zM16.8,1.6H17.2V2H16.8zM0.8,2H1.2V2.4H0.8zM1.6,2H2V2.4H1.6zM2,2H2.4V2.4H2zM2.4,2H2.8V2.4H2.4zM3.2,2H3.6V2.4H3.2zM4,2H4.4V2.4H4zM4.4,2H4.8V2.4H4.4zM4.8,2H5.2V2.4H4.8zM6,2H6.4V2.4H6zM6.8,2H7.2V2.4H6.8zM8.4,2H8.8V2.4H8.4zM8.8,2H9.2V2.4H8.8zM9.2,2H9.6V2.4H9.2zM10,2H10.4V2.4H10zM10.4,2H10.8V2.4H10.4zM11.2,2H11.6V2.4H11.2zM11.6,2H12V2.4H11.6zM12,2H12.4V2.4H12zM12.8,2H13.2V2.4H12.8zM14.4,2H14.8V2.4H14.4zM15.2,2H15.6V2.4H15.2zM15.6,2H16V2.4H15.6zM16,2H16.4V2.4H16zM16.8,2H17.2V2.4H16.8zM0.8,2.4H1.2V2.8H0.8zM1.6,2.4H2V2.8H1.6zM2,2.4H2.4V2.8H2zM2.4,2.4H2.8V2.8H2.4zM3.2,2.4H3.6V2.8H3.2zM4,2.4H4.4V2.8H4zM5.6,2.4H6V2.8H5.6zM6,2.4H6.4V2.8H6zM6.4,2.4H6.8V2.8H6.4zM7.2,2.4H7.6V2.8H7.2zM8,2.4H8.4V2.8H8zM8.4,2.4H8.8V2.8H8.4zM8.8,2.4H9.2V2.8H8.8zM9.6,2.4H10V2.8H9.6zM10,2.4H10.4V2.8H10zM10.4,2.4H10.8V2.8H10.4zM12,2.4H12.4V2.8H12zM12.8,2.4H13.2V2.8H12.8zM13.2,2.4H13.6V2.8H13.2zM13.6,2.4H14V2.8H13.6zM14.4,2.4H14.8V2.8H14.4zM15.2,2.4H15.6V2.8H15.2zM15.6,2.4H16V2.8H15.6zM16,2.4H16.4V2.8H16zM16.8,2.4H17.2V2.8H16.8zM0.8,2.8H1.2V3.2H0.8zM3.2,2.8H3.6V3.2H3.2zM4,2.8H4.4V3.2H4zM4.4,2.8H4.8V3.2H4.4zM4.8,2.8H5.2V3.2H4.8zM5.2,2.8H5.6V3.2H5.2zM5.6,2.8H6V3.2H5.6zM6.4,2.8H6.8V3.2H6.4zM6.8,2.8H7.2V3.2H6.8zM7.2,2.8H7.6V3.2H7.2zM8.8,2.8H9.2V3.2H8.8zM9.2,2.8H9.6V3.2H9.2zM9.6,2.8H10V3.2H9.6zM10.4,2.8H10.8V3.2H10.4zM11.2,2.8H11.6V3.2H11.2zM11.6,2.8H12V3.2H11.6zM12.4,2.8H12.8V3.2H12.4zM13.6,2.8H14V3.2H13.6zM14.4,2.8H14.8V3.2H14.4zM16.8,2.8H17.2V3.2H16.8zM0.8,3.2H1.2V3.6H0.8zM1.2,3.2H1.6V3.6H1.2zM1.6,3.2H2V3.6H1.6zM2,3.2H2.4V3.6H2zM2.4,3.2H2.8V3.6H2.4zM2.8,3.2H3.2V3.6H2.8zM3.2,3.2H3.6V3.6H3.2zM4,3.2H4.4V3.6H4zM4.8,3.2H5.2V3.6H4.8zM5.6,3.2H6V3.6H5.6zM6.4,3.2H6.8V3.6H6.4zM7.2,3.2H7.6V3.6H7.2zM8,3.2H8.4V3.6H8zM8.8,3.2H9.2V3.6H8.8zM9.6,3.2H10V3.6H9.6zM10.4,3.2H10.8V3.6H10.4zM11.2,3.2H11.6V3.6H11.2zM12,3.2H12.4V3.6H12zM12.8,3.2H13.2V3.6H12.8zM13.6,3.2H14V3.6H13.6zM14.4,3.2H14.8V3.6H14.4zM14.8,3.2H15.2V3.6H14.8zM15.2,3.2H15.6V3.6H15.2zM15.6,3.2H16V3.6H15.6zM16,3.2H16.4V3.6H16zM16.4,3.2H16.8V3.6H16.4zM16.8,3.2H17.2V3.6H16.8zM4,3.6H4.4V4H4zM4.4,3.6H4.8V4H4.4zM4.8,3.6H5.2V4H4.8zM6.4,3.6H6.8V4H6.4zM6.8,3.6H7.2V4H6.8zM8.4,3.6H8.8V4H8.4zM8.8,3.6H9.2V4H8.8zM9.2,3.6H9.6V4H9.2zM11.2,3.6H11.6V4H11.2zM13.2,3.6H13.6V4H13.2zM13.6,3.6H14V4H13.6zM0.8,4H1.2V4.4H0.8zM1.6,4H2V4.4H1.6zM2,4H2.4V4.4H2zM2.4,4H2.8V4.4H2.4zM2.8,4H3.2V4.4H2.8zM3.2,4H3.6V4.4H3.2zM4.8,4H5.2V4.4H4.8zM5.2,4H5.6V4.4H5.2zM6,4H6.4V4.4H6zM6.4,4H6.8V4.4H6.4zM6.8,4H7.2V4.4H6.8zM7.2,4H7.6V4.4H7.2zM7.6,4H8V4.4H7.6zM8,4H8.4V4.4H8zM8.8,4H9.2V4.4H8.8zM9.6,4H10V4.4H9.6zM10.4,4H10.8V4.4H10.4zM10.8,4H11.2V4.4H10.8zM11.2,4H11.6V4.4H11.2zM11.6,4H12V4.4H11.6zM12,4H12.4V4.4H12zM12.4,4H12.8V4.4H12.4zM13.2,4H13.6V4.4H13.2zM13.6,4H14V4.4H13.6zM14.4,4H14.8V4.4H14.4zM14.8,4H15.2V4.4H14.8zM15.2,4H15.6V4.4H15.2zM15.6,4H16V4.4H15.6zM16,4H16.4V4.4H16zM1.2,4.4H1.6V4.8H1.2zM1.6,4.4H2V4.8H1.6zM2.4,4.4H2.8V4.8H2.4zM3.6,4.4H4V4.8H3.6zM4.4,4.4H4.8V4.8H4.4zM4.8,4.4H5.2V4.8H4.8zM5.6,4.4H6V4.8H5.6zM6,4.4H6.4V4.8H6zM6.4,4.4H6.8V4.8H6.4zM6.8,4.4H7.2V4.8H6.8zM7.2,4.4H7.6V4.8H7.2zM8,4.4H8.4V4.8H8zM8.4,4.4H8.8V4.8H8.4zM8.8,4.4H9.2V4.8H8.8zM9.6,4.4H10V4.8H9.6zM10,4.4H10.4V4.8H10zM12,4.4H12.4V4.8H12zM12.4,4.4H12.8V4.8H12.4zM13.2,4.4H13.6V4.8H13.2zM13.6,4.4H14V4.8H13.6zM14,4.4H14.4V4.8H14zM14.4,4.4H14.8V4.8H14.4zM14.8,4.4H15.2V4.8H14.8zM15.2,4.4H15.6V4.8H15.2zM16,4.4H16.4V4.8H16zM16.4,4.4H16.8V4.8H16.4zM16.8,4.4H17.2V4.8H16.8zM0.8,4.8H1.2V5.2H0.8zM1.6,4.8H2V5.2H1.6zM2,4.8H2.4V5.2H2zM2.4,4.8H2.8V5.2H2.4zM3.2,4.8H3.6V5.2H3.2zM3.6,4.8H4V5.2H3.6zM4,4.8H4.4V5.2H4zM4.8,4.8H5.2V5.2H4.8zM5.6,4.8H6V5.2H5.6zM6,4.8H6.4V5.2H6zM6.4,4.8H6.8V5.2H6.4zM6.8,4.8H7.2V5.2H6.8zM7.6,4.8H8V5.2H7.6zM8,4.8H8.4V5.2H8zM9.2,4.8H9.6V5.2H9.2zM9.6,4.8H10V5.2H9.6zM10.8,4.8H11.2V5.2H10.8zM11.6,4.8H12V5.2H11.6zM12,4.8H12.4V5.2H12zM13.6,4.8H14V5.2H13.6zM14.4,4.8H14.8V5.2H14.4zM15.2,4.8H15.6V5.2H15.2zM16.4,4.8H16.8V5.2H16.4zM0.8,5.2H1.2V5.6H0.8zM1.6,5.2H2V5.6H1.6zM2,5.2H2.4V5.6H2zM2.4,5.2H2.8V5.6H2.4zM3.6,5.2H4V5.6H3.6zM4.4,5.2H4.8V5.6H4.4zM4.8,5.2H5.2V5.6H4.8zM6,5.2H6.4V5.6H6zM6.4,5.2H6.8V5.6H6.4zM8,5.2H8.4V5.6H8zM8.8,5.2H9.2V5.6H8.8zM9.2,5.2H9.6V5.6H9.2zM9.6,5.2H10V5.6H9.6zM10,5.2H10.4V5.6H10zM11.2,5.2H11.6V5.6H11.2zM13.2,5.2H13.6V5.6H13.2zM13.6,5.2H14V5.6H13.6zM14,5.2H14.4V5.6H14zM14.4,5.2H14.8V5.6H14.4zM14.8,5.2H15.2V5.6H14.8zM15.2,5.2H15.6V5.6H15.2zM15.6,5.2H16V5.6H15.6zM16.8,5.2H17.2V5.6H16.8zM1.2,5.6H1.6V6H1.2zM2.4,5.6H2.8V6H2.4zM3.2,5.6H3.6V6H3.2zM3.6,5.6H4V6H3.6zM5.6,5.6H6V6H5.6zM7.2,5.6H7.6V6H7.2zM7.6,5.6H8V6H7.6zM8.8,5.6H9.2V6H8.8zM9.6,5.6H10V6H9.6zM10,5.6H10.4V6H10zM10.4,5.6H10.8V6H10.4zM10.8,5.6H11.2V6H10.8zM11.6,5.6H12V6H11.6zM12,5.6H12.4V6H12zM12.4,5.6H12.8V6H12.4zM13.2,5.6H13.6V6H13.2zM15.6,5.6H16V6H15.6zM16,5.6H16.4V6H16zM16.4,5.6H16.8V6H16.4zM1.6,6H2V6.4H1.6zM2,6H2.4V6.4H2zM4,6H4.4V6.4H4zM5.2,6H5.6V6.4H5.2zM5.6,6H6V6.4H5.6zM7.2,6H7.6V6.4H7.2zM8,6H8.4V6.4H8zM9.2,6H9.6V6.4H9.2zM9.6,6H10V6.4H9.6zM10.8,6H11.2V6.4H10.8zM11.6,6H12V6.4H11.6zM12.4,6H12.8V6.4H12.4zM12.8,6H13.2V6.4H12.8zM13.2,6H13.6V6.4H13.2zM13.6,6H14V6.4H13.6zM14,6H14.4V6.4H14zM14.4,6H14.8V6.4H14.4zM14.8,6H15.2V6.4H14.8zM15.2,6H15.6V6.4H15.2zM16.4,6H16.8V6.4H16.4zM16.8,6H17.2V6.4H16.8zM1.2,6.4H1.6V6.8H1.2zM2.8,6.4H3.2V6.8H2.8zM3.2,6.4H3.6V6.8H3.2zM3.6,6.4H4V6.8H3.6zM4,6.4H4.4V6.8H4zM4.8,6.4H5.2V6.8H4.8zM5.2,6.4H5.6V6.8H5.2zM6.4,6.4H6.8V6.8H6.4zM8.8,6.4H9.2V6.8H8.8zM9.2,6.4H9.6V6.8H9.2zM10,6.4H10.4V6.8H10zM10.4,6.4H10.8V6.8H10.4zM11.2,6.4H11.6V6.8H11.2zM11.6,6.4H12V6.8H11.6zM12,6.4H12.4V6.8H12zM12.8,6.4H13.2V6.8H12.8zM13.6,6.4H14V6.8H13.6zM14,6.4H14.4V6.8H14zM14.8,6.4H15.2V6.8H14.8zM15.2,6.4H15.6V6.8H15.2zM15.6,6.4H16V6.8H15.6zM16.4,6.4H16.8V6.8H16.4zM1.6,6.8H2V7.2H1.6zM2,6.8H2.4V7.2H2zM3.6,6.8H4V7.2H3.6zM4,6.8H4.4V7.2H4zM4.4,6.8H4.8V7.2H4.4zM5.2,6.8H5.6V7.2H5.2zM5.6,6.8H6V7.2H5.6zM8,6.8H8.4V7.2H8zM9.2,6.8H9.6V7.2H9.2zM9.6,6.8H10V7.2H9.6zM10,6.8H10.4V7.2H10zM11.2,6.8H11.6V7.2H11.2zM11.6,6.8H12V7.2H11.6zM13.6,6.8H14V7.2H13.6zM14.4,6.8H14.8V7.2H14.4zM14.8,6.8H15.2V7.2H14.8zM15.6,6.8H16V7.2H15.6zM16.8,6.8H17.2V7.2H16.8zM0.8,7.2H1.2V7.6H0.8zM1.2,7.2H1.6V7.6H1.2zM2,7.2H2.4V7.6H2zM2.4,7.2H2.8V7.6H2.4zM2.8,7.2H3.2V7.6H2.8zM3.2,7.2H3.6V7.6H3.2zM3.6,7.2H4V7.6H3.6zM4.4,7.2H4.8V7.6H4.4zM4.8,7.2H5.2V7.6H4.8zM5.6,7.2H6V7.6H5.6zM6,7.2H6.4V7.6H6zM6.4,7.2H6.8V7.6H6.4zM6.8,7.2H7.2V7.6H6.8zM7.6,7.2H8V7.6H7.6zM8.8,7.2H9.2V7.6H8.8zM9.6,7.2H10V7.6H9.6zM10,7.2H10.4V7.6H10zM10.4,7.2H10.8V7.6H10.4zM10.8,7.2H11.2V7.6H10.8zM11.2,7.2H11.6V7.6H11.2zM11.6,7.2H12V7.6H11.6zM12.4,7.2H12.8V7.6H12.4zM13.2,7.2H13.6V7.6H13.2zM14,7.2H14.4V7.6H14zM14.8,7.2H15.2V7.6H14.8zM16,7.2H16.4V7.6H16zM16.4,7.2H16.8V7.6H16.4zM0.8,7.6H1.2V8H0.8zM1.2,7.6H1.6V8H1.2zM1.6,7.6H2V8H1.6zM2.8,7.6H3.2V8H2.8zM4,7.6H4.4V8H4zM6,7.6H6.4V8H6zM7.2,7.6H7.6V8H7.2zM8,7.6H8.4V8H8zM8.4,7.6H8.8V8H8.4zM8.8,7.6H9.2V8H8.8zM10,7.6H10.4V8H10zM10.4,7.6H10.8V8H10.4zM12,7.6H12.4V8H12zM12.4,7.6H12.8V8H12.4zM12.8,7.6H13.2V8H12.8zM13.2,7.6H13.6V8H13.2zM13.6,7.6H14V8H13.6zM14.4,7.6H14.8V8H14.4zM14.8,7.6H15.2V8H14.8zM15.2,7.6H15.6V8H15.2zM15.6,7.6H16V8H15.6zM16,7.6H16.4V8H16zM16.4,7.6H16.8V8H16.4zM16.8,7.6H17.2V8H16.8zM1.2,8H1.6V8.4H1.2zM1.6,8H2V8.4H1.6zM2.4,8H2.8V8.4H2.4zM2.8,8H3.2V8.4H2.8zM3.2,8H3.6V8.4H3.2zM4.8,8H5.2V8.4H4.8zM5.6,8H6V8.4H5.6zM6.8,8H7.2V8.4H6.8zM8,8H8.4V8.4H8zM9.6,8H10V8.4H9.6zM10.4,8H10.8V8.4H10.4zM11.6,8H12V8.4H11.6zM12,8H12.4V8.4H12zM12.4,8H12.8V8.4H12.4zM13.6,8H14V8.4H13.6zM14,8H14.4V8.4H14zM14.4,8H14.8V8.4H14.4zM15.2,8H15.6V8.4H15.2zM15.6,8H16V8.4H15.6zM16,8H16.4V8.4H16zM1.2,8.4H1.6V8.8H1.2zM1.6,8.4H2V8.8H1.6zM2.4,8.4H2.8V8.8H2.4zM2.8,8.4H3.2V8.8H2.8zM3.6,8.4H4V8.8H3.6zM4.8,8.4H5.2V8.8H4.8zM5.2,8.4H5.6V8.8H5.2zM6.8,8.4H7.2V8.8H6.8zM7.2,8.4H7.6V8.8H7.2zM8.8,8.4H9.2V8.8H8.8zM11.2,8.4H11.6V8.8H11.2zM12.4,8.4H12.8V8.8H12.4zM12.8,8.4H13.2V8.8H12.8zM13.2,8.4H13.6V8.8H13.2zM15.2,8.4H15.6V8.8H15.2zM15.6,8.4H16V8.8H15.6zM16.8,8.4H17.2V8.8H16.8zM2.4,8.8H2.8V9.2H2.4zM3.2,8.8H3.6V9.2H3.2zM3.6,8.8H4V9.2H3.6zM4.4,8.8H4.8V9.2H4.4zM4.8,8.8H5.2V9.2H4.8zM6.4,8.8H6.8V9.2H6.4zM7.2,8.8H7.6V9.2H7.2zM8,8.8H8.4V9.2H8zM8.4,8.8H8.8V9.2H8.4zM9.2,8.8H9.6V9.2H9.2zM9.6,8.8H10V9.2H9.6zM10.4,8.8H10.8V9.2H10.4zM11.6,8.8H12V9.2H11.6zM12,8.8H12.4V9.2H12zM16,8.8H16.4V9.2H16zM16.4,8.8H16.8V9.2H16.4zM0.8,9.2H1.2V9.6H0.8zM1.2,9.2H1.6V9.6H1.2zM1.6,9.2H2V9.6H1.6zM4.8,9.2H5.2V9.6H4.8zM5.2,9.2H5.6V9.6H5.2zM5.6,9.2H6V9.6H5.6zM6,9.2H6.4V9.6H6zM6.4,9.2H6.8V9.6H6.4zM6.8,9.2H7.2V9.6H6.8zM7.6,9.2H8V9.6H7.6zM8.4,9.2H8.8V9.6H8.4zM8.8,9.2H9.2V9.6H8.8zM10,9.2H10.4V9.6H10zM10.8,9.2H11.2V9.6H10.8zM11.2,9.2H11.6V9.6H11.2zM12,9.2H12.4V9.6H12zM12.8,9.2H13.2V9.6H12.8zM13.2,9.2H13.6V9.6H13.2zM14,9.2H14.4V9.6H14zM14.4,9.2H14.8V9.6H14.4zM15.2,9.2H15.6V9.6H15.2zM15.6,9.2H16V9.6H15.6zM16,9.2H16.4V9.6H16zM16.4,9.2H16.8V9.6H16.4zM16.8,9.2H17.2V9.6H16.8zM1.2,9.6H1.6V10H1.2zM1.6,9.6H2V10H1.6zM2.4,9.6H2.8V10H2.4zM2.8,9.6H3.2V10H2.8zM3.2,9.6H3.6V10H3.2zM3.6,9.6H4V10H3.6zM4.4,9.6H4.8V10H4.4zM5.2,9.6H5.6V10H5.2zM6,9.6H6.4V10H6zM6.4,9.6H6.8V10H6.4zM6.8,9.6H7.2V10H6.8zM7.2,9.6H7.6V10H7.2zM7.6,9.6H8V10H7.6zM8.8,9.6H9.2V10H8.8zM9.2,9.6H9.6V10H9.2zM10.4,9.6H10.8V10H10.4zM10.8,9.6H11.2V10H10.8zM11.2,9.6H11.6V10H11.2zM11.6,9.6H12V10H11.6zM12,9.6H12.4V10H12zM12.4,9.6H12.8V10H12.4zM13.6,9.6H14V10H13.6zM14,9.6H14.4V10H14zM14.8,9.6H15.2V10H14.8zM15.6,9.6H16V10H15.6zM0.8,10H1.2V10.4H0.8zM1.2,10H1.6V10.4H1.2zM1.6,10H2V10.4H1.6zM2,10H2.4V10.4H2zM2.4,10H2.8V10.4H2.4zM4,10H4.4V10.4H4zM4.8,10H5.2V10.4H4.8zM6.4,10H6.8V10.4H6.4zM8.4,10H8.8V10.4H8.4zM8.8,10H9.2V10.4H8.8zM9.2,10H9.6V10.4H9.2zM9.6,10H10V10.4H9.6zM10,10H10.4V10.4H10zM12,10H12.4V10.4H12zM13.2,10H13.6V10.4H13.2zM15.2,10H15.6V10.4H15.2zM15.6,10H16V10.4H15.6zM0.8,10.4H1.2V10.8H0.8zM1.6,10.4H2V10.8H1.6zM2.4,10.4H2.8V10.8H2.4zM3.2,10.4H3.6V10.8H3.2zM4.4,10.4H4.8V10.8H4.4zM5.2,10.4H5.6V10.8H5.2zM6.4,10.4H6.8V10.8H6.4zM7.6,10.4H8V10.8H7.6zM8.4,10.4H8.8V10.8H8.4zM10,10.4H10.4V10.8H10zM10.4,10.4H10.8V10.8H10.4zM10.8,10.4H11.2V10.8H10.8zM11.2,10.4H11.6V10.8H11.2zM12,10.4H12.4V10.8H12zM12.4,10.4H12.8V10.8H12.4zM14,10.4H14.4V10.8H14zM14.8,10.4H15.2V10.8H14.8zM16,10.4H16.4V10.8H16zM16.4,10.4H16.8V10.8H16.4zM16.8,10.4H17.2V10.8H16.8zM1.6,10.8H2V11.2H1.6zM2,10.8H2.4V11.2H2zM2.4,10.8H2.8V11.2H2.4zM2.8,10.8H3.2V11.2H2.8zM3.6,10.8H4V11.2H3.6zM4.4,10.8H4.8V11.2H4.4zM5.6,10.8H6V11.2H5.6zM8,10.8H8.4V11.2H8zM8.4,10.8H8.8V11.2H8.4zM8.8,10.8H9.2V11.2H8.8zM9.2,10.8H9.6V11.2H9.2zM10,10.8H10.4V11.2H10zM10.8,10.8H11.2V11.2H10.8zM11.2,10.8H11.6V11.2H11.2zM12,10.8H12.4V11.2H12zM13.2,10.8H13.6V11.2H13.2zM14,10.8H14.4V11.2H14zM14.4,10.8H14.8V11.2H14.4zM14.8,10.8H15.2V11.2H14.8zM15.2,10.8H15.6V11.2H15.2zM15.6,10.8H16V11.2H15.6zM16.8,10.8H17.2V11.2H16.8zM1.6,11.2H2V11.6H1.6zM2,11.2H2.4V11.6H2zM3.2,11.2H3.6V11.6H3.2zM3.6,11.2H4V11.6H3.6zM4,11.2H4.4V11.6H4zM4.4,11.2H4.8V11.6H4.4zM5.2,11.2H5.6V11.6H5.2zM7.2,11.2H7.6V11.6H7.2zM8,11.2H8.4V11.6H8zM8.8,11.2H9.2V11.6H8.8zM9.2,11.2H9.6V11.6H9.2zM10.4,11.2H10.8V11.6H10.4zM11.2,11.2H11.6V11.6H11.2zM11.6,11.2H12V11.6H11.6zM12.8,11.2H13.2V11.6H12.8zM13.6,11.2H14V11.6H13.6zM14,11.2H14.4V11.6H14zM14.4,11.2H14.8V11.6H14.4zM14.8,11.2H15.2V11.6H14.8zM15.2,11.2H15.6V11.6H15.2zM1.2,11.6H1.6V12H1.2zM1.6,11.6H2V12H1.6zM2,11.6H2.4V12H2zM3.6,11.6H4V12H3.6zM4,11.6H4.4V12H4zM5.2,11.6H5.6V12H5.2zM5.6,11.6H6V12H5.6zM7.2,11.6H7.6V12H7.2zM8.8,11.6H9.2V12H8.8zM9.2,11.6H9.6V12H9.2zM10.4,11.6H10.8V12H10.4zM11.2,11.6H11.6V12H11.2zM12,11.6H12.4V12H12zM13.2,11.6H13.6V12H13.2zM13.6,11.6H14V12H13.6zM14,11.6H14.4V12H14zM15.2,11.6H15.6V12H15.2zM15.6,11.6H16V12H15.6zM16.8,11.6H17.2V12H16.8zM1.2,12H1.6V12.4H1.2zM1.6,12H2V12.4H1.6zM2.8,12H3.2V12.4H2.8zM3.2,12H3.6V12.4H3.2zM4.4,12H4.8V12.4H4.4zM5.2,12H5.6V12.4H5.2zM6.4,12H6.8V12.4H6.4zM6.8,12H7.2V12.4H6.8zM7.6,12H8V12.4H7.6zM9.6,12H10V12.4H9.6zM10.8,12H11.2V12.4H10.8zM11.2,12H11.6V12.4H11.2zM12.4,12H12.8V12.4H12.4zM13.2,12H13.6V12.4H13.2zM15.6,12H16V12.4H15.6zM16,12H16.4V12.4H16zM16.4,12H16.8V12.4H16.4zM0.8,12.4H1.2V12.8H0.8zM1.2,12.4H1.6V12.8H1.2zM2.8,12.4H3.2V12.8H2.8zM3.6,12.4H4V12.8H3.6zM4,12.4H4.4V12.8H4zM5.6,12.4H6V12.8H5.6zM7.2,12.4H7.6V12.8H7.2zM7.6,12.4H8V12.8H7.6zM8,12.4H8.4V12.8H8zM8.8,12.4H9.2V12.8H8.8zM9.6,12.4H10V12.8H9.6zM10.4,12.4H10.8V12.8H10.4zM11.6,12.4H12V12.8H11.6zM12,12.4H12.4V12.8H12zM12.8,12.4H13.2V12.8H12.8zM13.2,12.4H13.6V12.8H13.2zM13.6,12.4H14V12.8H13.6zM14.4,12.4H14.8V12.8H14.4zM14.8,12.4H15.2V12.8H14.8zM15.2,12.4H15.6V12.8H15.2zM15.6,12.4H16V12.8H15.6zM16.8,12.4H17.2V12.8H16.8zM0.8,12.8H1.2V13.2H0.8zM1.6,12.8H2V13.2H1.6zM2,12.8H2.4V13.2H2zM2.8,12.8H3.2V13.2H2.8zM3.2,12.8H3.6V13.2H3.2zM4.4,12.8H4.8V13.2H4.4zM4.8,12.8H5.2V13.2H4.8zM5.6,12.8H6V13.2H5.6zM6,12.8H6.4V13.2H6zM6.4,12.8H6.8V13.2H6.4zM7.2,12.8H7.6V13.2H7.2zM8,12.8H8.4V13.2H8zM8.4,12.8H8.8V13.2H8.4zM9.6,12.8H10V13.2H9.6zM14,12.8H14.4V13.2H14zM14.4,12.8H14.8V13.2H14.4zM14.8,12.8H15.2V13.2H14.8zM15.2,12.8H15.6V13.2H15.2zM0.8,13.2H1.2V13.6H0.8zM1.6,13.2H2V13.6H1.6zM2.4,13.2H2.8V13.6H2.4zM3.6,13.2H4V13.6H3.6zM4,13.2H4.4V13.6H4zM4.4,13.2H4.8V13.6H4.4zM6,13.2H6.4V13.6H6zM6.4,13.2H6.8V13.6H6.4zM6.8,13.2H7.2V13.6H6.8zM8.4,13.2H8.8V13.6H8.4zM8.8,13.2H9.2V13.6H8.8zM9.2,13.2H9.6V13.6H9.2zM10.4,13.2H10.8V13.6H10.4zM11.2,13.2H11.6V13.6H11.2zM12,13.2H12.4V13.6H12zM13.6,13.2H14V13.6H13.6zM14,13.2H14.4V13.6H14zM14.4,13.2H14.8V13.6H14.4zM14.8,13.2H15.2V13.6H14.8zM15.2,13.2H15.6V13.6H15.2zM15.6,13.2H16V13.6H15.6zM0.8,13.6H1.2V14H0.8zM2,13.6H2.4V14H2zM3.2,13.6H3.6V14H3.2zM5.2,13.6H5.6V14H5.2zM5.6,13.6H6V14H5.6zM6,13.6H6.4V14H6zM6.4,13.6H6.8V14H6.4zM7.2,13.6H7.6V14H7.2zM7.6,13.6H8V14H7.6zM8.4,13.6H8.8V14H8.4zM9.6,13.6H10V14H9.6zM10.4,13.6H10.8V14H10.4zM10.8,13.6H11.2V14H10.8zM11.2,13.6H11.6V14H11.2zM12.4,13.6H12.8V14H12.4zM13.6,13.6H14V14H13.6zM14,13.6H14.4V14H14zM14.4,13.6H14.8V14H14.4zM14.8,13.6H15.2V14H14.8zM15.2,13.6H15.6V14H15.2zM16,13.6H16.4V14H16zM16.8,13.6H17.2V14H16.8zM4,14H4.4V14.4H4zM4.4,14H4.8V14.4H4.4zM5.6,14H6V14.4H5.6zM6,14H6.4V14.4H6zM6.8,14H7.2V14.4H6.8zM7.2,14H7.6V14.4H7.2zM7.6,14H8V14.4H7.6zM8,14H8.4V14.4H8zM8.4,14H8.8V14.4H8.4zM8.8,14H9.2V14.4H8.8zM9.2,14H9.6V14.4H9.2zM10,14H10.4V14.4H10zM10.8,14H11.2V14.4H10.8zM12,14H12.4V14.4H12zM12.8,14H13.2V14.4H12.8zM13.2,14H13.6V14.4H13.2zM13.6,14H14V14.4H13.6zM15.2,14H15.6V14.4H15.2zM15.6,14H16V14.4H15.6zM16.4,14H16.8V14.4H16.4zM16.8,14H17.2V14.4H16.8zM0.8,14.4H1.2V14.8H0.8zM1.2,14.4H1.6V14.8H1.2zM1.6,14.4H2V14.8H1.6zM2,14.4H2.4V14.8H2zM2.4,14.4H2.8V14.8H2.4zM2.8,14.4H3.2V14.8H2.8zM3.2,14.4H3.6V14.8H3.2zM6.8,14.4H7.2V14.8H6.8zM7.2,14.4H7.6V14.8H7.2zM7.6,14.4H8V14.8H7.6zM8.8,14.4H9.2V14.8H8.8zM9.2,14.4H9.6V14.8H9.2zM10.4,14.4H10.8V14.8H10.4zM10.8,14.4H11.2V14.8H10.8zM11.2,14.4H11.6V14.8H11.2zM11.6,14.4H12V14.8H11.6zM12.8,14.4H13.2V14.8H12.8zM13.2,14.4H13.6V14.8H13.2zM13.6,14.4H14V14.8H13.6zM14.4,14.4H14.8V14.8H14.4zM15.2,14.4H15.6V14.8H15.2zM0.8,14.8H1.2V15.2H0.8zM3.2,14.8H3.6V15.2H3.2zM4,14.8H4.4V15.2H4zM4.4,14.8H4.8V15.2H4.4zM5.2,14.8H5.6V15.2H5.2zM5.6,14.8H6V15.2H5.6zM7.2,14.8H7.6V15.2H7.2zM7.6,14.8H8V15.2H7.6zM8,14.8H8.4V15.2H8zM9.2,14.8H9.6V15.2H9.2zM9.6,14.8H10V15.2H9.6zM10,14.8H10.4V15.2H10zM10.8,14.8H11.2V15.2H10.8zM12,14.8H12.4V15.2H12zM13.2,14.8H13.6V15.2H13.2zM13.6,14.8H14V15.2H13.6zM15.2,14.8H15.6V15.2H15.2zM15.6,14.8H16V15.2H15.6zM0.8,15.2H1.2V15.6H0.8zM1.6,15.2H2V15.6H1.6zM2,15.2H2.4V15.6H2zM2.4,15.2H2.8V15.6H2.4zM3.2,15.2H3.6V15.6H3.2zM4,15.2H4.4V15.6H4zM4.4,15.2H4.8V15.6H4.4zM4.8,15.2H5.2V15.6H4.8zM5.2,15.2H5.6V15.6H5.2zM5.6,15.2H6V15.6H5.6zM6,15.2H6.4V15.6H6zM6.8,15.2H7.2V15.6H6.8zM9.2,15.2H9.6V15.6H9.2zM10,15.2H10.4V15.6H10zM10.4,15.2H10.8V15.6H10.4zM11.2,15.2H11.6V15.6H11.2zM12.8,15.2H13.2V15.6H12.8zM13.6,15.2H14V15.6H13.6zM14,15.2H14.4V15.6H14zM14.4,15.2H14.8V15.6H14.4zM14.8,15.2H15.2V15.6H14.8zM15.2,15.2H15.6V15.6H15.2zM16,15.2H16.4V15.6H16zM16.4,15.2H16.8V15.6H16.4zM0.8,15.6H1.2V16H0.8zM1.6,15.6H2V16H1.6zM2,15.6H2.4V16H2zM2.4,15.6H2.8V16H2.4zM3.2,15.6H3.6V16H3.2zM4,15.6H4.4V16H4zM4.4,15.6H4.8V16H4.4zM5.2,15.6H5.6V16H5.2zM6,15.6H6.4V16H6zM6.4,15.6H6.8V16H6.4zM8,15.6H8.4V16H8zM8.4,15.6H8.8V16H8.4zM8.8,15.6H9.2V16H8.8zM9.6,15.6H10V16H9.6zM10,15.6H10.4V16H10zM10.8,15.6H11.2V16H10.8zM12,15.6H12.4V16H12zM13.2,15.6H13.6V16H13.2zM14,15.6H14.4V16H14zM14.8,15.6H15.2V16H14.8zM15.6,15.6H16V16H15.6zM16,15.6H16.4V16H16zM0.8,16H1.2V16.4H0.8zM1.6,16H2V16.4H1.6zM2,16H2.4V16.4H2zM2.4,16H2.8V16.4H2.4zM3.2,16H3.6V16.4H3.2zM4,16H4.4V16.4H4zM4.4,16H4.8V16.4H4.4zM6,16H6.4V16.4H6zM6.8,16H7.2V16.4H6.8zM7.2,16H7.6V16.4H7.2zM7.6,16H8V16.4H7.6zM9.6,16H10V16.4H9.6zM11.6,16H12V16.4H11.6zM12.4,16H12.8V16.4H12.4zM13.2,16H13.6V16.4H13.2zM13.6,16H14V16.4H13.6zM14,16H14.4V16.4H14zM14.4,16H14.8V16.4H14.4zM14.8,16H15.2V16.4H14.8zM15.2,16H15.6V16.4H15.2zM15.6,16H16V16.4H15.6zM0.8,16.4H1.2V16.8H0.8zM3.2,16.4H3.6V16.8H3.2zM4.8,16.4H5.2V16.8H4.8zM5.6,16.4H6V16.8H5.6zM6.4,16.4H6.8V16.8H6.4zM6.8,16.4H7.2V16.8H6.8zM7.2,16.4H7.6V16.8H7.2zM7.6,16.4H8V16.8H7.6zM8,16.4H8.4V16.8H8zM8.4,16.4H8.8V16.8H8.4zM9.2,16.4H9.6V16.8H9.2zM10.4,16.4H10.8V16.8H10.4zM11.2,16.4H11.6V16.8H11.2zM13.2,16.4H13.6V16.8H13.2zM13.6,16.4H14V16.8H13.6zM14,16.4H14.4V16.8H14zM15.2,16.4H15.6V16.8H15.2zM15.6,16.4H16V16.8H15.6zM16.4,16.4H16.8V16.8H16.4zM0.8,16.8H1.2V17.2H0.8zM1.2,16.8H1.6V17.2H1.2zM1.6,16.8H2V17.2H1.6zM2,16.8H2.4V17.2H2zM2.4,16.8H2.8V17.2H2.4zM2.8,16.8H3.2V17.2H2.8zM3.2,16.8H3.6V17.2H3.2zM4,16.8H4.4V17.2H4zM4.8,16.8H5.2V17.2H4.8zM6,16.8H6.4V17.2H6zM7.2,16.8H7.6V17.2H7.2zM7.6,16.8H8V17.2H7.6zM8,16.8H8.4V17.2H8zM9.6,16.8H10V17.2H9.6zM10.8,16.8H11.2V17.2H10.8zM11.2,16.8H11.6V17.2H11.2zM12.4,16.8H12.8V17.2H12.4zM12.8,16.8H13.2V17.2H12.8zM13.2,16.8H13.6V17.2H13.2zM14.4,16.8H14.8V17.2H14.4zM14.8,16.8H15.2V17.2H14.8zM15.2,16.8H15.6V17.2H15.2zM15.6,16.8H16V17.2H15.6zM16,16.8H16.4V17.2H16z" id="qr-path" fill="#000000" fill-opacity="1" fill-rule="nonzero" stroke="none"/></svg>
-  <div class="qr-corner-label">MS DSA Admissions</div>
+<!-- Persistent admissions QR — hidden on slide 11 via JS -->
+<div class="qr-corner" id="admissions-qr" role="complementary" aria-label="QR code: MS Data Science and Analytics admissions">
+<svg style="background:#fff;border-radius:3px;display:block;" width="72px" height="72px" version="1.1" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><path d="M0.8,0.8H1.2V1.2H0.8zM1.2,0.8H1.6V1.2H1.2zM1.6,0.8H2V1.2H1.6zM2,0.8H2.4V1.2H2zM2.4,0.8H2.8V1.2H2.4zM2.8,0.8H3.2V1.2H2.8zM3.2,0.8H3.6V1.2H3.2zM4.8,0.8H5.2V1.2H4.8zM5.2,0.8H5.6V1.2H5.2zM5.6,0.8H6V1.2H5.6zM7.6,0.8H8V1.2H7.6zM8.4,0.8H8.8V1.2H8.4zM8.8,0.8H9.2V1.2H8.8zM9.2,0.8H9.6V1.2H9.2zM10,0.8H10.4V1.2H10zM10.8,0.8H11.2V1.2H10.8zM12.4,0.8H12.8V1.2H12.4zM12.8,0.8H13.2V1.2H12.8zM13.2,0.8H13.6V1.2H13.2zM13.6,0.8H14V1.2H13.6zM14.4,0.8H14.8V1.2H14.4zM14.8,0.8H15.2V1.2H14.8zM15.2,0.8H15.6V1.2H15.2zM15.6,0.8H16V1.2H15.6zM16,0.8H16.4V1.2H16zM16.4,0.8H16.8V1.2H16.4zM16.8,0.8H17.2V1.2H16.8zM0.8,1.2H1.2V1.6H0.8zM3.2,1.2H3.6V1.6H3.2zM4.4,1.2H4.8V1.6H4.4zM5.6,1.2H6V1.6H5.6zM6.8,1.2H7.2V1.6H6.8zM7.2,1.2H7.6V1.6H7.2zM7.6,1.2H8V1.6H7.6zM8.8,1.2H9.2V1.6H8.8zM9.2,1.2H9.6V1.6H9.2zM10.8,1.2H11.2V1.6H10.8zM11.2,1.2H11.6V1.6H11.2zM11.6,1.2H12V1.6H11.6zM12,1.2H12.4V1.6H12zM13.6,1.2H14V1.6H13.6zM14.4,1.2H14.8V1.6H14.4zM16.8,1.2H17.2V1.6H16.8zM0.8,1.6H1.2V2H0.8zM1.6,1.6H2V2H1.6zM2,1.6H2.4V2H2zM2.4,1.6H2.8V2H2.4zM3.2,1.6H3.6V2H3.2zM4,1.6H4.4V2H4zM4.4,1.6H4.8V2H4.4zM5.2,1.6H5.6V2H5.2zM5.6,1.6H6V2H5.6zM6,1.6H6.4V2H6zM6.4,1.6H6.8V2H6.4zM6.8,1.6H7.2V2H6.8zM7.2,1.6H7.6V2H7.2zM7.6,1.6H8V2H7.6zM8,1.6H8.4V2H8zM9.2,1.6H9.6V2H9.2zM9.6,1.6H10V2H9.6zM10.8,1.6H11.2V2H10.8zM11.6,1.6H12V2H11.6zM12,1.6H12.4V2H12zM12.8,1.6H13.2V2H12.8zM13.2,1.6H13.6V2H13.2zM14.4,1.6H14.8V2H14.4zM15.2,1.6H15.6V2H15.2zM15.6,1.6H16V2H15.6zM16,1.6H16.4V2H16zM16.8,1.6H17.2V2H16.8zM0.8,2H1.2V2.4H0.8zM1.6,2H2V2.4H1.6zM2,2H2.4V2.4H2zM2.4,2H2.8V2.4H2.4zM3.2,2H3.6V2.4H3.2zM4,2H4.4V2.4H4zM4.4,2H4.8V2.4H4.4zM4.8,2H5.2V2.4H4.8zM6,2H6.4V2.4H6zM6.8,2H7.2V2.4H6.8zM8.4,2H8.8V2.4H8.4zM8.8,2H9.2V2.4H8.8zM9.2,2H9.6V2.4H9.2zM10,2H10.4V2.4H10zM10.4,2H10.8V2.4H10.4zM11.2,2H11.6V2.4H11.2zM11.6,2H12V2.4H11.6zM12,2H12.4V2.4H12zM12.8,2H13.2V2.4H12.8zM14.4,2H14.8V2.4H14.4zM15.2,2H15.6V2.4H15.2zM15.6,2H16V2.4H15.6zM16,2H16.4V2.4H16zM16.8,2H17.2V2.4H16.8zM0.8,2.4H1.2V2.8H0.8zM1.6,2.4H2V2.8H1.6zM2,2.4H2.4V2.8H2zM2.4,2.4H2.8V2.8H2.4zM3.2,2.4H3.6V2.8H3.2zM4,2.4H4.4V2.8H4zM5.6,2.4H6V2.8H5.6zM6,2.4H6.4V2.8H6zM6.4,2.4H6.8V2.8H6.4zM7.2,2.4H7.6V2.8H7.2zM8,2.4H8.4V2.8H8zM8.4,2.4H8.8V2.8H8.4zM8.8,2.4H9.2V2.8H8.8zM9.6,2.4H10V2.8H9.6zM10,2.4H10.4V2.8H10zM10.4,2.4H10.8V2.8H10.4zM12,2.4H12.4V2.8H12zM12.8,2.4H13.2V2.8H12.8zM13.2,2.4H13.6V2.8H13.2zM13.6,2.4H14V2.8H13.6zM14.4,2.4H14.8V2.8H14.4zM15.2,2.4H15.6V2.8H15.2zM15.6,2.4H16V2.8H15.6zM16,2.4H16.4V2.8H16zM16.8,2.4H17.2V2.8H16.8zM0.8,2.8H1.2V3.2H0.8zM3.2,2.8H3.6V3.2H3.2zM4,2.8H4.4V3.2H4zM4.4,2.8H4.8V3.2H4.4zM4.8,2.8H5.2V3.2H4.8zM5.2,2.8H5.6V3.2H5.2zM5.6,2.8H6V3.2H5.6zM6.4,2.8H6.8V3.2H6.4zM6.8,2.8H7.2V3.2H6.8zM7.2,2.8H7.6V3.2H7.2zM8.8,2.8H9.2V3.2H8.8zM9.2,2.8H9.6V3.2H9.2zM9.6,2.8H10V3.2H9.6zM10.4,2.8H10.8V3.2H10.4zM11.2,2.8H11.6V3.2H11.2zM11.6,2.8H12V3.2H11.6zM12.4,2.8H12.8V3.2H12.4zM13.6,2.8H14V3.2H13.6zM14.4,2.8H14.8V3.2H14.4zM16.8,2.8H17.2V3.2H16.8zM0.8,3.2H1.2V3.6H0.8zM1.2,3.2H1.6V3.6H1.2zM1.6,3.2H2V3.6H1.6zM2,3.2H2.4V3.6H2zM2.4,3.2H2.8V3.6H2.4zM2.8,3.2H3.2V3.6H2.8zM3.2,3.2H3.6V3.6H3.2zM4,3.2H4.4V3.6H4zM4.8,3.2H5.2V3.6H4.8zM5.6,3.2H6V3.6H5.6zM6.4,3.2H6.8V3.6H6.4zM7.2,3.2H7.6V3.6H7.2zM8,3.2H8.4V3.6H8zM8.8,3.2H9.2V3.6H8.8zM9.6,3.2H10V3.6H9.6zM10.4,3.2H10.8V3.6H10.4zM11.2,3.2H11.6V3.6H11.2zM12,3.2H12.4V3.6H12zM12.8,3.2H13.2V3.6H12.8zM13.6,3.2H14V3.6H13.6zM14.4,3.2H14.8V3.6H14.4zM14.8,3.2H15.2V3.6H14.8zM15.2,3.2H15.6V3.6H15.2zM15.6,3.2H16V3.6H15.6zM16,3.2H16.4V3.6H16zM16.4,3.2H16.8V3.6H16.4zM16.8,3.2H17.2V3.6H16.8zM4,3.6H4.4V4H4zM4.4,3.6H4.8V4H4.4zM4.8,3.6H5.2V4H4.8zM6.4,3.6H6.8V4H6.4zM6.8,3.6H7.2V4H6.8zM8.4,3.6H8.8V4H8.4zM8.8,3.6H9.2V4H8.8zM9.2,3.6H9.6V4H9.2zM11.2,3.6H11.6V4H11.2zM13.2,3.6H13.6V4H13.2zM13.6,3.6H14V4H13.6zM0.8,4H1.2V4.4H0.8zM1.6,4H2V4.4H1.6zM2,4H2.4V4.4H2zM2.4,4H2.8V4.4H2.4zM2.8,4H3.2V4.4H2.8zM3.2,4H3.6V4.4H3.2zM4.8,4H5.2V4.4H4.8zM5.2,4H5.6V4.4H5.2zM6,4H6.4V4.4H6zM6.4,4H6.8V4.4H6.4zM6.8,4H7.2V4.4H6.8zM7.2,4H7.6V4.4H7.2zM7.6,4H8V4.4H7.6zM8,4H8.4V4.4H8zM8.8,4H9.2V4.4H8.8zM9.6,4H10V4.4H9.6zM10.4,4H10.8V4.4H10.4zM10.8,4H11.2V4.4H10.8zM11.2,4H11.6V4.4H11.2zM11.6,4H12V4.4H11.6zM12,4H12.4V4.4H12zM12.4,4H12.8V4.4H12.4zM13.2,4H13.6V4.4H13.2zM13.6,4H14V4.4H13.6zM14.4,4H14.8V4.4H14.4zM14.8,4H15.2V4.4H14.8zM15.2,4H15.6V4.4H15.2zM15.6,4H16V4.4H15.6zM16,4H16.4V4.4H16zM1.2,4.4H1.6V4.8H1.2zM1.6,4.4H2V4.8H1.6zM2.4,4.4H2.8V4.8H2.4zM3.6,4.4H4V4.8H3.6zM4.4,4.4H4.8V4.8H4.4zM4.8,4.4H5.2V4.8H4.8zM5.6,4.4H6V4.8H5.6zM6,4.4H6.4V4.8H6zM6.4,4.4H6.8V4.8H6.4zM6.8,4.4H7.2V4.8H6.8zM7.2,4.4H7.6V4.8H7.2zM8,4.4H8.4V4.8H8zM8.4,4.4H8.8V4.8H8.4zM8.8,4.4H9.2V4.8H8.8zM9.6,4.4H10V4.8H9.6zM10,4.4H10.4V4.8H10zM12,4.4H12.4V4.8H12zM12.4,4.4H12.8V4.8H12.4zM13.2,4.4H13.6V4.8H13.2zM13.6,4.4H14V4.8H13.6zM14,4.4H14.4V4.8H14zM14.4,4.4H14.8V4.8H14.4zM14.8,4.4H15.2V4.8H14.8zM15.2,4.4H15.6V4.8H15.2zM16,4.4H16.4V4.8H16zM16.4,4.4H16.8V4.8H16.4zM16.8,4.4H17.2V4.8H16.8zM0.8,4.8H1.2V5.2H0.8zM1.6,4.8H2V5.2H1.6zM2,4.8H2.4V5.2H2zM2.4,4.8H2.8V5.2H2.4zM3.2,4.8H3.6V5.2H3.2zM3.6,4.8H4V5.2H3.6zM4,4.8H4.4V5.2H4zM4.8,4.8H5.2V5.2H4.8zM5.6,4.8H6V5.2H5.6zM6,4.8H6.4V5.2H6zM6.4,4.8H6.8V5.2H6.4zM6.8,4.8H7.2V5.2H6.8zM7.6,4.8H8V5.2H7.6zM8,4.8H8.4V5.2H8zM9.2,4.8H9.6V5.2H9.2zM9.6,4.8H10V5.2H9.6zM10.8,4.8H11.2V5.2H10.8zM11.6,4.8H12V5.2H11.6zM12,4.8H12.4V5.2H12zM13.6,4.8H14V5.2H13.6zM14.4,4.8H14.8V5.2H14.4zM15.2,4.8H15.6V5.2H15.2zM16.4,4.8H16.8V5.2H16.4zM0.8,5.2H1.2V5.6H0.8zM1.6,5.2H2V5.6H1.6zM2,5.2H2.4V5.6H2zM2.4,5.2H2.8V5.6H2.4zM3.6,5.2H4V5.6H3.6zM4.4,5.2H4.8V5.6H4.4zM4.8,5.2H5.2V5.6H4.8zM6,5.2H6.4V5.6H6zM6.4,5.2H6.8V5.6H6.4zM8,5.2H8.4V5.6H8zM8.8,5.2H9.2V5.6H8.8zM9.2,5.2H9.6V5.6H9.2zM9.6,5.2H10V5.6H9.6zM10,5.2H10.4V5.6H10zM11.2,5.2H11.6V5.6H11.2zM13.2,5.2H13.6V5.6H13.2zM13.6,5.2H14V5.6H13.6zM14,5.2H14.4V5.6H14zM14.4,5.2H14.8V5.6H14.4zM14.8,5.2H15.2V5.6H14.8zM15.2,5.2H15.6V5.6H15.2zM15.6,5.2H16V5.6H15.6zM16.8,5.2H17.2V5.6H16.8zM1.2,5.6H1.6V6H1.2zM2.4,5.6H2.8V6H2.4zM3.2,5.6H3.6V6H3.2zM3.6,5.6H4V6H3.6zM5.6,5.6H6V6H5.6zM7.2,5.6H7.6V6H7.2zM7.6,5.6H8V6H7.6zM8.8,5.6H9.2V6H8.8zM9.6,5.6H10V6H9.6zM10,5.6H10.4V6H10zM10.4,5.6H10.8V6H10.4zM10.8,5.6H11.2V6H10.8zM11.6,5.6H12V6H11.6zM12,5.6H12.4V6H12zM12.4,5.6H12.8V6H12.4zM13.2,5.6H13.6V6H13.2zM15.6,5.6H16V6H15.6zM16,5.6H16.4V6H16zM16.4,5.6H16.8V6H16.4zM1.6,6H2V6.4H1.6zM2,6H2.4V6.4H2zM4,6H4.4V6.4H4zM5.2,6H5.6V6.4H5.2zM5.6,6H6V6.4H5.6zM7.2,6H7.6V6.4H7.2zM8,6H8.4V6.4H8zM9.2,6H9.6V6.4H9.2zM9.6,6H10V6.4H9.6zM10.8,6H11.2V6.4H10.8zM11.6,6H12V6.4H11.6zM12.4,6H12.8V6.4H12.4zM12.8,6H13.2V6.4H12.8zM13.2,6H13.6V6.4H13.2zM13.6,6H14V6.4H13.6zM14,6H14.4V6.4H14zM14.4,6H14.8V6.4H14.4zM14.8,6H15.2V6.4H14.8zM15.2,6H15.6V6.4H15.2zM16.4,6H16.8V6.4H16.4zM16.8,6H17.2V6.4H16.8zM1.2,6.4H1.6V6.8H1.2zM2.8,6.4H3.2V6.8H2.8zM3.2,6.4H3.6V6.8H3.2zM3.6,6.4H4V6.8H3.6zM4,6.4H4.4V6.8H4zM4.8,6.4H5.2V6.8H4.8zM5.2,6.4H5.6V6.8H5.2zM6.4,6.4H6.8V6.8H6.4zM8.8,6.4H9.2V6.8H8.8zM9.2,6.4H9.6V6.8H9.2zM10,6.4H10.4V6.8H10zM10.4,6.4H10.8V6.8H10.4zM11.2,6.4H11.6V6.8H11.2zM11.6,6.4H12V6.8H11.6zM12,6.4H12.4V6.8H12zM12.8,6.4H13.2V6.8H12.8zM13.6,6.4H14V6.8H13.6zM14,6.4H14.4V6.8H14zM14.8,6.4H15.2V6.8H14.8zM15.2,6.4H15.6V6.8H15.2zM15.6,6.4H16V6.8H15.6zM16.4,6.4H16.8V6.8H16.4zM1.6,6.8H2V7.2H1.6zM2,6.8H2.4V7.2H2zM3.6,6.8H4V7.2H3.6zM4,6.8H4.4V7.2H4zM4.4,6.8H4.8V7.2H4.4zM5.2,6.8H5.6V7.2H5.2zM5.6,6.8H6V7.2H5.6zM8,6.8H8.4V7.2H8zM9.2,6.8H9.6V7.2H9.2zM9.6,6.8H10V7.2H9.6zM10,6.8H10.4V7.2H10zM11.2,6.8H11.6V7.2H11.2zM11.6,6.8H12V7.2H11.6zM13.6,6.8H14V7.2H13.6zM14.4,6.8H14.8V7.2H14.4zM14.8,6.8H15.2V7.2H14.8zM15.6,6.8H16V7.2H15.6zM16.8,6.8H17.2V7.2H16.8zM0.8,7.2H1.2V7.6H0.8zM1.2,7.2H1.6V7.6H1.2zM2,7.2H2.4V7.6H2zM2.4,7.2H2.8V7.6H2.4zM2.8,7.2H3.2V7.6H2.8zM3.2,7.2H3.6V7.6H3.2zM3.6,7.2H4V7.6H3.6zM4.4,7.2H4.8V7.6H4.4zM4.8,7.2H5.2V7.6H4.8zM5.6,7.2H6V7.6H5.6zM6,7.2H6.4V7.6H6zM6.4,7.2H6.8V7.6H6.4zM6.8,7.2H7.2V7.6H6.8zM7.6,7.2H8V7.6H7.6zM8.8,7.2H9.2V7.6H8.8zM9.6,7.2H10V7.6H9.6zM10,7.2H10.4V7.6H10zM10.4,7.2H10.8V7.6H10.4zM10.8,7.2H11.2V7.6H10.8zM11.2,7.2H11.6V7.6H11.2zM11.6,7.2H12V7.6H11.6zM12.4,7.2H12.8V7.6H12.4zM13.2,7.2H13.6V7.6H13.2zM14,7.2H14.4V7.6H14zM14.8,7.2H15.2V7.6H14.8zM16,7.2H16.4V7.6H16zM16.4,7.2H16.8V7.6H16.4zM0.8,7.6H1.2V8H0.8zM1.2,7.6H1.6V8H1.2zM1.6,7.6H2V8H1.6zM2.8,7.6H3.2V8H2.8zM4,7.6H4.4V8H4zM6,7.6H6.4V8H6zM7.2,7.6H7.6V8H7.2zM8,7.6H8.4V8H8zM8.4,7.6H8.8V8H8.4zM8.8,7.6H9.2V8H8.8zM10,7.6H10.4V8H10zM10.4,7.6H10.8V8H10.4zM12,7.6H12.4V8H12zM12.4,7.6H12.8V8H12.4zM12.8,7.6H13.2V8H12.8zM13.2,7.6H13.6V8H13.2zM13.6,7.6H14V8H13.6zM14.4,7.6H14.8V8H14.4zM14.8,7.6H15.2V8H14.8zM15.2,7.6H15.6V8H15.2zM15.6,7.6H16V8H15.6zM16,7.6H16.4V8H16zM16.4,7.6H16.8V8H16.4zM16.8,7.6H17.2V8H16.8zM1.2,8H1.6V8.4H1.2zM1.6,8H2V8.4H1.6zM2.4,8H2.8V8.4H2.4zM2.8,8H3.2V8.4H2.8zM3.2,8H3.6V8.4H3.2zM4.8,8H5.2V8.4H4.8zM5.6,8H6V8.4H5.6zM6.8,8H7.2V8.4H6.8zM8,8H8.4V8.4H8zM9.6,8H10V8.4H9.6zM10.4,8H10.8V8.4H10.4zM11.6,8H12V8.4H11.6zM12,8H12.4V8.4H12zM12.4,8H12.8V8.4H12.4zM13.6,8H14V8.4H13.6zM14,8H14.4V8.4H14zM14.4,8H14.8V8.4H14.4zM15.2,8H15.6V8.4H15.2zM15.6,8H16V8.4H15.6zM16,8H16.4V8.4H16zM1.2,8.4H1.6V8.8H1.2zM1.6,8.4H2V8.8H1.6zM2.4,8.4H2.8V8.8H2.4zM2.8,8.4H3.2V8.8H2.8zM3.6,8.4H4V8.8H3.6zM4.8,8.4H5.2V8.8H4.8zM5.2,8.4H5.6V8.8H5.2zM6.8,8.4H7.2V8.8H6.8zM7.2,8.4H7.6V8.8H7.2zM8.8,8.4H9.2V8.8H8.8zM11.2,8.4H11.6V8.8H11.2zM12.4,8.4H12.8V8.8H12.4zM12.8,8.4H13.2V8.8H12.8zM13.2,8.4H13.6V8.8H13.2zM15.2,8.4H15.6V8.8H15.2zM15.6,8.4H16V8.8H15.6zM16.8,8.4H17.2V8.8H16.8zM2.4,8.8H2.8V9.2H2.4zM3.2,8.8H3.6V9.2H3.2zM3.6,8.8H4V9.2H3.6zM4.4,8.8H4.8V9.2H4.4zM4.8,8.8H5.2V9.2H4.8zM6.4,8.8H6.8V9.2H6.4zM7.2,8.8H7.6V9.2H7.2zM8,8.8H8.4V9.2H8zM8.4,8.8H8.8V9.2H8.4zM9.2,8.8H9.6V9.2H9.2zM9.6,8.8H10V9.2H9.6zM10.4,8.8H10.8V9.2H10.4zM11.6,8.8H12V9.2H11.6zM12,8.8H12.4V9.2H12zM16,8.8H16.4V9.2H16zM16.4,8.8H16.8V9.2H16.4zM0.8,9.2H1.2V9.6H0.8zM1.2,9.2H1.6V9.6H1.2zM1.6,9.2H2V9.6H1.6zM4.8,9.2H5.2V9.6H4.8zM5.2,9.2H5.6V9.6H5.2zM5.6,9.2H6V9.6H5.6zM6,9.2H6.4V9.6H6zM6.4,9.2H6.8V9.6H6.4zM6.8,9.2H7.2V9.6H6.8zM7.6,9.2H8V9.6H7.6zM8.4,9.2H8.8V9.6H8.4zM8.8,9.2H9.2V9.6H8.8zM10,9.2H10.4V9.6H10zM10.8,9.2H11.2V9.6H10.8zM11.2,9.2H11.6V9.6H11.2zM12,9.2H12.4V9.6H12zM12.8,9.2H13.2V9.6H12.8zM13.2,9.2H13.6V9.6H13.2zM14,9.2H14.4V9.6H14zM14.4,9.2H14.8V9.6H14.4zM15.2,9.2H15.6V9.6H15.2zM15.6,9.2H16V9.6H15.6zM16,9.2H16.4V9.6H16zM16.4,9.2H16.8V9.6H16.4zM16.8,9.2H17.2V9.6H16.8zM1.2,9.6H1.6V10H1.2zM1.6,9.6H2V10H1.6zM2.4,9.6H2.8V10H2.4zM2.8,9.6H3.2V10H2.8zM3.2,9.6H3.6V10H3.2zM3.6,9.6H4V10H3.6zM4.4,9.6H4.8V10H4.4zM5.2,9.6H5.6V10H5.2zM6,9.6H6.4V10H6zM6.4,9.6H6.8V10H6.4zM6.8,9.6H7.2V10H6.8zM7.2,9.6H7.6V10H7.2zM7.6,9.6H8V10H7.6zM8.8,9.6H9.2V10H8.8zM9.2,9.6H9.6V10H9.2zM10.4,9.6H10.8V10H10.4zM10.8,9.6H11.2V10H10.8zM11.2,9.6H11.6V10H11.2zM11.6,9.6H12V10H11.6zM12,9.6H12.4V10H12zM12.4,9.6H12.8V10H12.4zM13.6,9.6H14V10H13.6zM14,9.6H14.4V10H14zM14.8,9.6H15.2V10H14.8zM15.6,9.6H16V10H15.6zM0.8,10H1.2V10.4H0.8zM1.2,10H1.6V10.4H1.2zM1.6,10H2V10.4H1.6zM2,10H2.4V10.4H2zM2.4,10H2.8V10.4H2.4zM4,10H4.4V10.4H4zM4.8,10H5.2V10.4H4.8zM6.4,10H6.8V10.4H6.4zM8.4,10H8.8V10.4H8.4zM8.8,10H9.2V10.4H8.8zM9.2,10H9.6V10.4H9.2zM9.6,10H10V10.4H9.6zM10,10H10.4V10.4H10zM12,10H12.4V10.4H12zM13.2,10H13.6V10.4H13.2zM15.2,10H15.6V10.4H15.2zM15.6,10H16V10.4H15.6zM0.8,10.4H1.2V10.8H0.8zM1.6,10.4H2V10.8H1.6zM2.4,10.4H2.8V10.8H2.4zM3.2,10.4H3.6V10.8H3.2zM4.4,10.4H4.8V10.8H4.4zM5.2,10.4H5.6V10.8H5.2zM6.4,10.4H6.8V10.8H6.4zM7.6,10.4H8V10.8H7.6zM8.4,10.4H8.8V10.8H8.4zM10,10.4H10.4V10.8H10zM10.4,10.4H10.8V10.8H10.4zM10.8,10.4H11.2V10.8H10.8zM11.2,10.4H11.6V10.8H11.2zM12,10.4H12.4V10.8H12zM12.4,10.4H12.8V10.8H12.4zM14,10.4H14.4V10.8H14zM14.8,10.4H15.2V10.8H14.8zM16,10.4H16.4V10.8H16zM16.4,10.4H16.8V10.8H16.4zM16.8,10.4H17.2V10.8H16.8zM1.6,10.8H2V11.2H1.6zM2,10.8H2.4V11.2H2zM2.4,10.8H2.8V11.2H2.4zM2.8,10.8H3.2V11.2H2.8zM3.6,10.8H4V11.2H3.6zM4.4,10.8H4.8V11.2H4.4zM5.6,10.8H6V11.2H5.6zM8,10.8H8.4V11.2H8zM8.4,10.8H8.8V11.2H8.4zM8.8,10.8H9.2V11.2H8.8zM9.2,10.8H9.6V11.2H9.2zM10,10.8H10.4V11.2H10zM10.8,10.8H11.2V11.2H10.8zM11.2,10.8H11.6V11.2H11.2zM12,10.8H12.4V11.2H12zM13.2,10.8H13.6V11.2H13.2zM14,10.8H14.4V11.2H14zM14.4,10.8H14.8V11.2H14.4zM14.8,10.8H15.2V11.2H14.8zM15.2,10.8H15.6V11.2H15.2zM15.6,10.8H16V11.2H15.6zM16.8,10.8H17.2V11.2H16.8zM1.6,11.2H2V11.6H1.6zM2,11.2H2.4V11.6H2zM3.2,11.2H3.6V11.6H3.2zM3.6,11.2H4V11.6H3.6zM4,11.2H4.4V11.6H4zM4.4,11.2H4.8V11.6H4.4zM5.2,11.2H5.6V11.6H5.2zM7.2,11.2H7.6V11.6H7.2zM8,11.2H8.4V11.6H8zM8.8,11.2H9.2V11.6H8.8zM9.2,11.2H9.6V11.6H9.2zM10.4,11.2H10.8V11.6H10.4zM11.2,11.2H11.6V11.6H11.2zM11.6,11.2H12V11.6H11.6zM12.8,11.2H13.2V11.6H12.8zM13.6,11.2H14V11.6H13.6zM14,11.2H14.4V11.6H14zM14.4,11.2H14.8V11.6H14.4zM14.8,11.2H15.2V11.6H14.8zM15.2,11.2H15.6V11.6H15.2zM1.2,11.6H1.6V12H1.2zM1.6,11.6H2V12H1.6zM2,11.6H2.4V12H2zM3.6,11.6H4V12H3.6zM4,11.6H4.4V12H4zM5.2,11.6H5.6V12H5.2zM5.6,11.6H6V12H5.6zM7.2,11.6H7.6V12H7.2zM8.8,11.6H9.2V12H8.8zM9.2,11.6H9.6V12H9.2zM10.4,11.6H10.8V12H10.4zM11.2,11.6H11.6V12H11.2zM12,11.6H12.4V12H12zM13.2,11.6H13.6V12H13.2zM13.6,11.6H14V12H13.6zM14,11.6H14.4V12H14zM15.2,11.6H15.6V12H15.2zM15.6,11.6H16V12H15.6zM16.8,11.6H17.2V12H16.8zM1.2,12H1.6V12.4H1.2zM1.6,12H2V12.4H1.6zM2.8,12H3.2V12.4H2.8zM3.2,12H3.6V12.4H3.2zM4.4,12H4.8V12.4H4.4zM5.2,12H5.6V12.4H5.2zM6.4,12H6.8V12.4H6.4zM6.8,12H7.2V12.4H6.8zM7.6,12H8V12.4H7.6zM9.6,12H10V12.4H9.6zM10.8,12H11.2V12.4H10.8zM11.2,12H11.6V12.4H11.2zM12.4,12H12.8V12.4H12.4zM13.2,12H13.6V12.4H13.2zM15.6,12H16V12.4H15.6zM16,12H16.4V12.4H16zM16.4,12H16.8V12.4H16.4zM0.8,12.4H1.2V12.8H0.8zM1.2,12.4H1.6V12.8H1.2zM2.8,12.4H3.2V12.8H2.8zM3.6,12.4H4V12.8H3.6zM4,12.4H4.4V12.8H4zM5.6,12.4H6V12.8H5.6zM7.2,12.4H7.6V12.8H7.2zM7.6,12.4H8V12.8H7.6zM8,12.4H8.4V12.8H8zM8.8,12.4H9.2V12.8H8.8zM9.6,12.4H10V12.8H9.6zM10.4,12.4H10.8V12.8H10.4zM11.6,12.4H12V12.8H11.6zM12,12.4H12.4V12.8H12zM12.8,12.4H13.2V12.8H12.8zM13.2,12.4H13.6V12.8H13.2zM13.6,12.4H14V12.8H13.6zM14.4,12.4H14.8V12.8H14.4zM14.8,12.4H15.2V12.8H14.8zM15.2,12.4H15.6V12.8H15.2zM15.6,12.4H16V12.8H15.6zM16.8,12.4H17.2V12.8H16.8zM0.8,12.8H1.2V13.2H0.8zM1.6,12.8H2V13.2H1.6zM2,12.8H2.4V13.2H2zM2.8,12.8H3.2V13.2H2.8zM3.2,12.8H3.6V13.2H3.2zM4.4,12.8H4.8V13.2H4.4zM4.8,12.8H5.2V13.2H4.8zM5.6,12.8H6V13.2H5.6zM6,12.8H6.4V13.2H6zM6.4,12.8H6.8V13.2H6.4zM7.2,12.8H7.6V13.2H7.2zM8,12.8H8.4V13.2H8zM8.4,12.8H8.8V13.2H8.4zM9.6,12.8H10V13.2H9.6zM14,12.8H14.4V13.2H14zM14.4,12.8H14.8V13.2H14.4zM14.8,12.8H15.2V13.2H14.8zM15.2,12.8H15.6V13.2H15.2zM0.8,13.2H1.2V13.6H0.8zM1.6,13.2H2V13.6H1.6zM2.4,13.2H2.8V13.6H2.4zM3.6,13.2H4V13.6H3.6zM4,13.2H4.4V13.6H4zM4.4,13.2H4.8V13.6H4.4zM6,13.2H6.4V13.6H6zM6.4,13.2H6.8V13.6H6.4zM6.8,13.2H7.2V13.6H6.8zM8.4,13.2H8.8V13.6H8.4zM8.8,13.2H9.2V13.6H8.8zM9.2,13.2H9.6V13.6H9.2zM10.4,13.2H10.8V13.6H10.4zM11.2,13.2H11.6V13.6H11.2zM12,13.2H12.4V13.6H12zM13.6,13.2H14V13.6H13.6zM14,13.2H14.4V13.6H14zM14.4,13.2H14.8V13.6H14.4zM14.8,13.2H15.2V13.6H14.8zM15.2,13.2H15.6V13.6H15.2zM15.6,13.2H16V13.6H15.6zM0.8,13.6H1.2V14H0.8zM2,13.6H2.4V14H2zM3.2,13.6H3.6V14H3.2zM5.2,13.6H5.6V14H5.2zM5.6,13.6H6V14H5.6zM6,13.6H6.4V14H6zM6.4,13.6H6.8V14H6.4zM7.2,13.6H7.6V14H7.2zM7.6,13.6H8V14H7.6zM8.4,13.6H8.8V14H8.4zM9.6,13.6H10V14H9.6zM10.4,13.6H10.8V14H10.4zM10.8,13.6H11.2V14H10.8zM11.2,13.6H11.6V14H11.2zM12.4,13.6H12.8V14H12.4zM13.6,13.6H14V14H13.6zM14,13.6H14.4V14H14zM14.4,13.6H14.8V14H14.4zM14.8,13.6H15.2V14H14.8zM15.2,13.6H15.6V14H15.2zM16,13.6H16.4V14H16zM16.8,13.6H17.2V14H16.8zM4,14H4.4V14.4H4zM4.4,14H4.8V14.4H4.4zM5.6,14H6V14.4H5.6zM6,14H6.4V14.4H6zM6.8,14H7.2V14.4H6.8zM7.2,14H7.6V14.4H7.2zM7.6,14H8V14.4H7.6zM8,14H8.4V14.4H8zM8.4,14H8.8V14.4H8.4zM8.8,14H9.2V14.4H8.8zM9.2,14H9.6V14.4H9.2zM10,14H10.4V14.4H10zM10.8,14H11.2V14.4H10.8zM12,14H12.4V14.4H12zM12.8,14H13.2V14.4H12.8zM13.2,14H13.6V14.4H13.2zM13.6,14H14V14.4H13.6zM15.2,14H15.6V14.4H15.2zM15.6,14H16V14.4H15.6zM16.4,14H16.8V14.4H16.4zM16.8,14H17.2V14.4H16.8zM0.8,14.4H1.2V14.8H0.8zM1.2,14.4H1.6V14.8H1.2zM1.6,14.4H2V14.8H1.6zM2,14.4H2.4V14.8H2zM2.4,14.4H2.8V14.8H2.4zM2.8,14.4H3.2V14.8H2.8zM3.2,14.4H3.6V14.8H3.2zM6.8,14.4H7.2V14.8H6.8zM7.2,14.4H7.6V14.8H7.2zM7.6,14.4H8V14.8H7.6zM8.8,14.4H9.2V14.8H8.8zM9.2,14.4H9.6V14.8H9.2zM10.4,14.4H10.8V14.8H10.4zM10.8,14.4H11.2V14.8H10.8zM11.2,14.4H11.6V14.8H11.2zM11.6,14.4H12V14.8H11.6zM12.8,14.4H13.2V14.8H12.8zM13.2,14.4H13.6V14.8H13.2zM13.6,14.4H14V14.8H13.6zM14.4,14.4H14.8V14.8H14.4zM15.2,14.4H15.6V14.8H15.2zM0.8,14.8H1.2V15.2H0.8zM3.2,14.8H3.6V15.2H3.2zM4,14.8H4.4V15.2H4zM4.4,14.8H4.8V15.2H4.4zM5.2,14.8H5.6V15.2H5.2zM5.6,14.8H6V15.2H5.6zM7.2,14.8H7.6V15.2H7.2zM7.6,14.8H8V15.2H7.6zM8,14.8H8.4V15.2H8zM9.2,14.8H9.6V15.2H9.2zM9.6,14.8H10V15.2H9.6zM10,14.8H10.4V15.2H10zM10.8,14.8H11.2V15.2H10.8zM12,14.8H12.4V15.2H12zM13.2,14.8H13.6V15.2H13.2zM13.6,14.8H14V15.2H13.6zM15.2,14.8H15.6V15.2H15.2zM15.6,14.8H16V15.2H15.6zM0.8,15.2H1.2V15.6H0.8zM1.6,15.2H2V15.6H1.6zM2,15.2H2.4V15.6H2zM2.4,15.2H2.8V15.6H2.4zM3.2,15.2H3.6V15.6H3.2zM4,15.2H4.4V15.6H4zM4.4,15.2H4.8V15.6H4.4zM4.8,15.2H5.2V15.6H4.8zM5.2,15.2H5.6V15.6H5.2zM5.6,15.2H6V15.6H5.6zM6,15.2H6.4V15.6H6zM6.8,15.2H7.2V15.6H6.8zM9.2,15.2H9.6V15.6H9.2zM10,15.2H10.4V15.6H10zM10.4,15.2H10.8V15.6H10.4zM11.2,15.2H11.6V15.6H11.2zM12.8,15.2H13.2V15.6H12.8zM13.6,15.2H14V15.6H13.6zM14,15.2H14.4V15.6H14zM14.4,15.2H14.8V15.6H14.4zM14.8,15.2H15.2V15.6H14.8zM15.2,15.2H15.6V15.6H15.2zM16,15.2H16.4V15.6H16zM16.4,15.2H16.8V15.6H16.4zM0.8,15.6H1.2V16H0.8zM1.6,15.6H2V16H1.6zM2,15.6H2.4V16H2zM2.4,15.6H2.8V16H2.4zM3.2,15.6H3.6V16H3.2zM4,15.6H4.4V16H4zM4.4,15.6H4.8V16H4.4zM5.2,15.6H5.6V16H5.2zM6,15.6H6.4V16H6zM6.4,15.6H6.8V16H6.4zM8,15.6H8.4V16H8zM8.4,15.6H8.8V16H8.4zM8.8,15.6H9.2V16H8.8zM9.6,15.6H10V16H9.6zM10,15.6H10.4V16H10zM10.8,15.6H11.2V16H10.8zM12,15.6H12.4V16H12zM13.2,15.6H13.6V16H13.2zM14,15.6H14.4V16H14zM14.8,15.6H15.2V16H14.8zM15.6,15.6H16V16H15.6zM16,15.6H16.4V16H16zM0.8,16H1.2V16.4H0.8zM1.6,16H2V16.4H1.6zM2,16H2.4V16.4H2zM2.4,16H2.8V16.4H2.4zM3.2,16H3.6V16.4H3.2zM4,16H4.4V16.4H4zM4.4,16H4.8V16.4H4.4zM6,16H6.4V16.4H6zM6.8,16H7.2V16.4H6.8zM7.2,16H7.6V16.4H7.2zM7.6,16H8V16.4H7.6zM9.6,16H10V16.4H9.6zM11.6,16H12V16.4H11.6zM12.4,16H12.8V16.4H12.4zM13.2,16H13.6V16.4H13.2zM13.6,16H14V16.4H13.6zM14,16H14.4V16.4H14zM14.4,16H14.8V16.4H14.4zM14.8,16H15.2V16.4H14.8zM15.2,16H15.6V16.4H15.2zM15.6,16H16V16.4H15.6zM0.8,16.4H1.2V16.8H0.8zM3.2,16.4H3.6V16.8H3.2zM4.8,16.4H5.2V16.8H4.8zM5.6,16.4H6V16.8H5.6zM6.4,16.4H6.8V16.8H6.4zM6.8,16.4H7.2V16.8H6.8zM7.2,16.4H7.6V16.8H7.2zM7.6,16.4H8V16.8H7.6zM8,16.4H8.4V16.8H8zM8.4,16.4H8.8V16.8H8.4zM9.2,16.4H9.6V16.8H9.2zM10.4,16.4H10.8V16.8H10.4zM11.2,16.4H11.6V16.8H11.2zM13.2,16.4H13.6V16.8H13.2zM13.6,16.4H14V16.8H13.6zM14,16.4H14.4V16.8H14zM15.2,16.4H15.6V16.8H15.2zM15.6,16.4H16V16.8H15.6zM16.4,16.4H16.8V16.8H16.4zM0.8,16.8H1.2V17.2H0.8zM1.2,16.8H1.6V17.2H1.2zM1.6,16.8H2V17.2H1.6zM2,16.8H2.4V17.2H2zM2.4,16.8H2.8V17.2H2.4zM2.8,16.8H3.2V17.2H2.8zM3.2,16.8H3.6V17.2H3.2zM4,16.8H4.4V17.2H4zM4.8,16.8H5.2V17.2H4.8zM6,16.8H6.4V17.2H6zM7.2,16.8H7.6V17.2H7.2zM7.6,16.8H8V17.2H7.6zM8,16.8H8.4V17.2H8zM9.6,16.8H10V17.2H9.6zM10.8,16.8H11.2V17.2H10.8zM11.2,16.8H11.6V17.2H11.2zM12.4,16.8H12.8V17.2H12.4zM12.8,16.8H13.2V17.2H12.8zM13.2,16.8H13.6V17.2H13.2zM14.4,16.8H14.8V17.2H14.4zM14.8,16.8H15.2V17.2H14.8zM15.2,16.8H15.6V17.2H15.2zM15.6,16.8H16V17.2H15.6zM16,16.8H16.4V17.2H16z" id="qr-path" fill="#000000" fill-opacity="1" fill-rule="nonzero" stroke="none"/></svg>
+  <div class="qr-corner-label">MS DSA · SUNY Poly</div>
 </div>
 
 <div class="reveal">
@@ -222,147 +295,282 @@
 
 <!-- 1: TITLE -->
 <section aria-label="Title slide" data-background-color="#0f1f3d">
-  <div class="title-eyebrow">SUNY Polytechnic Institute · AIX Center</div>
-  <h1>AI in Action</h1>
-  <div class="title-rule"></div>
-  <h2 style="font-size:0.95em; color: var(--off-white);">Making AI Work for You</h2>
-  <p class="title-sub">
-    Greece EducationUSA Webinar · 2026<br>
-    William Thistleton, Associate Professor &amp; Co-Director, AIX Center · Chair, Data Science &amp; Analytics<br>
-    Steven M. Schneider, Professor &amp; Co-Director, AIX Center · SUNY AI Fellow for the Public Good
-  </p>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:0.34em;letter-spacing:0.16em;color:var(--crimson-light);text-transform:uppercase;margin-bottom:0.7em;">SUNY Polytechnic Institute · AIX Center</div>
+  <h1>Higher Education,<br>AI &amp; Career Prospects</h1>
+  <div class="rule"></div>
+  <h2 style="font-size:0.82em;color:var(--off-white);">Navigating the AI Revolution in Academia and the Workforce</h2>
+  <div style="font-size:0.44em;color:var(--muted);margin-top:1.1em;line-height:1.8;">
+    Dr. William Thistleton · Associate Professor &amp; Co-Director, AIX Center · Chair, Data Science &amp; Analytics<br>
+    Dr. Steven Schneider · Professor of Communications &amp; Co-Director, AIX Center · SUNY AI Fellow<br>
+    Dr. Daniel Romero · Assistant Professor, Data Science &amp; Analytics · Member, AIX Center
+  </div>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:0.3em;color:var(--muted);margin-top:0.9em;letter-spacing:0.08em;">Greece EducationUSA Webinar · 2026</div>
 </section>
 
-<!-- 2: WEF HOOK -->
-<section aria-label="Context: the changing job market" data-background-color="#0f1f3d">
-  <h3>Context</h3>
-  <h2>The fastest-growing jobs require working <em>with</em> AI.</h2>
+<!-- 2: AGENDA -->
+<section aria-label="Today's journey: agenda" data-background-color="#0f1f3d">
+  <h3>Overview</h3>
+  <h2>Today's Journey</h2>
+  <div class="rule"></div>
+  <div class="agenda-grid">
+    <div class="agenda-item">
+      <span class="agenda-num">01</span>
+      <div class="agenda-text"><h5>The AI Inflection Point</h5><p>Where we are and why it matters now</p></div>
+    </div>
+    <div class="agenda-item">
+      <span class="agenda-num">02</span>
+      <div class="agenda-text"><h5>Reshaping Higher Education</h5><p>Curriculum, pedagogy, and institutional change</p></div>
+    </div>
+    <div class="agenda-item">
+      <span class="agenda-num">03</span>
+      <div class="agenda-text"><h5>Career Landscapes</h5><p>What's disappearing, emerging, and transforming</p></div>
+    </div>
+    <div class="agenda-item">
+      <span class="agenda-num">04</span>
+      <div class="agenda-text"><h5>Make AI Work for You</h5><p>The self-training ethos</p></div>
+    </div>
+    <div class="agenda-item">
+      <span class="agenda-num">05</span>
+      <div class="agenda-text"><h5>The AIX Initiative</h5><p>Our model for experiential AI education</p></div>
+    </div>
+    <div class="agenda-item">
+      <span class="agenda-num">06</span>
+      <div class="agenda-text"><h5>Preparing Students for What's Next</h5><p>Skills, mindsets, and lifelong learning</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3: INFLECTION POINT -->
+<section aria-label="The AI inflection point: key statistics" data-background-color="#0f1f3d">
+  <h3>01 · The AI Inflection Point</h3>
+  <h2>The scale of change is unprecedented.</h2>
   <div class="rule go"></div>
-  <div class="ab go" style="margin-top: 0.75em;">
-    <p>The World Economic Forum's <em>Future of Jobs Report</em> identifies AI and data skills as the top driver of labor market transformation through 2030.</p>
+  <div class="stat-grid">
+    <div class="stat-box">
+      <span class="stat-num">300M+</span>
+      <span class="stat-lbl">Jobs potentially impacted by AI globally</span>
+      <span class="stat-src">Goldman Sachs, 2023</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">$15.7T</span>
+      <span class="stat-lbl">Projected AI contribution to global economy by 2030</span>
+      <span class="stat-src">PwC</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-num">44%</span>
+      <span class="stat-lbl">Of workers' core skills will change by 2027</span>
+      <span class="stat-src">WEF Future of Jobs</span>
+    </div>
   </div>
-  <div style="margin-top: 0.9em;">
-    <p style="color: var(--off-white);">Not just <em>knowing about</em> AI. Not just <em>using</em> it.<br>
-    <strong style="color: #fff; font-size: 1.05em;">Directing it. Verifying it. Owning the output.</strong></p>
+  <div class="ab go" style="margin-top:0.8em;">
+    <p>The question for higher education is not whether AI changes our work — but whether we lead that change.</p>
   </div>
 </section>
 
-<!-- 3: THREE LAYERS -->
-<section aria-label="The AI landscape: three layers" data-background-color="#0f1f3d">
-  <h3>The Landscape</h3>
-  <h2>Three layers. One trajectory.</h2>
+<!-- 4: RESHAPING HE -->
+<section aria-label="How AI is reshaping higher education" data-background-color="#0f1f3d">
+  <h3>02 · Reshaping Higher Education</h3>
+  <h2>Challenges and opportunities.</h2>
   <div class="rule"></div>
-  <div class="three-col">
-    <div class="col-card">
-      <h4>Generative AI</h4>
-      <p>Systems that produce text, images, code, and analysis in response to human prompts.</p>
+  <div class="g2">
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.36em;color:var(--crimson-light);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4em;">Challenges</div>
+      <div class="ab" style="margin:0.3em 0;"><p>Curricula that lag industry by 3–5 years</p></div>
+      <div class="ab" style="margin:0.3em 0;"><p>Faculty unfamiliar with AI tools</p></div>
+      <div class="ab" style="margin:0.3em 0;"><p>Academic integrity in the age of generative AI</p></div>
+      <div class="ab" style="margin:0.3em 0;"><p>Graduating students unprepared for AI-native workplaces</p></div>
+      <div class="ab" style="margin:0.3em 0;"><p>Inequitable access to AI tools and training</p></div>
     </div>
-    <div class="col-card em">
-      <h4>Models</h4>
-      <p>The underlying engines — trained on vast data, capable of reasoning across domains. GPT-4, Claude, Gemini.</p>
-    </div>
-    <div class="col-card pu">
-      <h4>Agents</h4>
-      <p>AI that acts — browsing, writing code, managing workflows. The next frontier.</p>
+    <div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:0.36em;color:var(--emerald);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4em;">Opportunities</div>
+      <div class="ab em" style="margin:0.3em 0;"><p>AI as a pedagogical accelerator</p></div>
+      <div class="ab em" style="margin:0.3em 0;"><p>Personalized learning at scale</p></div>
+      <div class="ab em" style="margin:0.3em 0;"><p>New interdisciplinary programs</p></div>
+      <div class="ab em" style="margin:0.3em 0;"><p>Industry partnerships around AI co-op models</p></div>
+      <div class="ab em" style="margin:0.3em 0;"><p>Global reach via AI-enhanced remote learning</p></div>
     </div>
   </div>
-  <p style="font-size:0.46em; color: var(--muted); margin-top: 0.8em;">Each layer requires new skills. The pace of change is not slowing.</p>
 </section>
 
-<!-- 4: THE GAP -->
-<section aria-label="The skill gap" data-background-color="#0f1f3d">
-  <h3>The Skill</h3>
-  <h2>Most people stop at the first level.</h2>
-  <div class="rule"></div>
-  <div style="margin-top: 0.75em;">
+<!-- 5: CAREER LANDSCAPES + GAP -->
+<section aria-label="Career landscapes and the skill gap" data-background-color="#0f1f3d">
+  <h3>03 · Career Landscapes</h3>
+  <h2>What's changing — and what that demands.</h2>
+  <div class="rule em"></div>
+  <div class="g3">
+    <div>
+      <div class="col-head red">Declining</div>
+      <div class="col-body">
+        <ul>
+          <li>Data entry &amp; basic analysis</li>
+          <li>Routine report generation</li>
+          <li>Basic coding tasks</li>
+          <li>Simple content creation</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="col-head gold">Transforming</div>
+      <div class="col-body">
+        <ul>
+          <li>Software development</li>
+          <li>Data science &amp; analytics</li>
+          <li>Research methodologies</li>
+          <li>Creative &amp; design work</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div class="col-head green">Emerging</div>
+      <div class="col-body">
+        <ul>
+          <li>AI/ML engineering</li>
+          <li>Prompt engineering</li>
+          <li>AI ethics &amp; governance</li>
+          <li>Human-AI collaboration design</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:0.7em;">
     <div class="gap-row">
       <span class="pill pill-a">Use AI</span>
-      <span class="gap-arrow">→</span>
-      <span class="gap-lbl">Enter a prompt. Accept the output. Move on.</span>
+      <span class="pill-arrow">→</span>
+      <span class="pill-lbl">Accept defaults. Declining roles.</span>
     </div>
     <div class="gap-row">
       <span class="pill pill-b">Direct AI</span>
-      <span class="gap-arrow">→</span>
-      <span class="gap-lbl">Shape the conversation. Redirect. Iterate.</span>
+      <span class="pill-arrow">→</span>
+      <span class="pill-lbl">Shape outputs. Transforming roles.</span>
     </div>
     <div class="gap-row">
       <span class="pill pill-c">Verify &amp; Own</span>
-      <span class="gap-arrow">→</span>
-      <span class="gap-lbl">Check the output. Take responsibility. Sign your name.</span>
+      <span class="pill-arrow">→</span>
+      <span class="pill-lbl">Take responsibility. Emerging roles.</span>
     </div>
-  </div>
-  <div class="ab" style="margin-top: 0.85em;">
-    <p>The third level is what employers will require. It is also what universities need to teach.</p>
   </div>
 </section>
 
-<!-- 5: MAKE AI WORK FOR YOU -->
-<section aria-label="The AIX approach: make AI work for you" data-background-color="#0f1f3d">
-  <h3>The Approach</h3>
-  <h2>Make AI work for you.</h2>
+<!-- 6: PIVOT — MAKE AI WORK FOR YOU -->
+<section aria-label="Make AI work for you: the self-training ethos" data-background-color="#0f1f3d">
+  <h3>04 · Make AI Work for You</h3>
+  <h2>Teach yourself. Own the outcome.</h2>
   <div class="rule em"></div>
-  <div class="two-col" style="margin-top: 0.7em;">
+  <div class="g3">
     <div class="ab em">
-      <p><strong>Read</strong><br>Engage with what the model produces. Notice where it is right. Notice where it is wrong.</p>
+      <p><strong>Read</strong><br>Engage with what the model produces. Notice where it is right. Notice where it is wrong. Every output is evidence.</p>
     </div>
     <div class="ab go">
-      <p><strong>Think</strong><br>Evaluate the output. Push back. Redirect. The thinking is yours — not the model's.</p>
+      <p><strong>Think</strong><br>Evaluate. Push back. Redirect. The judgment is yours — not the model's. AI amplifies your thinking; it does not replace it.</p>
     </div>
-  </div>
-  <div class="ab" style="margin-top: 0.5em;">
-    <p><strong>Produce</strong><br>In data science, every cell in Colab is a prompt. Every output requires judgment. Coding is prompting. Ownership is the credential.</p>
-  </div>
-</section>
-
-<!-- 6: PREPARING FOR WORK -->
-<section aria-label="Preparing for work with AI" data-background-color="#0f1f3d">
-  <h3>The Application</h3>
-  <h2>Direction. Verification. Ownership.</h2>
-  <div class="rule"></div>
-  <div style="margin-top: 0.7em; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.9em;">
     <div class="ab">
-      <p><strong style="color: var(--off-white);">Direct it</strong><br>Get AI to do exactly what your problem requires — not what it defaults to.</p>
+      <p><strong>Write</strong><br>Prompting is writing. In Colab, every cell is a prompt. Every output requires judgment. The conversation is the record of your work.</p>
+    </div>
+  </div>
+  <div class="ab pu" style="margin-top:0.65em;">
+    <p>AI is not replacing humans — it is replacing humans who do not know how to direct it. <strong>The credential is ownership.</strong></p>
+  </div>
+</section>
+
+<!-- 7: AIX INITIATIVE -->
+<section aria-label="The AIX Initiative at SUNY Poly" data-background-color="#0f1f3d">
+  <h3>05 · The AIX Initiative @ SUNY Poly</h3>
+  <h2>Experiential AI education — across every discipline.</h2>
+  <div class="rule pu"></div>
+  <div class="g4">
+    <div class="ab">
+      <p><strong>🎓 Curriculum Integration</strong><br>AI literacy woven into every major — not just CS. From nursing to business to engineering.</p>
     </div>
     <div class="ab em">
-      <p><strong style="color: var(--off-white);">Verify it</strong><br>Know when the output is wrong. Either the code runs or it doesn't. Either the analysis holds or it doesn't.</p>
+      <p><strong>🔬 Applied Research</strong><br>Students co-author real AI research alongside faculty and industry partners.</p>
     </div>
     <div class="ab go">
-      <p><strong style="color: var(--off-white);">Own it</strong><br>Sign your name to the result. Take responsibility for every output you submit or deploy.</p>
+      <p><strong>🤝 Industry Partnerships</strong><br>Co-op placements and project-based learning with real datasets from real employers.</p>
+    </div>
+    <div class="ab pu">
+      <p><strong>🌍 Community &amp; Outreach</strong><br>K-12 pipeline programs, professional upskilling, and regional AI workforce development.</p>
     </div>
   </div>
-  <p style="font-size: 0.48em; color: var(--muted); margin-top: 0.8em;">That combination is what SUNY Poly's AIX Center builds into graduate education.</p>
+  <div style="margin-top:0.65em;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.6em;">
+    <div style="background:var(--card-bg);border-top:2px solid var(--crimson);border-radius:0 0 6px 6px;padding:0.45em 0.6em;text-align:center;">
+      <div style="font-family:'DM Serif Display',serif;font-size:0.52em;color:var(--white);">Generative AI</div>
+      <div style="font-size:0.36em;color:var(--muted);">Produces</div>
+    </div>
+    <div style="background:var(--card-bg);border-top:2px solid var(--emerald);border-radius:0 0 6px 6px;padding:0.45em 0.6em;text-align:center;">
+      <div style="font-family:'DM Serif Display',serif;font-size:0.52em;color:var(--white);">Models</div>
+      <div style="font-size:0.36em;color:var(--muted);">Reasons</div>
+    </div>
+    <div style="background:var(--card-bg);border-top:2px solid var(--purple);border-radius:0 0 6px 6px;padding:0.45em 0.6em;text-align:center;">
+      <div style="font-family:'DM Serif Display',serif;font-size:0.52em;color:var(--white);">Agents</div>
+      <div style="font-size:0.36em;color:var(--muted);">Acts</div>
+    </div>
+  </div>
 </section>
 
-<!-- 7: MS PROGRAMS -->
-<section aria-label="Graduate programs at SUNY Poly" data-background-color="#0f1f3d">
-  <h3>The Path</h3>
-  <h2>Build the skill. Earn the degree.</h2>
+<!-- 8: PREPARING STUDENTS -->
+<section aria-label="Preparing students: the T-shaped AI professional" data-background-color="#0f1f3d">
+  <h3>06 · Preparing Students for What's Next</h3>
+  <h2>The T-Shaped AI Professional</h2>
   <div class="rule go"></div>
-  <div class="prog-grid">
-    <div class="prog-card">
-      <div class="ico" aria-hidden="true">📊</div>
-      <h4>MS Data Science &amp; Analytics</h4>
-      <p>Work with large-scale data using AI-assisted methods. Build the analytical judgment that separates a data scientist from a data technician.</p>
-    </div>
-    <div class="prog-card">
-      <div class="ico" aria-hidden="true">💻</div>
-      <h4>MS Computer Science</h4>
-      <p>Develop software systems at the frontier of AI integration. Understand the models, not just their interfaces.</p>
-    </div>
-    <div class="prog-card">
-      <div class="ico" aria-hidden="true">🔐</div>
-      <h4>MS Cybersecurity</h4>
-      <p>Defend systems against AI-powered threats — and use AI to detect, respond, and protect at scale.</p>
-    </div>
+  <div class="t-bar">
+    <div class="t-label">Broad AI Literacy</div>
+    <p>Prompt engineering · Data fluency · AI ethics · Critical evaluation of outputs · Human-AI collaboration · Direction · Verification · Ownership</p>
   </div>
-  <p style="font-size: 0.44em; color: var(--muted); margin-top: 0.75em; text-align: center;">
-    Affordable SUNY tuition · Utica, New York · STEM-designated programs
-  </p>
+  <div class="t-stem">
+    <div class="t-label">Deep Domain Expertise</div>
+    <p>
+      Data Science · Statistics · Machine Learning<br>
+      Domain-Specific Modeling · Research Methods<br>
+      Communication · Ethics · Problem Framing<br>
+      Critical Thinking · Cross-disciplinary Teamwork
+    </p>
+  </div>
+  <p style="font-size:0.44em;color:var(--muted);text-align:center;margin-top:0.6em;">Durable human skills remain the differentiator. AI amplifies them.</p>
 </section>
 
-<!-- 8: TAKEAWAY -->
-<section aria-label="Takeaway: open access framework" data-background-color="#0f1f3d">
-  <h3>Take This With You</h3>
+<!-- 9: GLOBAL PERSPECTIVES -->
+<section aria-label="Global perspectives on AI and education" data-background-color="#0f1f3d">
+  <h3>07 · Global Perspectives</h3>
+  <h2>AI education is a global conversation.</h2>
+  <div class="rule"></div>
+  <div class="g4">
+    <div class="card">
+      <h4>🇪🇺 EU AI Act &amp; Education</h4>
+      <p>Europe leads on AI governance. Universities must produce graduates who understand compliance, risk categories, and responsible AI deployment.</p>
+    </div>
+    <div class="card">
+      <h4>🎓 Bologna Process Meets AI</h4>
+      <p>European credit frameworks are adapting. Micro-credentials, AI-augmented assessments, and stackable qualifications are reshaping degree pathways.</p>
+    </div>
+    <div class="card">
+      <h4>🌐 Global Talent &amp; Mobility</h4>
+      <p>AI skills are now a global lingua franca. Universities that embed AI deeply across disciplines produce the most competitive graduates.</p>
+    </div>
+    <div class="card">
+      <h4>🤝 Transatlantic Collaboration</h4>
+      <p>US-EU partnerships in AI education and workforce development are a strategic opportunity. AIX is ready to engage.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 10: RECOMMENDATIONS -->
+<section aria-label="Key recommendations for universities" data-background-color="#0f1f3d">
+  <h3>08 · Key Recommendations</h3>
+  <h2>For universities navigating AI integration.</h2>
+  <div class="rule go"></div>
+  <div style="margin-top:0.6em;">
+    <div class="rec-item"><span class="rec-num">1</span><span class="rec-text">Embed AI literacy across <strong>all</strong> disciplines — not just STEM programs</span></div>
+    <div class="rec-item"><span class="rec-num">2</span><span class="rec-text">Update curricula on 12–18 month cycles to match industry AI adoption speed</span></div>
+    <div class="rec-item"><span class="rec-num">3</span><span class="rec-text">Invest in faculty AI development — professors must use AI to teach AI</span></div>
+    <div class="rec-item"><span class="rec-num">4</span><span class="rec-text">Build experiential learning partnerships with AI-native industries</span></div>
+    <div class="rec-item"><span class="rec-num">5</span><span class="rec-text">Adopt ethical AI frameworks into policies, programs, and teaching practice</span></div>
+    <div class="rec-item"><span class="rec-num">6</span><span class="rec-text">Create clear institutional positions on generative AI in assessment and research</span></div>
+  </div>
+</section>
+
+<!-- 11: TAKE THIS WITH YOU — no admissions QR -->
+<section aria-label="Take this with you: open access framework" data-background-color="#0f1f3d" id="slide-takeaway">
+  <h3>09 · Take This With You</h3>
   <h2>The AIX Framework — open access.</h2>
   <div class="rule"></div>
   <div class="tk-grid">
@@ -372,17 +580,35 @@
       <p>Download the repository as a zip file. Open Claude or ChatGPT. Ask the model to guide you through Exercise 1 of the Learner's Permit. Ask what you need to know.</p>
       <div class="tk-qr">
         <svg style="background:#fff;border-radius:3px;display:block;" width="120px" height="120px" version="1.1" viewBox="0 0 14.8 14.8" xmlns="http://www.w3.org/2000/svg"><path d="M0.8,0.8H1.2V1.2H0.8zM1.2,0.8H1.6V1.2H1.2zM1.6,0.8H2V1.2H1.6zM2,0.8H2.4V1.2H2zM2.4,0.8H2.8V1.2H2.4zM2.8,0.8H3.2V1.2H2.8zM3.2,0.8H3.6V1.2H3.2zM4,0.8H4.4V1.2H4zM4.8,0.8H5.2V1.2H4.8zM5.2,0.8H5.6V1.2H5.2zM6,0.8H6.4V1.2H6zM7.2,0.8H7.6V1.2H7.2zM7.6,0.8H8V1.2H7.6zM8,0.8H8.4V1.2H8zM8.4,0.8H8.8V1.2H8.4zM9.2,0.8H9.6V1.2H9.2zM9.6,0.8H10V1.2H9.6zM10,0.8H10.4V1.2H10zM11.2,0.8H11.6V1.2H11.2zM11.6,0.8H12V1.2H11.6zM12,0.8H12.4V1.2H12zM12.4,0.8H12.8V1.2H12.4zM12.8,0.8H13.2V1.2H12.8zM13.2,0.8H13.6V1.2H13.2zM13.6,0.8H14V1.2H13.6zM0.8,1.2H1.2V1.6H0.8zM3.2,1.2H3.6V1.6H3.2zM4,1.2H4.4V1.6H4zM4.4,1.2H4.8V1.6H4.4zM4.8,1.2H5.2V1.6H4.8zM5.2,1.2H5.6V1.6H5.2zM6,1.2H6.4V1.6H6zM8,1.2H8.4V1.6H8zM9.2,1.2H9.6V1.6H9.2zM9.6,1.2H10V1.6H9.6zM10,1.2H10.4V1.6H10zM10.4,1.2H10.8V1.6H10.4zM11.2,1.2H11.6V1.6H11.2zM13.6,1.2H14V1.6H13.6zM0.8,1.6H1.2V2H0.8zM1.6,1.6H2V2H1.6zM2,1.6H2.4V2H2zM2.4,1.6H2.8V2H2.4zM3.2,1.6H3.6V2H3.2zM4.4,1.6H4.8V2H4.4zM4.8,1.6H5.2V2H4.8zM5.6,1.6H6V2H5.6zM6.8,1.6H7.2V2H6.8zM7.6,1.6H8V2H7.6zM8.4,1.6H8.8V2H8.4zM10.4,1.6H10.8V2H10.4zM11.2,1.6H11.6V2H11.2zM12,1.6H12.4V2H12zM12.4,1.6H12.8V2H12.4zM12.8,1.6H13.2V2H12.8zM13.6,1.6H14V2H13.6zM0.8,2H1.2V2.4H0.8zM1.6,2H2V2.4H1.6zM2,2H2.4V2.4H2zM2.4,2H2.8V2.4H2.4zM3.2,2H3.6V2.4H3.2zM4,2H4.4V2.4H4zM4.8,2H5.2V2.4H4.8zM5.6,2H6V2.4H5.6zM6.4,2H6.8V2.4H6.4zM7.2,2H7.6V2.4H7.2zM8.4,2H8.8V2.4H8.4zM8.8,2H9.2V2.4H8.8zM9.6,2H10V2.4H9.6zM10.4,2H10.8V2.4H10.4zM11.2,2H11.6V2.4H11.2zM12,2H12.4V2.4H12zM12.4,2H12.8V2.4H12.4zM12.8,2H13.2V2.4H12.8zM13.6,2H14V2.4H13.6zM0.8,2.4H1.2V2.8H0.8zM1.6,2.4H2V2.8H1.6zM2,2.4H2.4V2.8H2zM2.4,2.4H2.8V2.8H2.4zM3.2,2.4H3.6V2.8H3.2zM4.4,2.4H4.8V2.8H4.4zM4.8,2.4H5.2V2.8H4.8zM6,2.4H6.4V2.8H6zM6.4,2.4H6.8V2.8H6.4zM8.8,2.4H9.2V2.8H8.8zM9.6,2.4H10V2.8H9.6zM10.4,2.4H10.8V2.8H10.4zM11.2,2.4H11.6V2.8H11.2zM12,2.4H12.4V2.8H12zM12.4,2.4H12.8V2.8H12.4zM12.8,2.4H13.2V2.8H12.8zM13.6,2.4H14V2.8H13.6zM0.8,2.8H1.2V3.2H0.8zM3.2,2.8H3.6V3.2H3.2zM4.8,2.8H5.2V3.2H4.8zM5.6,2.8H6V3.2H5.6zM6,2.8H6.4V3.2H6zM7.6,2.8H8V3.2H7.6zM8,2.8H8.4V3.2H8zM8.4,2.8H8.8V3.2H8.4zM8.8,2.8H9.2V3.2H8.8zM9.2,2.8H9.6V3.2H9.2zM9.6,2.8H10V3.2H9.6zM10.4,2.8H10.8V3.2H10.4zM11.2,2.8H11.6V3.2H11.2zM13.6,2.8H14V3.2H13.6zM0.8,3.2H1.2V3.6H0.8zM1.2,3.2H1.6V3.6H1.2zM1.6,3.2H2V3.6H1.6zM2,3.2H2.4V3.6H2zM2.4,3.2H2.8V3.6H2.4zM2.8,3.2H3.2V3.6H2.8zM3.2,3.2H3.6V3.6H3.2zM4,3.2H4.4V3.6H4zM4.8,3.2H5.2V3.6H4.8zM5.6,3.2H6V3.6H5.6zM6.4,3.2H6.8V3.6H6.4zM7.2,3.2H7.6V3.6H7.2zM8,3.2H8.4V3.6H8zM8.8,3.2H9.2V3.6H8.8zM9.6,3.2H10V3.6H9.6zM10.4,3.2H10.8V3.6H10.4zM11.2,3.2H11.6V3.6H11.2zM11.6,3.2H12V3.6H11.6zM12,3.2H12.4V3.6H12zM12.4,3.2H12.8V3.6H12.4zM12.8,3.2H13.2V3.6H12.8zM13.2,3.2H13.6V3.6H13.2zM13.6,3.2H14V3.6H13.6zM4,3.6H4.4V4H4zM5.6,3.6H6V4H5.6zM7.6,3.6H8V4H7.6zM8.8,3.6H9.2V4H8.8zM9.6,3.6H10V4H9.6zM10,3.6H10.4V4H10zM10.4,3.6H10.8V4H10.4zM0.8,4H1.2V4.4H0.8zM1.6,4H2V4.4H1.6zM2,4H2.4V4.4H2zM2.8,4H3.2V4.4H2.8zM3.2,4H3.6V4.4H3.2zM3.6,4H4V4.4H3.6zM4.4,4H4.8V4.4H4.4zM4.8,4H5.2V4.4H4.8zM6.4,4H6.8V4.4H6.4zM7.2,4H7.6V4.4H7.2zM7.6,4H8V4.4H7.6zM8,4H8.4V4.4H8zM8.4,4H8.8V4.4H8.4zM8.8,4H9.2V4.4H8.8zM9.2,4H9.6V4.4H9.2zM10,4H10.4V4.4H10zM11.2,4H11.6V4.4H11.2zM12.4,4H12.8V4.4H12.4zM13.2,4H13.6V4.4H13.2zM13.6,4H14V4.4H13.6zM1.2,4.4H1.6V4.8H1.2zM2,4.4H2.4V4.8H2zM2.4,4.4H2.8V4.8H2.4zM4,4.4H4.4V4.8H4zM4.4,4.4H4.8V4.8H4.4zM4.8,4.4H5.2V4.8H4.8zM8,4.4H8.4V4.8H8zM8.4,4.4H8.8V4.8H8.4zM8.8,4.4H9.2V4.8H8.8zM9.2,4.4H9.6V4.8H9.2zM9.6,4.4H10V4.8H9.6zM10,4.4H10.4V4.8H10zM11.2,4.4H11.6V4.8H11.2zM11.6,4.4H12V4.8H11.6zM12.4,4.4H12.8V4.8H12.4zM12.8,4.4H13.2V4.8H12.8zM13.6,4.4H14V4.8H13.6zM0.8,4.8H1.2V5.2H0.8zM1.6,4.8H2V5.2H1.6zM2,4.8H2.4V5.2H2zM2.8,4.8H3.2V5.2H2.8zM3.2,4.8H3.6V5.2H3.2zM3.6,4.8H4V5.2H3.6zM4,4.8H4.4V5.2H4zM4.8,4.8H5.2V5.2H4.8zM6.4,4.8H6.8V5.2H6.4zM7.6,4.8H8V5.2H7.6zM8.8,4.8H9.2V5.2H8.8zM9.2,4.8H9.6V5.2H9.2zM10,4.8H10.4V5.2H10zM11.6,4.8H12V5.2H11.6zM12,4.8H12.4V5.2H12zM12.4,4.8H12.8V5.2H12.4zM13.2,4.8H13.6V5.2H13.2zM13.6,4.8H14V5.2H13.6zM2,5.2H2.4V5.6H2zM2.4,5.2H2.8V5.6H2.4zM3.6,5.2H4V5.6H3.6zM4,5.2H4.4V5.6H4zM5.2,5.2H5.6V5.6H5.2zM5.6,5.2H6V5.6H5.6zM6,5.2H6.4V5.6H6zM6.4,5.2H6.8V5.6H6.4zM6.8,5.2H7.2V5.6H6.8zM7.2,5.2H7.6V5.6H7.2zM8,5.2H8.4V5.6H8zM8.4,5.2H8.8V5.6H8.4zM8.8,5.2H9.2V5.6H8.8zM9.6,5.2H10V5.6H9.6zM10,5.2H10.4V5.6H10zM10.4,5.2H10.8V5.6H10.4zM11.6,5.2H12V5.6H11.6zM12.4,5.2H12.8V5.6H12.4zM0.8,5.6H1.2V6H0.8zM3.2,5.6H3.6V6H3.2zM3.6,5.6H4V6H3.6zM4,5.6H4.4V6H4zM4.4,5.6H4.8V6H4.4zM6.8,5.6H7.2V6H6.8zM8,5.6H8.4V6H8zM8.4,5.6H8.8V6H8.4zM9.6,5.6H10V6H9.6zM10.4,5.6H10.8V6H10.4zM10.8,5.6H11.2V6H10.8zM12,5.6H12.4V6H12zM12.4,5.6H12.8V6H12.4zM1.2,6H1.6V6.4H1.2zM1.6,6H2V6.4H1.6zM2.4,6H2.8V6.4H2.4zM2.8,6H3.2V6.4H2.8zM4,6H4.4V6.4H4zM4.4,6H4.8V6.4H4.4zM4.8,6H5.2V6.4H4.8zM5.6,6H6V6.4H5.6zM6,6H6.4V6.4H6zM7.2,6H7.6V6.4H7.2zM7.6,6H8V6.4H7.6zM8,6H8.4V6.4H8zM10.8,6H11.2V6.4H10.8zM11.6,6H12V6.4H11.6zM12.4,6H12.8V6.4H12.4zM12.8,6H13.2V6.4H12.8zM13.2,6H13.6V6.4H13.2zM0.8,6.4H1.2V6.8H0.8zM2.8,6.4H3.2V6.8H2.8zM3.2,6.4H3.6V6.8H3.2zM4,6.4H4.4V6.8H4zM4.8,6.4H5.2V6.8H4.8zM5.6,6.4H6V6.8H5.6zM6.4,6.4H6.8V6.8H6.4zM6.8,6.4H7.2V6.8H6.8zM7.2,6.4H7.6V6.8H7.2zM7.6,6.4H8V6.8H7.6zM8,6.4H8.4V6.8H8zM10.4,6.4H10.8V6.8H10.4zM11.2,6.4H11.6V6.8H11.2zM12.4,6.4H12.8V6.8H12.4zM1.2,6.8H1.6V7.2H1.2zM1.6,6.8H2V7.2H1.6zM2,6.8H2.4V7.2H2zM2.4,6.8H2.8V7.2H2.4zM2.8,6.8H3.2V7.2H2.8zM4.4,6.8H4.8V7.2H4.4zM5.6,6.8H6V7.2H5.6zM7.2,6.8H7.6V7.2H7.2zM8.4,6.8H8.8V7.2H8.4zM8.8,6.8H9.2V7.2H8.8zM9.2,6.8H9.6V7.2H9.2zM9.6,6.8H10V7.2H9.6zM10.4,6.8H10.8V7.2H10.4zM10.8,6.8H11.2V7.2H10.8zM11.2,6.8H11.6V7.2H11.2zM12,6.8H12.4V7.2H12zM12.8,6.8H13.2V7.2H12.8zM0.8,7.2H1.2V7.6H0.8zM1.2,7.2H1.6V7.6H1.2zM1.6,7.2H2V7.6H1.6zM2,7.2H2.4V7.6H2zM3.2,7.2H3.6V7.6H3.2zM4.4,7.2H4.8V7.6H4.4zM5.2,7.2H5.6V7.6H5.2zM6,7.2H6.4V7.6H6zM6.8,7.2H7.2V7.6H6.8zM8,7.2H8.4V7.6H8zM8.4,7.2H8.8V7.6H8.4zM8.8,7.2H9.2V7.6H8.8zM9.2,7.2H9.6V7.6H9.2zM9.6,7.2H10V7.6H9.6zM10.4,7.2H10.8V7.6H10.4zM10.8,7.2H11.2V7.6H10.8zM11.2,7.2H11.6V7.6H11.2zM12,7.2H12.4V7.6H12zM12.4,7.2H12.8V7.6H12.4zM12.8,7.2H13.2V7.6H12.8zM1.2,7.6H1.6V8H1.2zM1.6,7.6H2V8H1.6zM2.8,7.6H3.2V8H2.8zM3.6,7.6H4V8H3.6zM4.4,7.6H4.8V8H4.4zM4.8,7.6H5.2V8H4.8zM5.2,7.6H5.6V8H5.2zM6,7.6H6.4V8H6zM6.8,7.6H7.2V8H6.8zM7.6,7.6H8V8H7.6zM8.8,7.6H9.2V8H8.8zM9.6,7.6H10V8H9.6zM10,7.6H10.4V8H10zM10.4,7.6H10.8V8H10.4zM11.2,7.6H11.6V8H11.2zM12,7.6H12.4V8H12zM12.4,7.6H12.8V8H12.4zM13.2,7.6H13.6V8H13.2zM13.6,7.6H14V8H13.6zM0.8,8H1.2V8.4H0.8zM1.2,8H1.6V8.4H1.2zM2,8H2.4V8.4H2zM2.8,8H3.2V8.4H2.8zM3.2,8H3.6V8.4H3.2zM4,8H4.4V8.4H4zM4.4,8H4.8V8.4H4.4zM4.8,8H5.2V8.4H4.8zM5.6,8H6V8.4H5.6zM6.8,8H7.2V8.4H6.8zM7.2,8H7.6V8.4H7.2zM7.6,8H8V8.4H7.6zM8.8,8H9.2V8.4H8.8zM9.2,8H9.6V8.4H9.2zM9.6,8H10V8.4H9.6zM11.6,8H12V8.4H11.6zM12,8H12.4V8.4H12zM12.8,8H13.2V8.4H12.8zM13.2,8H13.6V8.4H13.2zM1.2,8.4H1.6V8.8H1.2zM2.4,8.4H2.8V8.8H2.4zM3.6,8.4H4V8.8H3.6zM4.4,8.4H4.8V8.8H4.4zM4.8,8.4H5.2V8.8H4.8zM5.2,8.4H5.6V8.8H5.2zM5.6,8.4H6V8.8H5.6zM7.2,8.4H7.6V8.8H7.2zM8.4,8.4H8.8V8.8H8.4zM9.6,8.4H10V8.8H9.6zM10,8.4H10.4V8.8H10zM10.4,8.4H10.8V8.8H10.4zM11.2,8.4H11.6V8.8H11.2zM12,8.4H12.4V8.8H12zM13.2,8.4H13.6V8.8H13.2zM0.8,8.8H1.2V9.2H0.8zM1.2,8.8H1.6V9.2H1.2zM1.6,8.8H2V9.2H1.6zM2.4,8.8H2.8V9.2H2.4zM2.8,8.8H3.2V9.2H2.8zM3.2,8.8H3.6V9.2H3.2zM4.4,8.8H4.8V9.2H4.4zM4.8,8.8H5.2V9.2H4.8zM5.6,8.8H6V9.2H5.6zM6,8.8H6.4V9.2H6zM8,8.8H8.4V9.2H8zM9.2,8.8H9.6V9.2H9.2zM10.4,8.8H10.8V9.2H10.4zM12.4,8.8H12.8V9.2H12.4zM12.8,8.8H13.2V9.2H12.8zM13.6,8.8H14V9.2H13.6zM0.8,9.2H1.2V9.6H0.8zM1.2,9.2H1.6V9.6H1.2zM1.6,9.2H2V9.6H1.6zM2.4,9.2H2.8V9.6H2.4zM2.8,9.2H3.2V9.6H2.8zM4,9.2H4.4V9.6H4zM4.4,9.2H4.8V9.6H4.4zM4.8,9.2H5.2V9.6H4.8zM5.2,9.2H5.6V9.6H5.2zM6,9.2H6.4V9.6H6zM6.4,9.2H6.8V9.6H6.4zM6.8,9.2H7.2V9.6H6.8zM7.6,9.2H8V9.6H7.6zM8,9.2H8.4V9.6H8zM10,9.2H10.4V9.6H10zM11.2,9.2H11.6V9.6H11.2zM12.4,9.2H12.8V9.6H12.4zM13.6,9.2H14V9.6H13.6zM1.6,9.6H2V10H1.6zM2,9.6H2.4V10H2zM2.4,9.6H2.8V10H2.4zM3.2,9.6H3.6V10H3.2zM4,9.6H4.4V10H4zM4.4,9.6H4.8V10H4.4zM4.8,9.6H5.2V10H4.8zM5.2,9.6H5.6V10H5.2zM6.4,9.6H6.8V10H6.4zM7.2,9.6H7.6V10H7.2zM7.6,9.6H8V10H7.6zM9.2,9.6H9.6V10H9.2zM9.6,9.6H10V10H9.6zM10,9.6H10.4V10H10zM11.2,9.6H11.6V10H11.2zM11.6,9.6H12V10H11.6zM13.2,9.6H13.6V10H13.2zM13.6,9.6H14V10H13.6zM1.2,10H1.6V10.4H1.2zM2.4,10H2.8V10.4H2.4zM4,10H4.4V10.4H4zM4.4,10H4.8V10.4H4.4zM5.2,10H5.6V10.4H5.2zM6,10H6.4V10.4H6zM6.4,10H6.8V10.4H6.4zM7.2,10H7.6V10.4H7.2zM8,10H8.4V10.4H8zM8.4,10H8.8V10.4H8.4zM8.8,10H9.2V10.4H8.8zM9.6,10H10V10.4H9.6zM10.4,10H10.8V10.4H10.4zM11.2,10H11.6V10.4H11.2zM11.6,10H12V10.4H11.6zM12,10H12.4V10.4H12zM12.4,10H12.8V10.4H12.4zM13.2,10H13.6V10.4H13.2zM13.6,10H14V10.4H13.6zM0.8,10.4H1.2V10.8H0.8zM2,10.4H2.4V10.8H2zM2.4,10.4H2.8V10.8H2.4zM3.2,10.4H3.6V10.8H3.2zM4,10.4H4.4V10.8H4zM5.2,10.4H5.6V10.8H5.2zM5.6,10.4H6V10.8H5.6zM6,10.4H6.4V10.8H6zM6.8,10.4H7.2V10.8H6.8zM7.2,10.4H7.6V10.8H7.2zM7.6,10.4H8V10.8H7.6zM9.6,10.4H10V10.8H9.6zM10,10.4H10.4V10.8H10zM10.4,10.4H10.8V10.8H10.4zM10.8,10.4H11.2V10.8H10.8zM11.2,10.4H11.6V10.8H11.2zM11.6,10.4H12V10.8H11.6zM12,10.4H12.4V10.8H12zM12.4,10.4H12.8V10.8H12.4zM4,10.8H4.4V11.2H4zM6.4,10.8H6.8V11.2H6.4zM6.8,10.8H7.2V11.2H6.8zM7.2,10.8H7.6V11.2H7.2zM7.6,10.8H8V11.2H7.6zM8,10.8H8.4V11.2H8zM8.4,10.8H8.8V11.2H8.4zM9.6,10.8H10V11.2H9.6zM10,10.8H10.4V11.2H10zM10.4,10.8H10.8V11.2H10.4zM12,10.8H12.4V11.2H12zM12.4,10.8H12.8V11.2H12.4zM0.8,11.2H1.2V11.6H0.8zM1.2,11.2H1.6V11.6H1.2zM1.6,11.2H2V11.6H1.6zM2,11.2H2.4V11.6H2zM2.4,11.2H2.8V11.6H2.4zM2.8,11.2H3.2V11.6H2.8zM3.2,11.2H3.6V11.6H3.2zM4,11.2H4.4V11.6H4zM4.4,11.2H4.8V11.6H4.4zM4.8,11.2H5.2V11.6H4.8zM5.2,11.2H5.6V11.6H5.2zM5.6,11.2H6V11.6H5.6zM7.2,11.2H7.6V11.6H7.2zM8.4,11.2H8.8V11.6H8.4zM10,11.2H10.4V11.6H10zM10.4,11.2H10.8V11.6H10.4zM11.2,11.2H11.6V11.6H11.2zM12,11.2H12.4V11.6H12zM13.2,11.2H13.6V11.6H13.2zM0.8,11.6H1.2V12H0.8zM3.2,11.6H3.6V12H3.2zM4,11.6H4.4V12H4zM6,11.6H6.4V12H6zM6.8,11.6H7.2V12H6.8zM9.2,11.6H9.6V12H9.2zM9.6,11.6H10V12H9.6zM10,11.6H10.4V12H10zM10.4,11.6H10.8V12H10.4zM12,11.6H12.4V12H12zM12.4,11.6H12.8V12H12.4zM12.8,11.6H13.2V12H12.8zM13.2,11.6H13.6V12H13.2zM13.6,11.6H14V12H13.6zM0.8,12H1.2V12.4H0.8zM1.6,12H2V12.4H1.6zM2,12H2.4V12.4H2zM2.4,12H2.8V12.4H2.4zM3.2,12H3.6V12.4H3.2zM4.4,12H4.8V12.4H4.4zM5.2,12H5.6V12.4H5.2zM5.6,12H6V12.4H5.6zM6.8,12H7.2V12.4H6.8zM7.6,12H8V12.4H7.6zM8.8,12H9.2V12.4H8.8zM9.2,12H9.6V12.4H9.2zM9.6,12H10V12.4H9.6zM10,12H10.4V12.4H10zM10.4,12H10.8V12.4H10.4zM10.8,12H11.2V12.4H10.8zM11.2,12H11.6V12.4H11.2zM11.6,12H12V12.4H11.6zM12,12H12.4V12.4H12zM12.8,12H13.2V12.4H12.8zM13.2,12H13.6V12.4H13.2zM0.8,12.4H1.2V12.8H0.8zM1.6,12.4H2V12.8H1.6zM2,12.4H2.4V12.8H2zM2.4,12.4H2.8V12.8H2.4zM3.2,12.4H3.6V12.8H3.2zM4,12.4H4.4V12.8H4zM4.4,12.4H4.8V12.8H4.4zM4.8,12.4H5.2V12.8H4.8zM5.2,12.4H5.6V12.8H5.2zM5.6,12.4H6V12.8H5.6zM6,12.4H6.4V12.8H6zM8,12.4H8.4V12.8H8zM8.8,12.4H9.2V12.8H8.8zM9.2,12.4H9.6V12.8H9.2zM9.6,12.4H10V12.8H9.6zM11.6,12.4H12V12.8H11.6zM13.6,12.4H14V12.8H13.6zM0.8,12.8H1.2V13.2H0.8zM1.6,12.8H2V13.2H1.6zM2,12.8H2.4V13.2H2zM2.4,12.8H2.8V13.2H2.4zM3.2,12.8H3.6V13.2H3.2zM4,12.8H4.4V13.2H4zM4.8,12.8H5.2V13.2H4.8zM5.6,12.8H6V13.2H5.6zM6,12.8H6.4V13.2H6zM6.4,12.8H6.8V13.2H6.4zM8.8,12.8H9.2V13.2H8.8zM9.2,12.8H9.6V13.2H9.2zM10,12.8H10.4V13.2H10zM10.4,12.8H10.8V13.2H10.4zM10.8,12.8H11.2V13.2H10.8zM11.2,12.8H11.6V13.2H11.2zM11.6,12.8H12V13.2H11.6zM12.4,12.8H12.8V13.2H12.4zM0.8,13.2H1.2V13.6H0.8zM3.2,13.2H3.6V13.6H3.2zM4.4,13.2H4.8V13.6H4.4zM5.2,13.2H5.6V13.6H5.2zM5.6,13.2H6V13.6H5.6zM6,13.2H6.4V13.6H6zM6.4,13.2H6.8V13.6H6.4zM6.8,13.2H7.2V13.6H6.8zM7.2,13.2H7.6V13.6H7.2zM7.6,13.2H8V13.6H7.6zM8.4,13.2H8.8V13.6H8.4zM8.8,13.2H9.2V13.6H8.8zM9.6,13.2H10V13.6H9.6zM10,13.2H10.4V13.6H10zM10.4,13.2H10.8V13.6H10.4zM10.8,13.2H11.2V13.6H10.8zM11.6,13.2H12V13.6H11.6zM12,13.2H12.4V13.6H12zM13.6,13.2H14V13.6H13.6zM0.8,13.6H1.2V14H0.8zM1.2,13.6H1.6V14H1.2zM1.6,13.6H2V14H1.6zM2,13.6H2.4V14H2zM2.4,13.6H2.8V14H2.4zM2.8,13.6H3.2V14H2.8zM3.2,13.6H3.6V14H3.2zM4,13.6H4.4V14H4zM4.4,13.6H4.8V14H4.4zM4.8,13.6H5.2V14H4.8zM5.6,13.6H6V14H5.6zM6,13.6H6.4V14H6zM6.8,13.6H7.2V14H6.8zM7.2,13.6H7.6V14H7.2zM7.6,13.6H8V14H7.6zM8,13.6H8.4V14H8zM8.4,13.6H8.8V14H8.4zM8.8,13.6H9.2V14H8.8zM9.2,13.6H9.6V14H9.2zM10,13.6H10.4V14H10zM11.2,13.6H11.6V14H11.2zM12,13.6H12.4V14H12zM12.4,13.6H12.8V14H12.4zM12.8,13.6H13.2V14H12.8z" id="qr-path" fill="#000000" fill-opacity="1" fill-rule="nonzero" stroke="none"/></svg>
-        <span class="tk-qr-label">stevesunypoly.github.io<br>/ai-sunypoly-greece</span>
+        <span class="tk-qr-lbl">stevesunypoly.github.io<br>/ai-sunypoly-greece</span>
       </div>
     </div>
     <div class="tk-card">
       <div class="tk-label">For Teachers</div>
       <h4>Build exercises for your students</h4>
       <p>Download the repository. Ask Claude to guide you through creating exercises your students can use — ready to upload as HTML files for your learning management system.</p>
-      <div style="margin-top: 0.6em;">
-        <span style="font-family: 'JetBrains Mono', monospace; font-size: 0.36em; color: var(--emerald-light);">Same repository. Same starting point.</span>
+      <div style="margin-top:0.55em;">
+        <a href="https://github.com/stevesunypoly/ai-sunypoly-greece/blob/main/README.md"
+           style="font-family:'JetBrains Mono',monospace;font-size:0.32em;color:var(--emerald);text-decoration:none;">
+          → github.com/stevesunypoly/ai-sunypoly-greece
+        </a>
       </div>
     </div>
+  </div>
+  <p style="font-size:0.38em;color:var(--muted);text-align:center;margin-top:0.7em;">MS Data Science &amp; Analytics · MS Computer Science · MS Cybersecurity · Utica, New York</p>
+</section>
+
+<!-- 12: CLOSING -->
+<section aria-label="Closing: the future is something we design" data-background-color="#0d1a30">
+  <div style="margin-top:0.3em;">
+    <div class="closing-quote">The Future Is Not<br>Something That Happens<br>To Us.</div>
+    <div class="closing-sub">It is something we design.</div>
+  </div>
+  <div class="closing-names">
+    Dr. William Thistleton · Dr. Steven Schneider · Dr. Daniel Romero<br>
+    AIX Center · SUNY Polytechnic Institute<br>
+    Data Science &amp; Analytics · Information Design &amp; Technology<br>
+    <span style="color:var(--emerald);font-family:'JetBrains Mono',monospace;font-size:0.9em;">Let's connect — and let's build it together.</span>
   </div>
 </section>
 
@@ -393,16 +619,24 @@
 <script>
   Reveal.initialize({
     hash: true,
-    slideNumber: true,
-    transition: 'fade',
-    transitionSpeed: 'slow',
-    backgroundTransition: 'fade',
+    slideNumber: "c/t",
+    transition: "fade",
+    transitionSpeed: "slow",
+    backgroundTransition: "fade",
     controls: true,
     progress: true,
     center: false,
     width: 1200,
     height: 700,
-    margin: 0.08
+    margin: 0.07
+  });
+
+  // Hide admissions QR on takeaway slide (index 10, zero-based)
+  Reveal.on("slidechanged", function(event) {
+    var qr = document.getElementById("admissions-qr");
+    if (qr) {
+      qr.style.display = event.indexh === 10 ? "none" : "block";
+    }
   });
 </script>
 </body>
