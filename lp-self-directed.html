@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Literacy — Learner's Permit: Data Science</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & Base ── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --red:#A93226;
+  --red-light:#C0392B;
+  --black:#1a1a1a;
+  --white:#ffffff;
+  --grey-bg:#f4f4f4;
+  --grey-light:#e8e8e8;
+  --grey-mid:#6b6b6b;
+  --grey-border:#cccccc;
+  --blue:#2E6DA4;
+  --blue-light:#EBF4FF;
+  --green:#256B3A;
+  --green-light:#E8F5ED;
+  --yellow:#B8860B;
+  --yellow-light:#FFFBEA;
+  --red-bg:#FDF0EF;
+  --serif:'IBM Plex Serif',Georgia,serif;
+  --sans:'IBM Plex Sans',system-ui,sans-serif;
+  --mono:'JetBrains Mono',monospace;
+  --sidebar-w:264px;
+}
+
+html,body{height:100%;overflow:hidden}
+body{font-family:var(--sans);color:var(--black);background:var(--white);display:flex;font-size:15px;line-height:1.6}
+
+/* ── Skip Link ── */
+.skip-link{position:absolute;top:-100px;left:0;background:var(--red);color:#fff;padding:.6rem 1.2rem;text-decoration:none;z-index:9999;font-size:.9rem;border-radius:0 0 4px 0;font-family:var(--sans)}
+.skip-link:focus{top:0;outline:3px solid #fff;outline-offset:-3px}
+
+/* ── Sidebar ── */
+#sidebar{
+  width:var(--sidebar-w);
+  min-width:var(--sidebar-w);
+  height:100vh;
+  overflow-y:auto;
+  background:var(--black);
+  display:flex;
+  flex-direction:column;
+  scrollbar-width:thin;
+  scrollbar-color:#444 var(--black);
+}
+#sidebar::-webkit-scrollbar{width:4px}
+#sidebar::-webkit-scrollbar-track{background:var(--black)}
+#sidebar::-webkit-scrollbar-thumb{background:#444;border-radius:2px}
+
+.sidebar-header{padding:24px 20px 16px;border-bottom:1px solid #333}
+.sidebar-header .eyebrow{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#999;font-family:var(--mono);margin-bottom:6px}
+.sidebar-header h1{font-family:var(--serif);font-size:17px;font-weight:600;color:#fff;line-height:1.25;margin-bottom:4px}
+.sidebar-header .topic-badge{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--red);color:#fff;padding:2px 8px;border-radius:3px;margin-top:4px}
+
+.nav-section-label{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#666;padding:16px 20px 6px;font-family:var(--mono)}
+
+.nav-list{list-style:none;padding:0 8px 24px}
+.nav-list li{margin:1px 0}
+
+.nav-btn{
+  width:100%;
+  background:none;
+  border:none;
+  text-align:left;
+  color:#bbb;
+  font-family:var(--sans);
+  font-size:13px;
+  font-weight:400;
+  padding:8px 12px;
+  border-radius:6px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  transition:background .15s,color .15s;
+  border-left:3px solid transparent;
+  line-height:1.3;
+}
+.nav-btn:hover{background:#2a2a2a;color:#fff}
+.nav-btn.active{background:#2a2a2a;color:#fff;border-left-color:var(--red);font-weight:500}
+.nav-btn:focus-visible{outline:2px solid var(--red);outline-offset:1px}
+
+.nav-num{font-family:var(--mono);font-size:11px;color:#555;min-width:18px;flex-shrink:0}
+.nav-btn.active .nav-num{color:var(--red)}
+
+.phase-divider{height:1px;background:#2a2a2a;margin:8px 12px}
+
+/* ── Content Area ── */
+#main-content{flex:1;height:100vh;overflow-y:auto;background:var(--white);scrollbar-width:thin;scrollbar-color:#ccc #f4f4f4}
+#main-content::-webkit-scrollbar{width:6px}
+#main-content::-webkit-scrollbar-track{background:#f4f4f4}
+#main-content::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
+
+.tab-panel{display:none;padding:44px 52px 64px;max-width:860px}
+.tab-panel.active{display:block}
+
+/* ── Typography ── */
+.tab-panel h2{font-family:var(--serif);font-size:28px;font-weight:600;color:var(--black);line-height:1.2;margin-bottom:6px}
+.tab-panel .ex-subtitle{font-size:13px;color:var(--grey-mid);font-family:var(--mono);letter-spacing:.04em;margin-bottom:28px;display:block}
+.tab-panel h3{font-family:var(--serif);font-size:17px;font-weight:600;color:var(--black);margin:28px 0 10px}
+.tab-panel h4{font-size:13px;font-weight:600;color:var(--blue);text-transform:uppercase;letter-spacing:.06em;margin:20px 0 8px}
+.tab-panel p{font-size:14.5px;color:#333;line-height:1.78;margin-bottom:12px}
+.tab-panel ul,.tab-panel ol{margin:8px 0 14px 22px}
+.tab-panel li{font-size:14.5px;color:#333;line-height:1.7;margin-bottom:5px}
+.tab-panel strong{color:var(--black);font-weight:600}
+.mono{font-family:var(--mono);font-size:12px}
+
+/* ── Phase Banner ── */
+.phase-banner{background:var(--red);border-radius:10px;padding:18px 24px;margin:0 0 28px}
+.phase-banner .p-label{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);font-family:var(--mono);margin-bottom:3px}
+.phase-banner h2{font-family:var(--serif);font-size:22px;font-weight:600;color:#fff;margin:0 0 3px}
+.phase-banner .p-sub{font-size:13px;color:rgba(255,255,255,.65);font-style:italic}
+
+/* ── Copy Block ── */
+.copy-block{border-radius:8px;overflow:hidden;margin:14px 0;border:1px solid var(--grey-border)}
+.copy-block-head{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;background:var(--green);gap:12px}
+.copy-block-head.guide{background:var(--blue)}
+.copy-block-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;font-family:var(--mono)}
+.copy-btn{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);color:#fff;font-family:var(--mono);font-size:11px;font-weight:500;padding:4px 12px;border-radius:4px;cursor:pointer;transition:background .15s;white-space:nowrap}
+.copy-btn:hover{background:rgba(255,255,255,.3)}
+.copy-btn:focus-visible{outline:2px solid #fff;outline-offset:1px}
+.copy-btn.copied{background:rgba(255,255,255,.4)}
+.copy-text{padding:14px 16px;font-family:var(--mono);font-size:12.5px;line-height:1.75;color:var(--black);background:var(--green-light);white-space:pre-wrap;word-break:break-word}
+.copy-text.guide-text{background:var(--blue-light)}
+
+/* ── Reflect Block ── */
+.reflect-block{display:flex;border-radius:8px;overflow:hidden;margin:14px 0;border:1px solid #E0C060}
+.reflect-lbl{min-width:72px;background:#92620A;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#fff;padding:12px 6px;text-align:center;line-height:1.3;font-family:var(--mono)}
+.reflect-cnt{flex:1;padding:12px 16px;font-size:13.5px;line-height:1.68;color:#553300;background:var(--yellow-light);font-style:italic}
+
+/* ── Deliverables ── */
+.deliverables{margin:18px 0 4px}
+.del-line{padding:9px 15px;margin:5px 0;border-radius:0 6px 6px 0;font-size:13px;font-weight:500}
+.del-artifact{border-left:4px solid var(--blue);background:var(--blue-light);color:#1B3A6B}
+.del-transcript{border-left:4px solid #aaa;background:#f0f0f0;color:#444}
+
+/* ── Cite Block ── */
+.cite-block{border-left:4px solid var(--black);background:var(--grey-bg);padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0}
+.cite-block p{font-family:var(--mono);font-size:11.5px;color:#555;margin:2px 0;line-height:1.65}
+
+/* ── Data Table ── */
+.data-table{width:100%;border-collapse:collapse;margin:16px 0;border-radius:8px;overflow:hidden;border:1px solid var(--grey-border)}
+.data-table th{background:var(--black);color:#fff;text-align:left;padding:10px 15px;font-size:11.5px;font-weight:600;letter-spacing:.04em;font-family:var(--mono)}
+.data-table td{padding:9px 15px;font-size:13.5px;border-top:1px solid var(--grey-light);color:#333;vertical-align:top}
+.data-table tr:nth-child(even) td{background:var(--grey-bg)}
+.data-table td:first-child{font-weight:500;color:var(--black)}
+
+/* ── Folder Tree ── */
+.folder-tree{background:#111;border-radius:10px;padding:18px 22px;margin:14px 0;font-family:var(--mono);font-size:12.5px;line-height:2.1}
+.folder-tree .d{color:#7cb4f7}.folder-tree .f{color:#a0c4ff}.folder-tree .n{color:#555}
+
+/* ── URL Block ── */
+.url-block{display:flex;align-items:center;gap:12px;background:var(--grey-bg);border:1px solid var(--grey-border);border-radius:8px;padding:12px 16px;margin:12px 0}
+.url-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--grey-mid);font-family:var(--mono);white-space:nowrap}
+.url-link{font-family:var(--mono);font-size:12px;color:var(--blue);text-decoration:none;word-break:break-all}
+.url-link:hover{text-decoration:underline}
+.url-link:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:2px}
+
+/* ── Sep ── */
+.sep{height:1px;background:var(--grey-light);margin:24px 0}
+
+/* ── Setup specific ── */
+.prereq-card{background:var(--grey-bg);border:1px solid var(--grey-border);border-radius:10px;padding:20px 24px;margin:12px 0}
+.prereq-card h4{margin-top:0;margin-bottom:8px}
+.prereq-card p{margin-bottom:0}
+
+/* ── License badge ── */
+.license-banner{background:var(--black);border-radius:10px;padding:20px 26px;margin:20px 0;text-align:center}
+.license-banner p{color:#fff;font-size:15px;font-weight:500;margin:0;font-family:var(--serif)}
+
+/* ── Scrollbar note ── */
+.note{font-size:12.5px;color:var(--grey-mid);font-style:italic;margin-top:8px}
+
+/* ── Stage labels ── */
+.stage-label{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--grey-mid);font-family:var(--mono);margin:18px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--grey-light)}
+
+/* ── Mobile ── */
+@media (max-width: 760px) {
+  html, body { height: auto; overflow: auto; }
+  body { display: block; }
+  #sidebar { width: 100%; min-width: 0; height: auto; max-height: 45vh; overflow-y: auto; }
+  #main-content { height: auto; overflow: visible; }
+  .tab-panel { padding: 28px 20px 48px; }
+  .reflect-block, .url-block { flex-direction: column; align-items: stretch; }
+  .reflect-lbl { min-width: 0; padding: 8px 16px; }
+}
+</style>
+</head>
+<body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<!-- ── SIDEBAR ── -->
+<nav id="sidebar" role="navigation" aria-label="Exercise navigation">
+  <div class="sidebar-header">
+    <div class="eyebrow">AI Literacy · SUNY</div>
+    <h1>Learner's<br>Permit</h1>
+    <span class="topic-badge">Data Science</span>
+  </div>
+
+  <div role="tablist" aria-label="Exercises">
+  <div class="nav-section-label">Start Here</div>
+  <ul class="nav-list">
+    <li><button class="nav-btn active" role="tab" aria-selected="true" aria-controls="tab-0" id="nav-0" data-tab="0"><span class="nav-num">—</span>Setup</button></li>
+  </ul>
+
+  <div class="nav-section-label">Phase I · 1–5</div>
+  <ul class="nav-list">
+    <li><button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-1" id="nav-1" data-tab="1"><span class="nav-num">01</span>First Conversation</button></li>
+    <li><button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-2" id="nav-2" data-tab="2"><span class="nav-num">02</span>Compression</button></li>
+    <li><button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-3" id="nav-3" data-tab="3"><span class="nav-num">03</span>Push Back</button></li>
+    <li><button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-4" id="nav-4" data-tab="4"><span class="nav-num">04</span>Trust Audit</button></li>
+    <li><button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-5" id="nav-5" data-tab="5"><span class="nav-num">05</span>Deep Conversation</button></li>
+  </ul>
+
+  <div class="nav-section-label">Phase II · 6–10</div>
+  <ul class="nav-list">
+    <li><button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-6" id="nav-6" data-tab="6"><span class="nav-num">06</span>Fork</button></li>
+    <li><button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-7" id="nav-7" data-tab="7"><span class="nav-num">07</span>Three Audiences</button></li>
+    <li><button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-8" id="nav-8" data-tab="8"><span class="nav-num">08</span>First Reading</button></li>
+    <li><button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-9" id="nav-9" data-tab="9"><span class="nav-num">09</span>Second Reading</button></li>
+    <li><button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-10" id="nav-10" data-tab="10"><span class="nav-num">10</span>Build Workbench</button></li>
+  </ul>
+
+  <div class="nav-section-label">Phase III · 11–15</div>
+  <ul class="nav-list">
+    <li><button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-11" id="nav-11" data-tab="11"><span class="nav-num">11</span>Teach Yourself</button></li>
+    <li><button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-12" id="nav-12" data-tab="12"><span class="nav-num">12</span>Synthesis Document</button></li>
+    <li><button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-13" id="nav-13" data-tab="13"><span class="nav-num">13</span>Slop Quiz</button></li>
+    <li><button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-14" id="nav-14" data-tab="14"><span class="nav-num">14</span>Go Public</button></li>
+    <li><button class="nav-btn" role="tab" aria-selected="false" aria-controls="tab-15" id="nav-15" data-tab="15"><span class="nav-num">15</span>Road Test</button></li>
+  </ul>
+  </div>
+</nav>
+
+<!-- ── CONTENT ── -->
+<main id="main-content">
+
+<!-- ══ TAB 0 — SETUP ══ -->
+<div class="tab-panel active" id="tab-0" role="tabpanel" aria-labelledby="nav-0" tabindex="0">
+  <h2>Setup</h2>
+  <span class="ex-subtitle">Before Exercise 1 · Complete once</span>
+
+  <p>This scaffold guides you through 15 exercises in AI literacy. The topic throughout is <strong>data science</strong>. You will work in any AI assistant — Claude, Gemini, ChatGPT, or equivalent. You need three things before you begin.</p>
+  <p class="note">Throughout this scaffold, each prompt has a Copy button. If the Copy button does not work in your browser, select the prompt text manually and copy it.</p>
+
+  <div class="prereq-card">
+    <h4>What this scaffold is — and is not</h4>
+    <p>This is an AI literacy practicum. Data science is the shared subject used to practice the habits of AI-assisted work: questioning model output, evaluating explanations, managing sources, preserving transcripts, and producing cited artifacts. It is not a complete data science curriculum. It does not teach statistical modeling, programming, inference, or data wrangling in any systematic way.</p>
+  </div>
+
+  <div class="prereq-card">
+    <h4>The progression: Learner's Permit → General AI License</h4>
+    <p>This scaffold functions like a learner's permit. Exercises 1–14 build supervised habits in sequence. Exercise 15 is the road test. Passing all six criteria on Exercise 15 completes the General AI License level — the prerequisite for the Commercial License course, which covers agentic AI operation.</p>
+  </div>
+
+  <div class="prereq-card">
+    <h4>Citation levels</h4>
+    <p><strong>Exercises 1–10:</strong> artifact filename + transcript filename required. Full citation encouraged but not required.<br>
+    <strong>Exercises 11–15:</strong> full citation block required on every artifact — name, date, model, transcript link.</p>
+  </div>
+
+  <div class="prereq-card">
+    <h4>1 — A Model</h4>
+    <p>Access to at least one large language model. You will use more than one before Exercise 15. Free tiers work. Claude, Gemini, and ChatGPT all support the full scaffold.</p>
+  </div>
+
+  <div class="prereq-card">
+    <h4>2 — A Transcript Exporter</h4>
+    <p>A way to save the full text of any conversation to a file. In Claude: download from the conversation menu. In ChatGPT: copy the conversation into a document, or use platform export if available — do not rely on a share link alone, as it may not produce a durable local file. In Gemini: copy the full conversation manually into a document. For all three, Chrome browser extensions are available that simplify or automate export — search the Chrome Web Store for the model name plus "exporter." Rename each export before saving — lowercase, hyphens: <span class="mono">lp-ex1-yourname.txt</span></p>
+  </div>
+
+  <div class="prereq-card">
+    <h4>3 — A Workbench</h4>
+    <p>A cloud folder with shareable links — Google Drive, OneDrive, SharePoint, or equivalent. Create a root folder named <span class="mono">ai-literacy</span> with these subfolders:</p>
+    <div class="folder-tree">
+      <span class="d">ai-literacy/</span><br>
+      &nbsp;&nbsp;<span class="f">├── transcripts/</span> &nbsp;<span class="n">← exported conversations</span><br>
+      &nbsp;&nbsp;<span class="f">├── artifacts/</span> &nbsp;&nbsp;<span class="n">← AI-assisted documents</span><br>
+      &nbsp;&nbsp;<span class="f">├── synthesis/</span> &nbsp;&nbsp;<span class="n">← synthesis documents</span><br>
+      &nbsp;&nbsp;<span class="f">├── author/</span> &nbsp;&nbsp;&nbsp;&nbsp;<span class="n">← your own writing only</span><br>
+      &nbsp;&nbsp;<span class="f">└── zip/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="n">← dated snapshots</span>
+    </div>
+    <p style="margin-bottom:0"><strong>/author discipline:</strong> Documents in /author are written without a model open. Reflections written before a closing prompt, notes made before any AI consultation. If a model was open when you wrote it, it goes in /artifacts instead.</p>
+  </div>
+
+  <div class="sep"></div>
+  <h3>Opening Prompt</h3>
+  <p>Send this prompt to your model before Exercise 1. It establishes the model's role as your guide for all 15 exercises. Copy it exactly.</p>
+
+  <div class="copy-block">
+    <div class="copy-block-head guide">
+      <span class="copy-block-label">Guide Setup — Send Once</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy guide setup prompt">Copy</button>
+    </div>
+    <div class="copy-text guide-text">You are going to serve as my guide through a 15-exercise AI literacy scaffold called the Learner's Permit. The topic for all exercises is data science.
+
+Your role throughout: help me work through each exercise, and evaluate my work honestly when I send you a closing check at the end of each exercise. If my work is thin, say so specifically. If I'm ready to move on, say so. If I need to redo something, tell me exactly what's missing.
+
+The goal of this scaffold is to develop my ability to read, think, and write using AI tools — meaning: reading your output critically, thinking by directing and evaluating the conversation, and writing by prompting purposefully toward a specific outcome.
+
+Do not be agreeable for the sake of it. Agreeable is not the same as accurate. I need honest evaluation, not encouragement.
+
+Please acknowledge this role, confirm the topic is data science, and tell me you're ready for Exercise 1.</div>
+  </div>
+
+  <p class="note">After the model acknowledges, move to Exercise 01 in the sidebar. You may use one model as your continuing guide throughout the scaffold. If an exercise requires a different model, complete that exercise with the new model, then return to the guide model for the Guide Check — re-sending the Guide Setup prompt above if you are starting a new conversation with it.</p>
+</div>
+
+<!-- ══ TAB 1 ══ -->
+<div class="tab-panel" id="tab-1" role="tabpanel" aria-labelledby="nav-1" tabindex="0">
+  <div class="phase-banner">
+    <div class="p-label">Phase I · Exercises 1–5</div>
+    <h2>Learning to Drive</h2>
+    <div class="p-sub">Learn the instrument before playing it.</div>
+  </div>
+
+  <h2>Exercise 01 — First Conversation</h2>
+  <span class="ex-subtitle">No artifact · Transcript only</span>
+
+  <p>Have a real conversation about data science. Minimum 3 prompts. Follow what interests you. Push back on something. Ask a follow-up.</p>
+  <p>Read what the model produces. Note where it is confident. Note where skepticism is warranted. There is no artifact in Exercise 1 — only the transcript.</p>
+
+  <div class="deliverables">
+    <div class="del-line del-transcript">Transcript: rename conversation <span class="mono">lp-ex1-[yourname]-transcript.txt</span> before exporting. Save to /transcripts.</div>
+  </div>
+
+  <div class="sep"></div>
+  <h3>Guide Check</h3>
+  <p>Send this after completing the exercise. The model will evaluate your work and tell you whether to proceed.</p>
+
+  <div class="copy-block">
+    <div class="copy-block-head guide">
+      <span class="copy-block-label">Guide Check — Exercise 01</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy guide check prompt for exercise 1">Copy</button>
+    </div>
+    <div class="copy-text guide-text">Exercise 1 check. Please evaluate this conversation honestly:
+
+1. Did I ask at least 3 substantive prompts — or was this a single query with minor follow-ups?
+2. Did I genuinely push back on at least one claim — or did I accept everything?
+3. Did I follow a thread somewhere I didn't expect to go — or did I stay on the surface?
+
+Tell me specifically what was strong and what was thin. If this was not a real conversation, tell me what to do differently before I move to Exercise 2. Do not pass me through on thin work.</div>
+  </div>
+</div>
+
+<!-- ══ TAB 2 ══ -->
+<div class="tab-panel" id="tab-2" role="tabpanel" aria-labelledby="nav-2" tabindex="0">
+  <h2>Exercise 02 — Compression and Progression</h2>
+  <span class="ex-subtitle">Artifact + Transcript</span>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Prompt 1</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy prompt 1">Copy</button>
+    </div>
+    <div class="copy-text">Summarize data science in 25 words.</div>
+  </div>
+
+  <p>That is the baseline. Now expand — not a new summary, a deeper version of the same one:</p>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Prompt 2</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy prompt 2">Copy</button>
+    </div>
+    <div class="copy-text">Expand that to [multiplier × 25] words. Not a new summary — a deeper version. Someone who read the 25-word version should feel like they're going further, not starting over.</div>
+  </div>
+
+  <p>Choose a multiplier of at least 3. Repeat two more times. Example: 25 → 75 → 225 → 675. Or 25 → 100 → 400 → 1600. The pattern matters more than the specific numbers.</p>
+  <p><strong>Goal:</strong> by the longest version, the ideas should feel familiar — recognized rather than newly encountered. After each level, tell the model what was new versus what you already understood.</p>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Prompt 3</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy prompt 3">Copy</button>
+    </div>
+    <div class="copy-text">At which level did data science start to feel familiar to me, based on what I've said? Is this a useful way to learn this subject, or does it flatten things I'd rather encounter at full depth?</div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Prompt 4 — Closing</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy closing prompt">Copy</button>
+    </div>
+    <div class="copy-text">Generate something useful specifically for me — a personal reference, a key question to hold onto, a way of remembering this material, or something else that fits how I've described my learning. Make it for me, not a general reader.</div>
+  </div>
+
+  <div class="deliverables">
+    <div class="del-line del-artifact">Artifact: the final response. Save as <span class="mono">lp-ex2-[yourname]-artifact.txt</span> → /artifacts.</div>
+    <div class="del-line del-transcript">Transcript: <span class="mono">lp-ex2-[yourname]-transcript.txt</span> → /transcripts.</div>
+  </div>
+
+  <div class="sep"></div>
+  <h3>Guide Check</h3>
+  <div class="copy-block">
+    <div class="copy-block-head guide">
+      <span class="copy-block-label">Guide Check — Exercise 02</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy guide check for exercise 2">Copy</button>
+    </div>
+    <div class="copy-text guide-text">Exercise 2 check. Please evaluate:
+
+1. Did I work through at least three levels of expansion — or did I stop after one or two?
+2. Did I actively respond after each level, or did I just receive them passively?
+3. Did I push back if a level added filler instead of depth?
+4. Is the final artifact — the personalized reference — actually specific to me and what I said, or is it generic enough to apply to any reader?
+
+Tell me what's thin and what to fix before Exercise 3.</div>
+  </div>
+</div>
+
+<!-- ══ TAB 3 ══ -->
+<div class="tab-panel" id="tab-3" role="tabpanel" aria-labelledby="nav-3" tabindex="0">
+  <h2>Exercise 03 — Push Back</h2>
+  <span class="ex-subtitle">Artifact + Transcript</span>
+
+  <p>Upload your Exercise 1 transcript to a new conversation, then send this prompt:</p>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Prompt 1</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy prompt 1">Copy</button>
+    </div>
+    <div class="copy-text">This is a transcript of a conversation I had with an AI about data science. Please read it and repeat the final response in that transcript.</div>
+  </div>
+
+  <p>Read that response again — the model's unguided output before anything was shaped. Find one claim to push on. Choose <strong>any two</strong> of the following moves:</p>
+
+  <ul>
+    <li><strong>"I don't understand this."</strong> Ask for a different explanation. Don't accept the first re-explanation. Push again.</li>
+    <li><strong>"My experience tells me otherwise."</strong> State what observation or prior learning contradicts the claim.</li>
+    <li><strong>"This reading says something different."</strong> Paste a contradicting sentence from any source.</li>
+    <li><strong>"Here's another model's response."</strong> Take the same prompt to a different AI, copy that response, ask this model to respond to it.</li>
+  </ul>
+
+  <p>Note whether the model defends its position or concedes because of pressure. <strong>Agreeable is not the same as accurate.</strong></p>
+
+  <div class="reflect-block">
+    <div class="reflect-lbl">Reflect</div>
+    <div class="reflect-cnt">Before closing the conversation, write a few informal sentences in the chat — stream of consciousness. Did the push back work? What surprised you? Don't edit it. These reflections are part of the transcript.</div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Closing Prompt</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy closing prompt">Copy</button>
+    </div>
+    <div class="copy-text">Summarize this exchange in 3–4 sentences: what I challenged, how you responded, and what the disagreement or clarification revealed about data science.</div>
+  </div>
+
+  <div class="deliverables">
+    <div class="del-line del-artifact">Artifact: the summary. Save as <span class="mono">lp-ex3-[yourname]-artifact.txt</span> → /artifacts.</div>
+    <div class="del-line del-transcript">Transcript: <span class="mono">lp-ex3-[yourname]-transcript.txt</span> → /transcripts.</div>
+  </div>
+
+  <div class="sep"></div>
+  <h3>Guide Check</h3>
+  <div class="copy-block">
+    <div class="copy-block-head guide">
+      <span class="copy-block-label">Guide Check — Exercise 03</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy guide check for exercise 3">Copy</button>
+    </div>
+    <div class="copy-text guide-text">Exercise 3 check. Please evaluate:
+
+1. Did I use at least two of the four challenge moves — or just one superficially?
+2. Did I test whether you were defending a position or conceding to social pressure?
+3. Is the summary artifact honest about what was actually disputed — or does it smooth over the disagreement?
+4. If my push back was weak, tell me specifically what I should have challenged and how.
+
+Do not pass thin work.</div>
+  </div>
+</div>
+
+<!-- ══ TAB 4 ══ -->
+<div class="tab-panel" id="tab-4" role="tabpanel" aria-labelledby="nav-4" tabindex="0">
+  <h2>Exercise 04 — Trust Audit</h2>
+  <span class="ex-subtitle">Artifact + Transcript</span>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Prompt 1</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy prompt 1">Copy</button>
+    </div>
+    <div class="copy-text">What are the limits of your knowledge about data science? Where should I not trust you?</div>
+  </div>
+
+  <p>Read carefully. Models are sometimes honestly uncertain — and sometimes evasive in ways that sound like honesty. Does the model's list match the skepticism that emerged in Exercises 1–3? Are there gaps it didn't flag?</p>
+  <p>Write 3–5 sentences directly in the chat — a personal assessment of what you trust and what you don't trust this model to do with data science.</p>
+
+  <div class="reflect-block">
+    <div class="reflect-lbl">Reflect</div>
+    <div class="reflect-cnt">Write informally in the chat. What did the model say that was surprising? What did you expect it to admit that it didn't? What do you actually trust it to do?</div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Closing Prompt</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy closing prompt">Copy</button>
+    </div>
+    <div class="copy-text">Incorporate my response into a short artifact titled 'Trust Audit: Data Science.' Capture my assessment and add anything you think I should also be skeptical about that I haven't mentioned.</div>
+  </div>
+
+  <div class="deliverables">
+    <div class="del-line del-artifact">Artifact: Trust Audit. Save as <span class="mono">lp-ex4-[yourname]-artifact.txt</span> → /artifacts.</div>
+    <div class="del-line del-transcript">Transcript: <span class="mono">lp-ex4-[yourname]-transcript.txt</span> → /transcripts.</div>
+  </div>
+
+  <div class="sep"></div>
+  <h3>Guide Check</h3>
+  <div class="copy-block">
+    <div class="copy-block-head guide">
+      <span class="copy-block-label">Guide Check — Exercise 04</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy guide check for exercise 4">Copy</button>
+    </div>
+    <div class="copy-text guide-text">Exercise 4 check. Please evaluate:
+
+1. Did I write a genuine personal assessment — or did I just agree with what you said?
+2. Is the Trust Audit specific to data science — or could it apply to any subject without changing a word?
+3. Does it name actual, concrete limits — or is it vague?
+4. Did I draw on skepticism built across Exercises 1–3, or was this a fresh start with no memory of what came before?
+
+Tell me what to fix.</div>
+  </div>
+</div>
+
+<!-- ══ TAB 5 ══ -->
+<div class="tab-panel" id="tab-5" role="tabpanel" aria-labelledby="nav-5" tabindex="0">
+  <h2>Exercise 05 — Deep Conversation</h2>
+  <span class="ex-subtitle">15 minutes · Artifact + Transcript</span>
+
+  <p>Set a timer for <strong>15 minutes</strong>. Have a sustained conversation about data science. Follow threads. Disagree. Ask the model to explain things differently. Go somewhere unplanned.</p>
+  <p>Do not start over if it goes sideways. The mess is part of the record.</p>
+  <p>When the timer ends, stop. Then write your reflection directly in the chat — informal, unedited — before the closing prompt:</p>
+
+  <div class="reflect-block">
+    <div class="reflect-lbl">Reflect</div>
+    <div class="reflect-cnt">What surprised you? Where was the model most useful? Least? What question didn't get asked? What would you do differently? Write it in the chat. This reflection is part of the conversation and shapes the closing prompt.</div>
+  </div>
+
+  <p>Then choose one closing prompt:</p>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Option A</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy option A">Copy</button>
+    </div>
+    <div class="copy-text">Write a 150-word summary of what I engaged with in this conversation, organized as 3–4 bullet points — like a slide I could review later.</div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Option B</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy option B">Copy</button>
+    </div>
+    <div class="copy-text">Give me the 3 most important questions this conversation raised that I haven't answered yet.</div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Option C</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy option C">Copy</button>
+    </div>
+    <div class="copy-text">Write a 100-word paragraph capturing the central insight of this conversation and what I should explore next.</div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Option D</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy option D">Copy</button>
+    </div>
+    <div class="copy-text">Give me a metaphor or analogy that captures the most important idea we discussed about data science.</div>
+  </div>
+
+  <div class="deliverables">
+    <div class="del-line del-artifact">Artifact: the response to your chosen option. Save as <span class="mono">lp-ex5-[yourname]-artifact.txt</span> → /artifacts.</div>
+    <div class="del-line del-transcript">Transcript: <span class="mono">lp-ex5-[yourname]-transcript.txt</span> → /transcripts. Include the reflection.</div>
+  </div>
+
+  <div class="sep"></div>
+  <h3>Guide Check</h3>
+  <div class="copy-block">
+    <div class="copy-block-head guide">
+      <span class="copy-block-label">Guide Check — Exercise 05</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy guide check for exercise 5">Copy</button>
+    </div>
+    <div class="copy-text guide-text">Exercise 5 check. Please evaluate:
+
+1. Did I actually follow threads and go somewhere unplanned — or did I stay on prepared questions?
+2. Did I write a genuine reflection before the closing prompt — or skip it?
+3. Is the closing artifact substantive — does it reveal something I actually learned — or is it generic output that could apply to any conversation?
+4. Did I actually use the full 15 minutes, or did I wrap up early?
+
+Tell me whether this showed real engagement or surface-level questioning.</div>
+  </div>
+</div>
+
+<!-- ══ TAB 6 ══ -->
+<div class="tab-panel" id="tab-6" role="tabpanel" aria-labelledby="nav-6" tabindex="0">
+  <div class="phase-banner">
+    <div class="p-label">Phase II · Exercises 6–10</div>
+    <h2>Building Skill</h2>
+    <div class="p-sub">Drive it where you want to go.</div>
+  </div>
+
+  <h2>Exercise 06 — Fork</h2>
+  <span class="ex-subtitle">New model · Full context · Artifact + Transcript</span>
+
+  <p>Open a new conversation in a <strong>different model</strong> than Exercise 5. Upload the Exercise 5 transcript.</p>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Prompt 1</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy prompt 1">Copy</button>
+    </div>
+    <div class="copy-text">I'm uploading a conversation I had with another AI about data science. Please read it carefully. I'll ask you to continue from where it left off.</div>
+  </div>
+
+  <p>Once it confirms, ask the question that didn't get addressed in Exercise 5. Ask at least 3 follow-up questions.</p>
+
+  <div class="reflect-block">
+    <div class="reflect-lbl">Reflect</div>
+    <div class="reflect-cnt">Write in the chat before the closing prompt. What felt different about this model — tone, assumptions, depth, behavior? What did it do with the context it was given?</div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Closing Prompt</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy closing prompt">Copy</button>
+    </div>
+    <div class="copy-text">Summarize what this conversation added to my understanding of data science that the previous conversation did not. Be specific about what was new, different, or contradictory.</div>
+  </div>
+
+  <div class="deliverables">
+    <div class="del-line del-artifact">Artifact: the summary. Save as <span class="mono">lp-ex6-[yourname]-artifact.txt</span> → /artifacts.</div>
+    <div class="del-line del-transcript">Transcript: <span class="mono">lp-ex6-[yourname]-transcript.txt</span> → /transcripts.</div>
+  </div>
+
+  <div class="sep"></div>
+  <h3>Guide Check</h3>
+  <div class="copy-block">
+    <div class="copy-block-head guide">
+      <span class="copy-block-label">Guide Check — Exercise 06</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy guide check for exercise 6">Copy</button>
+    </div>
+    <div class="copy-text guide-text">Exercise 6 check. Please evaluate:
+
+1. Did I actually upload the Exercise 5 transcript and continue from it — or start fresh?
+2. Did I ask at least 3 substantive follow-up questions?
+3. Is the comparison summary specific about what was different — tone, assumptions, behavior — or does it just say the models were similar or different without explaining how?
+4. Did I carry my own context across models, or did I wait for the model to do it?
+
+Tell me what's missing.</div>
+  </div>
+</div>
+
+<!-- ══ TAB 7 ══ -->
+<div class="tab-panel" id="tab-7" role="tabpanel" aria-labelledby="nav-7" tabindex="0">
+  <h2>Exercise 07 — Same Content, Three Audiences</h2>
+  <span class="ex-subtitle">Artifact + Transcript</span>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Prompt 1</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy prompt 1">Copy</button>
+    </div>
+    <div class="copy-text">Explain data science three times: once for a curious 10-year-old, once for a first-year college student, once for a working data professional.</div>
+  </div>
+
+  <p>Read all three. Note where facts change versus where only framing changes. Note what the professional version assumes the reader already knows. Use one of the two push back moves from Exercise 3 on one of the versions.</p>
+
+  <div class="reflect-block">
+    <div class="reflect-lbl">Reflect</div>
+    <div class="reflect-cnt">Which version would you actually read? Which is most honest about complexity? Are those the same answer?</div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Closing Prompt</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy closing prompt">Copy</button>
+    </div>
+    <div class="copy-text">Write a short artifact analyzing the structural differences between these three versions — tone, assumptions, density. Not the content: the architecture. Note which version served me best as a learner and why.</div>
+  </div>
+
+  <div class="deliverables">
+    <div class="del-line del-artifact">Artifact: the analysis. Save as <span class="mono">lp-ex7-[yourname]-artifact.txt</span> → /artifacts.</div>
+    <div class="del-line del-transcript">Transcript: <span class="mono">lp-ex7-[yourname]-transcript.txt</span> → /transcripts.</div>
+  </div>
+
+  <div class="sep"></div>
+  <h3>Guide Check</h3>
+  <div class="copy-block">
+    <div class="copy-block-head guide">
+      <span class="copy-block-label">Guide Check — Exercise 07</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy guide check for exercise 7">Copy</button>
+    </div>
+    <div class="copy-text guide-text">Exercise 7 check. Please evaluate:
+
+1. Did I actually compare the three versions structurally — or just summarize their content?
+2. Did I use one of the push back moves on one of the versions?
+3. Does the artifact analyze architecture — tone, assumptions, density — or does it describe what each version said?
+4. Is my stated preference genuine and reasoned, or generic?
+
+Tell me what to strengthen.</div>
+  </div>
+</div>
+
+<!-- ══ TAB 8 ══ -->
+<div class="tab-panel" id="tab-8" role="tabpanel" aria-labelledby="nav-8" tabindex="0">
+  <h2>Exercise 08 — First Reading</h2>
+  <span class="ex-subtitle">Wikipedia: Data Science · Artifact + Transcript</span>
+
+  <p>Open this article in your browser. Read the introduction and at least two substantive sections. Then open your AI and begin the exercise.</p>
+
+  <div class="url-block">
+    <span class="url-label">Reading</span>
+    <a class="url-link" href="https://en.wikipedia.org/wiki/Data_science" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Data_science</a>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Opening Prompt</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy opening prompt">Copy</button>
+    </div>
+    <div class="copy-text">I'm going to work through a Wikipedia article on data science with you. For this exercise, I will paste specific sections for you to analyze. Base your responses only on what I paste — not on your general knowledge. Tell me when you are drawing from the pasted text and when you are inferring beyond it.</div>
+  </div>
+
+  <div class="stage-label">Stage 1 — Overview</div>
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Prompt</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy stage 1 prompt">Copy</button>
+    </div>
+    <div class="copy-text">Here is the introduction of the Wikipedia article on Data Science: [paste the introduction here]. Summarize the main argument in 50 words, drawing only from this text.</div>
+  </div>
+
+  <div class="stage-label">Stage 2 — Dissect</div>
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Prompt</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy stage 2 prompt">Copy</button>
+    </div>
+    <div class="copy-text">Here is a section from the article: [paste a section]. Identify the two most important sentences. Explain why they are central to the argument. Quote each one directly from the text.</div>
+  </div>
+
+  <div class="stage-label">Stage 3 — Challenge</div>
+  <p>Use one of the two push back moves from Exercise 3 on something in the article. Paste the relevant text and apply your move.</p>
+
+  <div class="stage-label">Stage 4 — Cite</div>
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Prompt</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy citation prompt">Copy</button>
+    </div>
+    <div class="copy-text">Generate a reference for the Wikipedia article on Data Science in APA format. Use this access date: [write today's date here, e.g. April 30, 2026]. Include the full URL.</div>
+  </div>
+
+  <div class="reflect-block">
+    <div class="reflect-lbl">Reflect</div>
+    <div class="reflect-cnt">What does the model do well when confined to a single source? Where did it slip outside the text despite your instructions?</div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Closing Prompt</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy closing prompt">Copy</button>
+    </div>
+    <div class="copy-text">Summarize what this article is about, what I engaged with, and what I'm still uncertain about — based only on our exchange. Do not draw on outside knowledge.</div>
+  </div>
+
+  <div class="deliverables">
+    <div class="del-line del-artifact">Artifact: the closing summary. Save as <span class="mono">lp-ex8-[yourname]-artifact.txt</span> → /artifacts.</div>
+    <div class="del-line del-transcript">Transcript: <span class="mono">lp-ex8-[yourname]-transcript.txt</span> → /transcripts.</div>
+  </div>
+
+  <div class="sep"></div>
+  <h3>Guide Check</h3>
+  <div class="copy-block">
+    <div class="copy-block-head guide">
+      <span class="copy-block-label">Guide Check — Exercise 08</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy guide check for exercise 8">Copy</button>
+    </div>
+    <div class="copy-text guide-text">Exercise 8 check. Please evaluate:
+
+1. Did I work through all four stages — overview, dissect, challenge, cite?
+2. Did I actually push back on something from the text, or just summarize it?
+3. Is the APA citation complete and correct?
+4. Did I catch any instances where you drew on outside knowledge despite the instruction to stay within the pasted text?
+5. Does the closing summary reflect genuine engagement with the article?
+
+Tell me what's missing before Exercise 9.</div>
+  </div>
+</div>
+
+<!-- ══ TAB 9 ══ -->
+<div class="tab-panel" id="tab-9" role="tabpanel" aria-labelledby="nav-9" tabindex="0">
+  <h2>Exercise 09 — Second Reading and Comparison</h2>
+  <span class="ex-subtitle">Wikipedia: Artificial Intelligence · Artifact + Transcript</span>
+
+  <p>Open this article. Read the introduction and at least two sections. Then repeat the four-stage process from Exercise 8 with this new article.</p>
+
+  <div class="url-block">
+    <span class="url-label">Reading</span>
+    <a class="url-link" href="https://en.wikipedia.org/wiki/Artificial_intelligence" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Artificial_intelligence</a>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Opening Prompt</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy opening prompt">Copy</button>
+    </div>
+    <div class="copy-text">I'm going to work through the Wikipedia article on Artificial Intelligence with you. Same rules as before: base your responses only on what I paste. Tell me when you are drawing from the text and when you are inferring beyond it.</div>
+  </div>
+
+  <p>Repeat all four stages: overview, dissect, challenge, cite. For the cite stage:</p>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Cite Prompt — Ex 9</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy citation prompt for exercise 9">Copy</button>
+    </div>
+    <div class="copy-text">Generate a reference for the Wikipedia article on Artificial Intelligence in APA format. Use this access date: [write today's date here, e.g. April 30, 2026]. Include the full URL.</div>
+  </div>
+
+  <p>Then open the comparison:</p>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Comparison Prompt</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy comparison prompt">Copy</button>
+    </div>
+    <div class="copy-text">You may now draw on both articles — the Wikipedia article on Data Science from Exercise 8 and this one on Artificial Intelligence. Where do they agree? Where do they contradict each other? What does each say that the other doesn't?</div>
+  </div>
+
+  <div class="reflect-block">
+    <div class="reflect-lbl">Reflect</div>
+    <div class="reflect-cnt">Which article made more sense to you? Did the model represent the differences honestly or flatten them?</div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Closing Prompt</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy closing prompt">Copy</button>
+    </div>
+    <div class="copy-text">Write a study reference comparing these two articles — their main arguments, their agreements and contradictions, and what together they suggest about the relationship between data science and artificial intelligence.</div>
+  </div>
+
+  <div class="deliverables">
+    <div class="del-line del-artifact">Artifact: the comparison. Save as <span class="mono">lp-ex9-[yourname]-artifact.txt</span> → /artifacts.</div>
+    <div class="del-line del-transcript">Transcript: <span class="mono">lp-ex9-[yourname]-transcript.txt</span> → /transcripts.</div>
+  </div>
+
+  <div class="sep"></div>
+  <h3>Guide Check</h3>
+  <div class="copy-block">
+    <div class="copy-block-head guide">
+      <span class="copy-block-label">Guide Check — Exercise 09</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy guide check for exercise 9">Copy</button>
+    </div>
+    <div class="copy-text guide-text">Exercise 9 check. Please evaluate:
+
+1. Did I complete all four stages for the second article?
+2. Does the comparison identify genuine agreements and contradictions — or does it flatten the differences?
+3. Is the comparison specific enough to be a useful study reference, or is it vague?
+4. Did I engage with the comparison seriously — asking follow-up questions — or just accept the first comparison?
+
+Tell me what to strengthen before Exercise 10.</div>
+  </div>
+</div>
+
+<!-- ══ TAB 10 ══ -->
+<div class="tab-panel" id="tab-10" role="tabpanel" aria-labelledby="nav-10" tabindex="0">
+  <h2>Exercise 10 — Build Your Workbench</h2>
+  <span class="ex-subtitle">Artifact + Transcript</span>
+
+  <p>Open a new conversation. Upload artifacts from Exercises 2–9.</p>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Prompt 1</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy prompt 1">Copy</button>
+    </div>
+    <div class="copy-text">I'm uploading a set of AI-generated artifacts from my conversations about data science. What do they suggest about what I understand well, what remains unclear, and what questions I keep returning to?</div>
+  </div>
+
+  <p>Read the analysis. Then ask about synthesis:</p>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Prompt 2</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy prompt 2">Copy</button>
+    </div>
+    <div class="copy-text">I have transcripts and artifacts from multiple AI conversations in a repository folder. I want to use this material in future conversations without re-reading everything. What would a good synthesis document contain? What are the risks of relying on one instead of the originals? Why might generating one still be useful?</div>
+  </div>
+
+  <p>Read carefully. The model is describing the tradeoffs in AI-assisted knowledge compression.</p>
+
+  <div class="reflect-block">
+    <div class="reflect-lbl">Reflect</div>
+    <div class="reflect-cnt">What did the model notice about your work that you didn't expect? What does your workbench reveal about how you've been thinking?</div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Closing Prompt</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy closing prompt">Copy</button>
+    </div>
+    <div class="copy-text">Summarize your recommendations for organizing this workbench and your honest assessment of the tradeoffs of synthesis over source material.</div>
+  </div>
+
+  <div class="deliverables">
+    <div class="del-line del-artifact">Artifact: the summary. Save as <span class="mono">lp-ex10-[yourname]-artifact.txt</span> → /artifacts.</div>
+    <div class="del-line del-transcript">Transcript: <span class="mono">lp-ex10-[yourname]-transcript.txt</span> → /transcripts.</div>
+  </div>
+
+  <div class="sep"></div>
+  <h3>Guide Check</h3>
+  <div class="copy-block">
+    <div class="copy-block-head guide">
+      <span class="copy-block-label">Guide Check — Exercise 10</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy guide check for exercise 10">Copy</button>
+    </div>
+    <div class="copy-text guide-text">Exercise 10 check. Please evaluate:
+
+1. Does my artifact show genuine pattern recognition across the nine previous exercises — or is it generic?
+2. Did I engage seriously with the synthesis tradeoffs question — or just accept the model's answer?
+3. Does the summary reflect real thinking about what my workbench reveals, or is it a list?
+4. Am I ready for Phase III — independent operation — based on what you've seen across all ten exercises?
+
+Tell me directly whether I'm ready to proceed to Phase III.</div>
+  </div>
+</div>
+
+<!-- ══ TAB 11 ══ -->
+<div class="tab-panel" id="tab-11" role="tabpanel" aria-labelledby="nav-11" tabindex="0">
+  <div class="phase-banner">
+    <div class="p-label">Phase III · Exercises 11–15</div>
+    <h2>Independent Operation</h2>
+    <div class="p-sub">Set the destination, manage the route, document the trip.</div>
+  </div>
+
+  <p>From Exercise 11 forward, artifacts are documents — the kind you would submit as coursework or share as outputs. Every artifact carries full citation:</p>
+
+  <div class="cite-block">
+    <p>Generated with AI assistance.</p>
+    <p>Student: [your name] &nbsp;|&nbsp; Date: [date] &nbsp;|&nbsp; Model: [model name]</p>
+    <p>Transcript: [repository link]</p>
+  </div>
+
+  <h2>Exercise 11 — Teach Yourself</h2>
+  <span class="ex-subtitle">Artifact + Transcript</span>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Prompt 1</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy prompt 1">Copy</button>
+    </div>
+    <div class="copy-text">Create a learning sequence that teaches me data science at four levels of depth. Use the same multiplier from Exercise 2 — or choose a new one. Each level must build on the last: by level four, the material should feel like something I already mostly know.</div>
+  </div>
+
+  <p>Work through each level actively. After each, tell the model what was new versus what you already understood from the previous level. Push back if a level adds filler instead of depth.</p>
+
+  <div class="reflect-block">
+    <div class="reflect-lbl">Reflect</div>
+    <div class="reflect-cnt">Did four levels feel like enough? Where did the progression break down?</div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Closing Prompt</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy closing prompt">Copy</button>
+    </div>
+    <div class="copy-text">Compile the full four-level sequence as a single clean document. Add full citation at the end.</div>
+  </div>
+
+  <p><strong>First Workbench Zip:</strong> After saving the artifact and transcript, zip the entire <span class="mono">ai-literacy/</span> folder. Name it <span class="mono">ai-literacy-[yourname]-[date].zip</span>. Save to /zip. This is your first timestamped archive.</p>
+
+  <div class="deliverables">
+    <div class="del-line del-artifact">Artifact: compiled sequence with citation. Save as <span class="mono">lp-ex11-[yourname]-artifact.txt</span> → /artifacts.</div>
+    <div class="del-line del-transcript">Transcript: <span class="mono">lp-ex11-[yourname]-transcript.txt</span> → /transcripts.</div>
+  </div>
+
+  <div class="sep"></div>
+  <h3>Guide Check</h3>
+  <div class="copy-block">
+    <div class="copy-block-head guide">
+      <span class="copy-block-label">Guide Check — Exercise 11</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy guide check for exercise 11">Copy</button>
+    </div>
+    <div class="copy-text guide-text">Exercise 11 check. Please evaluate:
+
+1. Did I work through all four levels actively — responding after each — or did I just receive them?
+2. Did I push back when a level added filler instead of depth?
+3. Does the compiled artifact actually build depth progressively — or does each level just add length?
+4. Is the full citation present and complete?
+
+Tell me what's missing.</div>
+  </div>
+</div>
+
+<!-- ══ TAB 12 ══ -->
+<div class="tab-panel" id="tab-12" role="tabpanel" aria-labelledby="nav-12" tabindex="0">
+  <h2>Exercise 12 — Synthesis Document</h2>
+  <span class="ex-subtitle">The most important artifact in the workbench · Full citation required</span>
+
+  <p>Upload artifacts from Exercises 4–11 and the two Wikipedia articles from Exercises 8–9.</p>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Prompt 1</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy prompt 1">Copy</button>
+    </div>
+    <div class="copy-text">I'm uploading my artifacts and readings from a course on data science. Read them. Generate a synthesis document: an organized overview of what I've learned, what questions remain open, and what key ideas I should carry forward. Write it so it can be uploaded to any model as the opening context for a new conversation — portable, compressed, complete.</div>
+  </div>
+
+  <p>Read the synthesis. Push back on anything it misses or distorts. Then ask it to reflect on what it did:</p>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Prompt 2</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy prompt 2">Copy</button>
+    </div>
+    <div class="copy-text">Explain what you did to generate this synthesis. What did you include and exclude, and why? What are the risks of relying on this document instead of the originals?</div>
+  </div>
+
+  <p>Read this carefully. The model is describing its own compression process and naming the tradeoffs.</p>
+
+  <div class="reflect-block">
+    <div class="reflect-lbl">Reflect</div>
+    <div class="reflect-cnt">Does the synthesis accurately represent what you learned? What did it miss? Would you trust it as the only context for a new conversation?</div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Closing Prompt</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy closing prompt">Copy</button>
+    </div>
+    <div class="copy-text">Produce a final synthesis document incorporating my corrections, followed by your reflection on its limits. Add full citation at the end.</div>
+  </div>
+
+  <div class="deliverables">
+    <div class="del-line del-artifact">Artifact: synthesis document with reflection. Title <span class="mono">synthesis-[yourname].txt</span>. Save to /synthesis — not /artifacts. This is your entry point for future sessions.</div>
+    <div class="del-line del-transcript">Transcript: <span class="mono">lp-ex12-[yourname]-transcript.txt</span> → /transcripts.</div>
+  </div>
+
+  <div class="sep"></div>
+  <h3>Guide Check</h3>
+  <div class="copy-block">
+    <div class="copy-block-head guide">
+      <span class="copy-block-label">Guide Check — Exercise 12</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy guide check for exercise 12">Copy</button>
+    </div>
+    <div class="copy-text guide-text">Exercise 12 check. Please evaluate:
+
+1. Does the synthesis document represent what I actually learned — or does it import things from your general knowledge that I didn't engage with?
+2. Is it portable — could a new model use it as opening context without needing the originals?
+3. Does it include the reflection on its own limits?
+4. Is the full citation present?
+5. Is this synthesis accurate enough to trust as the foundation for Exercises 13–15?
+
+Tell me specifically what to correct before proceeding.</div>
+  </div>
+</div>
+
+<!-- ══ TAB 13 ══ -->
+<div class="tab-panel" id="tab-13" role="tabpanel" aria-labelledby="nav-13" tabindex="0">
+  <h2>Exercise 13 — Did You Learn Your Own Slop?</h2>
+  <span class="ex-subtitle">Full citation required</span>
+
+  <p>Upload the synthesis document and artifacts from Exercises 6–12.</p>
+
+  <p>Choose a quiz format:</p>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Option A — Multiple Choice</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy option A">Copy</button>
+    </div>
+    <div class="copy-text">Based only on these artifacts — generated from my own conversations about data science — create 20 multiple-choice questions that test whether I actually understand the material. Draw from what I wrote, not from general knowledge of data science.</div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Option B — Short Answer</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy option B">Copy</button>
+    </div>
+    <div class="copy-text">Based only on these artifacts, create 10 short-answer questions that test application and judgment, not recall.</div>
+  </div>
+
+  <p>Take the quiz in the chat. Write actual answers. Then:</p>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Grading Prompt</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy grading prompt">Copy</button>
+    </div>
+    <div class="copy-text">Grade my answers honestly. Where did I demonstrate real understanding? Where did I reproduce language from my own artifacts without understanding it?</div>
+  </div>
+
+  <div class="reflect-block">
+    <div class="reflect-lbl">Reflect</div>
+    <div class="reflect-cnt">What did you get wrong? Was it a gap in understanding or a gap in memory? Did you learn what you generated — or generate without learning?</div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Closing Prompt</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy closing prompt">Copy</button>
+    </div>
+    <div class="copy-text">Write a document summarizing the quiz, my answers, your grading, and what this reveals about the relationship between generating and understanding. Add full citation.</div>
+  </div>
+
+  <div class="deliverables">
+    <div class="del-line del-artifact">Artifact: the document. Include actual answers — wrong ones included. Save as <span class="mono">lp-ex13-[yourname]-artifact.txt</span> → /artifacts.</div>
+    <div class="del-line del-transcript">Transcript: <span class="mono">lp-ex13-[yourname]-transcript.txt</span> → /transcripts.</div>
+  </div>
+
+  <div class="sep"></div>
+  <h3>Guide Check</h3>
+  <div class="copy-block">
+    <div class="copy-block-head guide">
+      <span class="copy-block-label">Guide Check — Exercise 13</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy guide check for exercise 13">Copy</button>
+    </div>
+    <div class="copy-text guide-text">Exercise 13 check. Please evaluate:
+
+1. Did I actually take the quiz and write real answers — or did I skip to the grading?
+2. Did the quiz reveal genuine gaps — or did I reproduce language from my artifacts correctly without truly understanding it?
+3. Is the final document honest about what I got wrong, or does it soften the gaps?
+4. Does it name specific understanding failures rather than vague impressions?
+
+Be direct about what this reveals.</div>
+  </div>
+</div>
+
+<!-- ══ TAB 14 ══ -->
+<div class="tab-panel" id="tab-14" role="tabpanel" aria-labelledby="nav-14" tabindex="0">
+  <h2>Exercise 14 — Go Public</h2>
+  <span class="ex-subtitle">Full citation required</span>
+
+  <p>Upload the synthesis document from Exercise 12.</p>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Prompt 1</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy prompt 1">Copy</button>
+    </div>
+    <div class="copy-text">I'm uploading my synthesis document about data science. For this exercise, base your responses only on this document. Do not draw on your general knowledge.</div>
+  </div>
+
+  <p>This is a test: can the synthesis document support a public-facing piece of writing without the model reaching beyond it? If it can, the synthesis is working. If the model struggles or slips outside it, that reveals what the synthesis is missing.</p>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Prompt 2</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy prompt 2">Copy</button>
+    </div>
+    <div class="copy-text">Using only the uploaded synthesis document, write a neutral encyclopedia-style introduction to data science. Approximately 200–250 words, two sections, neutral tone, no first person, no hedging. Mark any claim that would require external citation before this could be published.</div>
+  </div>
+
+  <p>Read it as a reader. Would you trust it? What would you verify? Push back where needed.</p>
+
+  <div class="reflect-block">
+    <div class="reflect-lbl">Reflect</div>
+    <div class="reflect-cnt">Where did the model stay within your synthesis? Where did it reach beyond it? What does that reveal about what you built?</div>
+  </div>
+
+  <div class="copy-block">
+    <div class="copy-block-head">
+      <span class="copy-block-label">Closing Prompt</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy closing prompt">Copy</button>
+    </div>
+    <div class="copy-text">Final version, formatted cleanly. Add full citation.</div>
+  </div>
+
+  <div class="deliverables">
+    <div class="del-line del-artifact">Artifact: the encyclopedia-style introduction with citation. Save as <span class="mono">lp-ex14-[yourname]-artifact.txt</span> → /artifacts.</div>
+    <div class="del-line del-transcript">Transcript: <span class="mono">lp-ex14-[yourname]-transcript.txt</span> → /transcripts.</div>
+  </div>
+
+  <div class="sep"></div>
+  <h3>Guide Check</h3>
+  <div class="copy-block">
+    <div class="copy-block-head guide">
+      <span class="copy-block-label">Guide Check — Exercise 14</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy guide check for exercise 14">Copy</button>
+    </div>
+    <div class="copy-text guide-text">Exercise 14 check. Please evaluate:
+
+1. Did the encyclopedia-style introduction stay within what my synthesis document contains — or did you reach beyond it?
+2. Did I push back where you exceeded the source?
+3. Are the claims that would require external citation marked as such?
+4. Is the final artifact clean, neutral-toned, and appropriately scoped for a general reader?
+5. Does it read like something I could share publicly, or does it still read like unedited AI output?
+6. Is the full citation present?
+
+Tell me what to fix before the Road Test.</div>
+  </div>
+</div>
+
+<!-- ══ TAB 15 ══ -->
+<div class="tab-panel" id="tab-15" role="tabpanel" aria-labelledby="nav-15" tabindex="0">
+  <h2>Exercise 15 — Road Test</h2>
+  <span class="ex-subtitle">General AI License Exam · Full citation required</span>
+
+  <p><strong>This is the exam.</strong></p>
+
+  <p>Upload the synthesis document from Exercise 12. No scaffolding. You decide the task, the format, the model, and the strategy.</p>
+
+  <p>Produce a substantive artifact about data science — briefing, explainer, analysis, lesson plan, annotated summary, structured argument, or something else. Use the synthesis document as primary context. Instruct the model to work only from that document, or allow it to draw on general knowledge — but state the choice explicitly in the Prompter's Note.</p>
+
+  <p><strong>The artifact must:</strong></p>
+  <ol>
+    <li>Be the model's final response, shaped entirely by your prompting</li>
+    <li>Carry full citation</li>
+    <li>End with a <strong>Prompter's Note</strong> — 3 sentences: what you tried, what didn't work, what you'd do differently</li>
+  </ol>
+
+  <p><strong>The transcript must:</strong></p>
+  <ol>
+    <li>Be full and unedited</li>
+    <li>Show the iteration, including what failed</li>
+    <li>Be saved to /transcripts and linked inside the artifact</li>
+  </ol>
+
+  <div class="reflect-block">
+    <div class="reflect-lbl">Reflect</div>
+    <div class="reflect-cnt">Write in the chat before the final prompt. What did the permit teach you?</div>
+  </div>
+
+  <div class="deliverables">
+    <div class="del-line del-artifact">Artifact: <span class="mono">lp-ex15-[yourname]-artifact.txt</span> → /artifacts. Citation and Prompter's Note inside.</div>
+    <div class="del-line del-transcript">Transcript: <span class="mono">lp-ex15-[yourname]-transcript.txt</span> → /transcripts.</div>
+  </div>
+
+  <p>Exercise 15 acceptance is judged against six criteria.</p>
+
+  <table class="data-table">
+    <thead><tr><th>Criterion</th><th>Evidence</th></tr></thead>
+    <tbody>
+      <tr><td>Transcript complete</td><td>Full unedited conversation saved to <span class="mono">/transcripts</span> and linked from the artifact</td></tr>
+      <tr><td>Prompt iteration</td><td>Conversation shows revision, challenge, or directional correction — not a single-pass query</td></tr>
+      <tr><td>Source discipline</td><td>Clear statement of whether the model drew from the synthesis document only or general knowledge</td></tr>
+      <tr><td>Artifact quality</td><td>Substantive, coherent, appropriate to the chosen format; not generic</td></tr>
+      <tr><td>Citation</td><td>Full citation block present: name, date, model, transcript link</td></tr>
+      <tr><td>Prompter's Note</td><td>Three sentences addressing what was attempted, what failed, what would change next time</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sep"></div>
+  <h3>Guide Check — Licensing Decision</h3>
+  <p>Send this as your final prompt. The model evaluates your work against the six criteria and issues a pass or no-pass on each.</p>
+
+  <div class="copy-block">
+    <div class="copy-block-head guide">
+      <span class="copy-block-label">Guide Check — Exercise 15 · Licensing</span>
+      <button class="copy-btn" onclick="copyBlock(this)" aria-label="Copy licensing check prompt">Copy</button>
+    </div>
+    <div class="copy-text guide-text">This is my Exercise 15 Road Test submission. Please evaluate it against these six criteria and give me a pass or no-pass on each, with specific reasoning:
+
+1. Transcript complete — full unedited conversation saved to /transcripts and linked from the artifact
+2. Prompt iteration — conversation shows revision, challenge, or directional correction — not a single-pass query
+3. Source discipline — clear statement of whether I used the synthesis document only or allowed general knowledge
+4. Artifact quality — substantive, coherent, appropriate to the chosen format; not generic
+5. Citation — full citation block present: name, date, model, transcript link
+6. Prompter's Note — three sentences addressing what was attempted, what failed, what would change next time
+
+If I pass all six: confirm that I have completed the General AI License level. State this clearly.
+If I fail any: tell me exactly what to fix and that I must resubmit. Do not pass partial work.</div>
+  </div>
+
+  <div class="license-banner">
+    <p>When all six criteria pass: you have completed the General AI License level.</p>
+  </div>
+
+  <div class="sep"></div>
+  <h3>After Licensing</h3>
+  <p>Within contexts where AI use is permitted, a General AI License holder has demonstrated readiness to use generative AI independently, with citation, transcript preservation, and source discipline. Every AI-assisted artifact carries full citation — name, date, model, and a live link to its transcript in the workbench repository.</p>
+  <p>The workbench is not a course deliverable that ends here. It is the ongoing record of AI-assisted work. The workbench portfolio — demonstrating sustained, responsible use across courses and contexts — is the prerequisite for enrollment in the Commercial License course.</p>
+</div>
+
+</main><!-- /content -->
+
+<script>
+// ── Tab navigation ──
+const navBtns = document.querySelectorAll('.nav-btn');
+const panels = document.querySelectorAll('.tab-panel');
+
+function showTab(idx) {
+  const idxStr = String(idx);
+  navBtns.forEach(b => {
+    const isActive = b.dataset.tab === idxStr;
+    b.classList.toggle('active', isActive);
+    b.setAttribute('aria-selected', isActive ? 'true' : 'false');
+  });
+  panels.forEach(p => {
+    p.classList.toggle('active', p.id === `tab-${idxStr}`);
+  });
+  document.getElementById(`tab-${idxStr}`).focus();
+  // scroll content to top
+  document.getElementById('main-content').scrollTop = 0;
+}
+
+navBtns.forEach(btn => {
+  btn.addEventListener('click', () => showTab(btn.dataset.tab));
+});
+
+// Arrow key navigation in sidebar
+document.getElementById('sidebar').addEventListener('keydown', e => {
+  if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+  const allBtns = [...navBtns];
+  const active = document.querySelector('.nav-btn.active');
+  const idx = allBtns.indexOf(active);
+  if (e.key === 'ArrowDown' && idx < allBtns.length - 1) {
+    e.preventDefault();
+    allBtns[idx + 1].click();
+    allBtns[idx + 1].focus();
+  } else if (e.key === 'ArrowUp' && idx > 0) {
+    e.preventDefault();
+    allBtns[idx - 1].click();
+    allBtns[idx - 1].focus();
+  }
+});
+
+// ── Copy buttons ──
+function copyBlock(btn) {
+  const block = btn.closest('.copy-block');
+  const text = block.querySelector('.copy-text').textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied ✓';
+    btn.classList.add('copied');
+    btn.setAttribute('aria-label', btn.getAttribute('aria-label').replace('Copy', 'Copied'));
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(() => {
+    // Fallback for older browsers
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = 'Copied ✓';
+    setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+  });
+}
+</script>
+</body>
+</html>
